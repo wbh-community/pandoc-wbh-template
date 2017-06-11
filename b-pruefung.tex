@@ -1,0 +1,234 @@
+% TeX für WBH B-Prüfungen
+\documentclass[12pt,a4paper,bibliography=totocnumbered,listof=totocnumbered]{scrartcl}
+
+% Support German annotation
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+
+% Symbols:
+% Pandoc imports the extensive `amsmath` collection of symbols
+% for typesetting ordinary math.
+\usepackage{amsmath}
+% if you use exotic symbols you need to import specific packages, eg. for
+% electrical engineering diagrams, musical notation, exotic currency symbols,
+% the unspeakable rites of freemasonry etc.
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage[right]{eurosym}
+\usepackage[printonlyused]{acronym}
+\usepackage{subfig}
+\usepackage{floatflt}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{colortbl}
+\usepackage{paralist}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage[right]{eurosym}
+%\usepackage{picins}
+\usepackage[subfigure,titles]{tocloft}
+\usepackage[pdfpagelabels=true]{hyperref}
+\usepackage{helvet}
+
+\usepackage{listings}
+\lstset{basicstyle=\footnotesize, captionpos=b, breaklines=true, showstringspaces=false, tabsize=2, frame=lines, numbers=left, numberstyle=\tiny, xleftmargin=2em, framexleftmargin=2em}
+\makeatletter
+\def\l@lstlisting#1#2{\@dottedtocline{1}{0em}{1em}{\hspace{1,5em} Lst. #1}{#2}}
+\makeatother
+
+\geometry{a4paper, top=27mm, left=30mm, right=20mm, bottom=35mm, headsep=10mm, footskip=12mm}
+
+\hypersetup{unicode=false, pdftoolbar=true, pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH},
+	pdftitle={B-Prüfung},
+	pdfauthor={$author$, Matrikelnummer: $matrikelnr$},
+	pdfsubject={$studiengang$},
+	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq},
+	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
+	pdfkeywords={B-Prüfung $aufgabencode$},
+	pdfnewwindow=true,
+	colorlinks=true,linkcolor=black,citecolor=black,filecolor=magenta,urlcolor=black}
+\pdfinfo{/CreationDate (D:20170605133321)}
+\renewcommand{\familydefault}{\sfdefault}
+
+\begin{document}
+
+\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
+
+% Kopf- und Fusszeile
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\renewcommand{\leftmark}{\rightmark}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{\thesection\space\contentsname}
+\lfoot{\tiny B-Prüfung des Studenten: $author$ (Matrikelnr.: $matrikelnr$) Studiengang: $studiengang$ - Prüfung: $aufgabencode$}
+\cfoot{}
+\rfoot{\ \linebreak Seite \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Vorspann
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\theHsection}{\Roman{section}}
+\pagenumbering{Roman}
+
+% Pagebreak after each Section
+\let\oldsection\section
+\renewcommand\section{\clearpage\oldsection}
+
+% ----------------------------------------------------------------------------------------------------------
+% Titelseite
+% ----------------------------------------------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{center}
+    \includegraphics[scale=0.2]{$if(logo)$ $logo$ $else$ Bilder/logo.png $endif$}\\
+	\vspace*{2cm}
+	\Large
+	\textbf{Studiengang:}\\
+	\textbf{$studiengang$}\\
+	\vspace*{2cm}
+	\Huge
+	\textbf{B-Aufgabe}\\
+	\vspace*{0.5cm}
+	\large
+  $aufgabencode$ \\
+	\vspace*{1cm}
+	\textbf{$fach$}\\
+	\vspace*{2cm}
+
+	\vfill
+	\normalsize
+	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
+	\begin{tabular}{x{6cm}p{7.5cm}}
+		\rule{0mm}{5ex}\textbf{Student:} & $author$ \\
+		\rule{0mm}{5ex}\textbf{Matrikelnummer:} & $matrikelnr$ \\
+		\rule{0mm}{5ex}\textbf{Abgabedatum:} & $date$ \\
+	\end{tabular}
+\end{center}
+\pagebreak
+
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+
+$for(include-before)$
+$include-before$
+
+$endfor$
+
+$if(toc)$
+{
+$if(colorlinks)$
+\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
+$endif$
+\setcounter{tocdepth}{$toc-depth$}
+% ----------------------------------------------------------------------------------------------------------
+% Verzeichnisse
+% ----------------------------------------------------------------------------------------------------------
+% TODO Typ vor Nummer
+\renewcommand{\cfttabpresnum}{Tab. }
+\renewcommand{\cftfigpresnum}{Abb. }
+\settowidth{\cfttabnumwidth}{Abb. 10\quad}
+\settowidth{\cftfignumwidth}{Abb. 10\quad}
+
+\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
+\singlespacing
+\rhead{INHALTSVERZEICHNIS}
+\renewcommand{\contentsname}{II Inhaltsverzeichnis}
+\phantomsection
+\addcontentsline{toc}{section}{\texorpdfstring{II \hspace{0.35em}Inhaltsverzeichnis}{Inhaltsverzeichnis}}
+\addtocounter{section}{1}
+\tableofcontents
+\pagebreak
+}
+$endif$
+$if(lot)$
+\rhead{VERZEICHNISSE}
+\pagebreak
+\listoftables
+$endif$
+$if(lof)$
+% Workaround for the HEADING if you don't use a list of tables
+$if(lot)$$else$\rhead{VERZEICHNISSE}$endif$
+\listoffigures
+\pagebreak
+$endif$
+$if(abk)$
+% ----------------------------------------------------------------------------------------------------------
+% Abkürzungen
+% ----------------------------------------------------------------------------------------------------------
+\section{Abkürzungsverzeichnis}
+\begin{acronym}[OSGi] % längste Abkürzung steht in eckigen Klammern
+	\setlength{\itemsep}{-\parsep} % geringerer Zeilenabstand
+	\acro{OSGi}{Open Service Gateway initiative}
+\end{acronym}
+\newpage
+$endif$
+
+% ----------------------------------------------------------------------------------------------------------
+% Inhalt
+% ----------------------------------------------------------------------------------------------------------
+% Abstände Überschrift
+\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
+\titlespacing{\subsection}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
+\titlespacing{\subsubsection}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
+
+% Kopfzeile
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\renewcommand{\subsectionmark}[1]{}
+\renewcommand{\subsubsectionmark}[1]{}
+\lhead{Lösung der Aufgabe: \thesection}
+\rhead{} %hier kann die rechte Seite der Kopfzeile editiert werden!
+
+\onehalfspacing
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\theHsection}{\arabic{section}}
+\setcounter{section}{0}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+$body$
+
+
+
+$if(biblatex)$
+% ----------------------------------------------------------------------------------------------------------
+% Literatur
+% ----------------------------------------------------------------------------------------------------------
+\renewcommand\refname{Quellenverzeichnis}
+\bibliographystyle{myalpha}
+\bibliography{bibo}
+\pagebreak
+
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+
+$endif$
+
+\newpage
+\thispagestyle{empty}
+\begin{center}
+	\vspace*{5em}
+	\huge\textbf{Erklärung}\\
+\end{center}
+\vspace{2em}
+Hiermit versichere ich, dass ich meine Abschlussarbeit selbständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe.
+
+\vspace{4em}
+\begin{minipage}{\linewidth}
+	\begin{tabular}{p{15em}p{15em}}
+		Datum: &  .......................................................\\
+		& \centering ($author$)\\
+	\end{tabular}
+\end{minipage}
+
+\end{document}

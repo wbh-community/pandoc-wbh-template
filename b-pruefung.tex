@@ -57,6 +57,10 @@
 \pdfinfo{/CreationDate (D:20170605133321)}
 \renewcommand{\familydefault}{\sfdefault}
 
+% Pandoc tightlisting
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
 \begin{document}
 
 \titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
@@ -88,7 +92,7 @@
 % ----------------------------------------------------------------------------------------------------------
 \thispagestyle{empty}
 \begin{center}
-    \includegraphics[scale=0.2]{$if(logo)$ $logo$ $else$ Bilder/logo.png $endif$}\\
+    \includegraphics[scale=0.2]{$if(logo)$$logo$$else$Bilder/logo.png$endif$}\\
 	\vspace*{2cm}
 	\Large
 	\textbf{Studiengang:}\\

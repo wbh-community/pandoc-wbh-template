@@ -43,7 +43,7 @@
 \def\l@lstlisting#1#2{\@dottedtocline{1}{0em}{1em}{\hspace{1,5em} Lst. #1}{#2}}
 \makeatother
 
-\geometry{a4paper, top=27mm, left=30mm, right=20mm, bottom=35mm, headsep=10mm, footskip=12mm}
+\geometry{a4paper, top=27mm, left=20mm, right=40mm, bottom=35mm, headsep=10mm, footskip=12mm} % Vorgabe des 4cm Rand auf der rechten Seiten.
 
 \hypersetup{unicode=false, pdftoolbar=true, pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH},
 	pdftitle={B-Prüfung},
@@ -92,8 +92,10 @@
 % ----------------------------------------------------------------------------------------------------------
 \thispagestyle{empty}
 \begin{center}
-    \includegraphics[scale=0.2]{$if(logo)$$logo$$else$Bilder/logo.png$endif$}\\
-	\vspace*{2cm}
+    $if(logo)$
+    \includegraphics[scale=0.2]{$logo$}\\
+	$endif$
+    \vspace*{2cm}
 	\Large
 	\textbf{Studiengang:}\\
 	\textbf{$studiengang$}\\

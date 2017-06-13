@@ -6,7 +6,6 @@ studiengang: Technische Informatike
 fach: Freizeitgestaltung
 aufgabencode: Freiwillige_Arbeit
 date: 08.06.2017
-logo: ../Bilder/logo.png
 lang: de
 toc: true
 

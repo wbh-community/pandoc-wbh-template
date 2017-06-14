@@ -36,6 +36,12 @@
 \usepackage[subfigure,titles]{tocloft}
 \usepackage[pdfpagelabels=true]{hyperref}
 \usepackage{helvet}
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
 
 \usepackage{listings}
 \lstset{basicstyle=\footnotesize, captionpos=b, breaklines=true, showstringspaces=false, tabsize=2, frame=lines, numbers=left, numberstyle=\tiny, xleftmargin=2em, framexleftmargin=2em}

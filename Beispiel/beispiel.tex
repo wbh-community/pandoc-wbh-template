@@ -1,0 +1,384 @@
+% TeX für WBH B-Prüfungen
+\documentclass[12pt,a4paper,bibliography=totocnumbered,listof=totocnumbered]{scrartcl}
+
+% Support German annotation
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+
+% Symbols:
+% Pandoc imports the extensive `amsmath` collection of symbols
+% for typesetting ordinary math.
+\usepackage{amsmath}
+% if you use exotic symbols you need to import specific packages, eg. for
+% electrical engineering diagrams, musical notation, exotic currency symbols,
+% the unspeakable rites of freemasonry etc.
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage[right]{eurosym}
+\usepackage[printonlyused]{acronym}
+\usepackage{subfig}
+\usepackage{floatflt}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{colortbl}
+\usepackage{paralist}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage[right]{eurosym}
+%\usepackage{picins}
+\usepackage[subfigure,titles]{tocloft}
+\usepackage[pdfpagelabels=true]{hyperref}
+\usepackage{helvet}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+
+\usepackage{listings}
+\lstset{basicstyle=\footnotesize, captionpos=b, breaklines=true, showstringspaces=false, tabsize=2, frame=lines, numbers=left, numberstyle=\tiny, xleftmargin=2em, framexleftmargin=2em}
+\makeatletter
+\def\l@lstlisting#1#2{\@dottedtocline{1}{0em}{1em}{\hspace{1,5em} Lst. #1}{#2}}
+\makeatother
+
+\geometry{a4paper, top=27mm, left=30mm, right=20mm, bottom=35mm, headsep=10mm, footskip=12mm}
+
+\hypersetup{unicode=false, pdftoolbar=true, pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH},
+	pdftitle={B-Prüfung},
+	pdfauthor={Sebastian Preisner, Matrikelnummer: 900266},
+	pdfsubject={Technische Informatike},
+	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq},
+	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
+	pdfkeywords={B-Prüfung Freiwillige\_Arbeit},
+	pdfnewwindow=true,
+	colorlinks=true,linkcolor=black,citecolor=black,filecolor=magenta,urlcolor=black}
+\pdfinfo{/CreationDate (D:20170605133321)}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Pandoc tightlisting
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+
+\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
+
+% Kopf- und Fusszeile
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\renewcommand{\leftmark}{\rightmark}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{\thesection\space\contentsname}
+\lfoot{\tiny B-Prüfung des Studenten: Sebastian Preisner (Matrikelnr.: 900266) Studiengang: Technische Informatike - Prüfung: Freiwillige\_Arbeit}
+\cfoot{}
+\rfoot{\ \linebreak Seite \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Vorspann
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\theHsection}{\Roman{section}}
+\pagenumbering{Roman}
+
+% Pagebreak after each Section
+\let\oldsection\section
+\renewcommand\section{\clearpage\oldsection}
+
+% ----------------------------------------------------------------------------------------------------------
+% Titelseite
+% ----------------------------------------------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{center}
+        \vspace*{2cm}
+	\Large
+	\textbf{Studiengang:}\\
+	\textbf{Technische Informatike}\\
+	\vspace*{2cm}
+	\Huge
+	\textbf{B-Aufgabe}\\
+	\vspace*{0.5cm}
+	\large
+  Freiwillige\_Arbeit \\
+	\vspace*{1cm}
+	\textbf{Freizeitgestaltung}\\
+	\vspace*{2cm}
+
+	\vfill
+	\normalsize
+	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
+	\begin{tabular}{x{6cm}p{7.5cm}}
+		\rule{0mm}{5ex}\textbf{Student:} & Sebastian Preisner \\
+		\rule{0mm}{5ex}\textbf{Matrikelnummer:} & 900266 \\
+		\rule{0mm}{5ex}\textbf{Abgabedatum:} & 08.06.2017 \\
+	\end{tabular}
+\end{center}
+\pagebreak
+
+
+
+{
+\setcounter{tocdepth}{3}
+% ----------------------------------------------------------------------------------------------------------
+% Verzeichnisse
+% ----------------------------------------------------------------------------------------------------------
+% TODO Typ vor Nummer
+\renewcommand{\cfttabpresnum}{Tab. }
+\renewcommand{\cftfigpresnum}{Abb. }
+\settowidth{\cfttabnumwidth}{Abb. 10\quad}
+\settowidth{\cftfignumwidth}{Abb. 10\quad}
+
+\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
+\singlespacing
+\rhead{INHALTSVERZEICHNIS}
+\renewcommand{\contentsname}{II Inhaltsverzeichnis}
+\phantomsection
+\addcontentsline{toc}{section}{\texorpdfstring{II \hspace{0.35em}Inhaltsverzeichnis}{Inhaltsverzeichnis}}
+\addtocounter{section}{1}
+\tableofcontents
+\pagebreak
+}
+
+% ----------------------------------------------------------------------------------------------------------
+% Inhalt
+% ----------------------------------------------------------------------------------------------------------
+% Abstände Überschrift
+\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
+\titlespacing{\subsection}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
+\titlespacing{\subsubsection}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
+
+% Kopfzeile
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\renewcommand{\subsectionmark}[1]{}
+\renewcommand{\subsubsectionmark}[1]{}
+\lhead{Lösung der Aufgabe: \thesection}
+\rhead{} %hier kann die rechte Seite der Kopfzeile editiert werden!
+
+\onehalfspacing
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\theHsection}{\arabic{section}}
+\setcounter{section}{0}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+\section{Einführung}\label{einfuxfchrung}
+
+Im Folgenden möchte ich dir Pandoc und Markdown näher bringen und dir
+zeigen wieso du in Zukunft nur noch so schreiben möchtest. Dabei werde
+ich zunächst ein grobes Bild von Pandoc und Markdown zeichnen und dir im
+weiteren Verlauf die Installation und den Einsatz näher bringen und zum
+Schluss gehe ich nochmal speziell auf diese Vorlage für Pandoc ein.
+
+\subsection{Was ist Markdown?}\label{was-ist-markdown}
+
+Markdown ist eine Auszeichnungssprache und wurde maßgeblich von den
+frühen Text-E-Mails beeinflusst. Zu Zeiten wo man noch keine E-Mails mit
+Überschriften, kursiver und fettgedruckter Schrift usw. verfassen konnte
+musste man sich anderweitig behelfen. Das Ziel von Markdown ist die
+Lesbarkeit und einfache Schreibbarkeit von Texten. Das ermöglicht dem
+Schreiber eine hohe Konzentration auf den Text und wenig ablenkung durch
+Formatierungen verglichen WISIWYG (What you see is what you get)
+Editoren wie Microsoft Word. Zur Veranschaulischung möchte ich dir hier
+kruz ein paar Formatierungen im Dokument zeigen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{# Überschrift 1. Grades}
+\FunctionTok{## Überschrift 2. Grades}
+
+\NormalTok{* }\FloatTok{Listenpunkt 1}
+\FloatTok{* Listenpunkt 2}
+\FloatTok{* Listenpunkt 3}
+
+\NormalTok{Ich bin ein Text mit *kursiven* und **fetten** Elementen.}
+\end{Highlighting}
+\end{Shaded}
+
+Anhand dieses Beispiels kann man sehen wie einfach das Schreiben von
+Markdown ist. Nun wirst du dir sicherlich denken was dir diese
+einfachheit bringt wenn dein Dokument aber aussieht wie E-Mails vor 10
+Jahren. Die Antwort darauf ist, das sich in den ganzen Jahren viele
+Parser für Markdown entwickelt haben welche die einfache Syntax nutzen
+um perfekt Formatierte Texte zu erstellen. Eines dieser Tools und noch
+dazu das wohl mächtigste, ist Pandoc.
+
+\subsection{Was ist Pandoc?}\label{was-ist-pandoc}
+
+\href{http://pandoc.org/}{Pandoc} ist ein Übersetzer der eine Datei von
+einem Markup in ein anderes übersetzt. Markup ist das englische Wort für
+Auszeichnung und steht für eine maschinenlesbare Sprache für die
+Gliederung und Formatierung von Texten und Daten. Der bekannteste
+Vertreter ist sicherlich die Hypertext Markup Language (HTML), die
+Kernsprache des World Wide Webs. Pandoc bassiert hierbei auf einer
+erweiterten Variante der Auszeichnungssprache Markdown.
+
+Im folgenden findest du einige input Formate die von Pandoc unterstützt
+werden. Eine volle liste findest du auf der Webseite von
+\href{http://pandoc.org/}{Pandoc}.
+
+\begin{itemize}
+\tightlist
+\item
+  Markdown
+\item
+  CommonMark
+\item
+  LaTeX
+\item
+  textil
+\item
+  HTML
+\item
+  EPUB
+\item
+  LibreOffice/OpenOffice (odt)
+\item
+  Microsoft Word DOCX (OOXML)
+\item
+  Mediawiki
+\item
+  DocBook
+\end{itemize}
+
+Alle diese Formate unterstützt Pandoc auch für den Export und
+zusätzlich:
+
+\begin{itemize}
+\tightlist
+\item
+  PDF via LaTeX
+\item
+  Dokumentationsformate: DocBook, GNU TexInfo, Groff manpages
+\item
+  HTML5, XHTML
+\item
+  AsciiDoc
+\end{itemize}
+
+\subsection{Wieso sollte ich Pandoc
+einsetzen?}\label{wieso-sollte-ich-pandoc-einsetzen}
+
+Hierfür gibt es viele gute Argumente. Zum einen kannst du deine
+geschriebene Arbeit
+
+\section{Installation und
+Einrichtung}\label{installation-und-einrichtung}
+
+In diesem Kapitel geht es um die Installation und die Einrichtung der
+Tools. Da ich persönlich kein Windows besitze richtet sich die Anleitung
+ausschließlich an Linux nutzer. Ich würde mich jedoch über ergänzende
+Beiträge freuen.
+
+\subsection{Markdown}\label{markdown}
+
+Da Markdown lediglich eine Auszeichnungssprache ist benötigst du
+eigentlich nichts außer einen Texteditor. Diesen findet man unter allen
+gängigen Betriebssystemen. Auch auf der Konsole oder in diversen
+Webeditoren lässt sich Markdown schreiben (z.B. in einer E-Mail bei
+einem Mailprovider). Du merkst, durch die Einfachheit ist dir bei der
+Bearbeiten von Texten absolut keine grenze gesetzt und du wirst keine
+Probleme haben das Dokument auf irgend einem deiner Endgeräte (z.B.
+Computer, Laptop, Smartphone) zu öffnen und zu bearbeiten. Selbst auf
+der Arbeit sollte es für dich möglich sein (sofern du die Datei auf den
+Computer drauf und auch wieder herrunter bekommst, kläre dies bitte
+vorher mit deinem Arbeitgeber) deine Arbeiten zu vervollständigen.
+
+Als Hilfe gibt es jedoch eine lange Liste an Markdown Editoren die dir,
+meist in einem Splitscreen, das Ergebnis direkt anzeigen. Den größten
+mir bekannten Umfang bietet ganz klar Atom, dabei handelt es sich nicht
+um einen reinen Markdown Editor sondern um eine Texteditor der mit
+vielen zusätzlichen Plugins erweitert werden kann. Er ist OpenSource und
+steht für alle Plattformen zur verfügung.
+
+\subsection{Pandoc}\label{pandoc}
+
+Pandoc findest du in den gängigen Linux Distributionen in deren
+Repositories. Den Befehl zur Installtion für einige Distributionen
+findest du in der folgenden Box. Um Dateien in ein PDF Übersetzen zu
+können benötigt Pandoc noch LaTeX. Die LaTeX Umgebung ist sehr groß, wer
+also auf Speicherplatz achten muss, dem empfehle ich sich mit den
+benötigten Packeten auseinander zu setzen. Ansonsten ist eine volle
+Installation von LaTeX der einfachste Weg.
+
+\begin{Shaded}
+\begin{Highlighting}[shell]
+\CommentTok{# Ubuntu, Kubuntu, Mint}
+\FunctionTok{sudo}\NormalTok{ apt-get install pandoc}
+
+\CommentTok{# Fedora}
+\ExtensionTok{yum}\NormalTok{ install pandoc}
+
+\CommentTok{# Archlinux}
+\ExtensionTok{pacman}\NormalTok{ -S pandoc}
+\end{Highlighting}
+\end{Shaded}
+
+Eine Grafische Oberfläsche wirst du bei Pandoc nicht finden, das
+Programm wird mit Hilfe von Befehlen auf der Konsole bedient. Da es sich
+um einen Übersetzer handelt ist dies aber kein Problem denn alle
+Einstellungen lassen sich Bequem in Textfom fomulieren. Wie das geht
+werde ich dir im nächsten Kapitel zeigen. Zunächst kannst du jedoch mit
+dem Befehl \texttt{pandoc\ -v} die installierte Version erfragen.
+
+
+
+
+\newpage
+\thispagestyle{empty}
+\begin{center}
+	\vspace*{5em}
+	\huge\textbf{Erklärung}\\
+\end{center}
+\vspace{2em}
+Hiermit versichere ich, dass ich meine Abschlussarbeit selbständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe.
+
+\vspace{4em}
+\begin{minipage}{\linewidth}
+	\begin{tabular}{p{15em}p{15em}}
+		Datum: &  .......................................................\\
+		& \centering (Sebastian Preisner)\\
+	\end{tabular}
+\end{minipage}
+
+\end{document}

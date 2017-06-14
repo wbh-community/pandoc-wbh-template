@@ -17,7 +17,7 @@ Im Folgenden möchte ich dir Pandoc und Markdown näher bringen und dir zeigen w
 ## Was ist Markdown?
 Markdown ist eine Auszeichnungssprache und wurde maßgeblich von den frühen Text-E-Mails beeinflusst. Zu Zeiten wo man noch keine E-Mails mit Überschriften, kursiver und fettgedruckter Schrift usw. verfassen konnte musste man sich anderweitig behelfen. Das Ziel von Markdown ist die Lesbarkeit und einfache Schreibbarkeit von Texten. Das ermöglicht dem Schreiber eine hohe Konzentration auf den Text und wenig ablenkung durch Formatierungen verglichen WISIWYG (What you see is what you get) Editoren wie Microsoft Word. Zur Veranschaulischung möchte ich dir hier kruz ein paar Formatierungen im Dokument zeigen:
 
-```
+```markdown
 # Überschrift 1. Grades
 ## Überschrift 2. Grades
 
@@ -47,7 +47,7 @@ Im folgenden findest du einige input Formate die von Pandoc unterstützt werden.
 - Mediawiki
 - DocBook
 
-All diese Formate unterstützt Pandoc auch für den Export und zusätzlich:
+Alle diese Formate unterstützt Pandoc auch für den Export und zusätzlich:
 
 - PDF via LaTeX
 - Dokumentationsformate: DocBook, GNU TexInfo, Groff manpages
@@ -55,20 +55,20 @@ All diese Formate unterstützt Pandoc auch für den Export und zusätzlich:
 - AsciiDoc
 
 ## Wieso sollte ich Pandoc einsetzen?
-Hierfür gibt es viele gute Argumente. Zum einen kannst du deine geschriebene Arbeit 
+Hierfür gibt es viele gute Argumente. Zum einen kannst du deine geschriebene Arbeit
 
 # Installation und Einrichtung
 In diesem Kapitel geht es um die Installation und die Einrichtung der Tools. Da ich persönlich kein Windows besitze richtet sich die Anleitung ausschließlich an Linux nutzer. Ich würde mich jedoch über ergänzende Beiträge freuen.
 
 ## Markdown
-Da Markdown lediglich eine Auszeichnungssprache ist benötigst du eigentlich nichts außer einen Texteditor. Diesen findet man unter allen gängigen Betriebssystemen. Auch auf der Konsole oder in diversen Webeditoren lässt sich Markdown schreiben (z.B. in einer E-Mail bei einem Mailprovider). Du merkst, durch die Einfachheit ist dir bei der Bearbeiten von Texten absolut keine grenze gesetzt und du wirst keine Probleme haben das Dokument auf irgend einem deiner Endgeräte (z.B. Computer, Laptop, Smartphone) zu öffnen und zu bearbeiten. Selbst auf der Arbeit sollte es für dich möglich sein (sofern du die Datei auf den Computer drauf und auch wieder herrunter bekommst, kläre dies bitte vorher mit deinem Arbeitgeber) deine Arbeiten zu vervollständigen. 
+Da Markdown lediglich eine Auszeichnungssprache ist benötigst du eigentlich nichts außer einen Texteditor. Diesen findet man unter allen gängigen Betriebssystemen. Auch auf der Konsole oder in diversen Webeditoren lässt sich Markdown schreiben (z.B. in einer E-Mail bei einem Mailprovider). Du merkst, durch die Einfachheit ist dir bei der Bearbeiten von Texten absolut keine grenze gesetzt und du wirst keine Probleme haben das Dokument auf irgend einem deiner Endgeräte (z.B. Computer, Laptop, Smartphone) zu öffnen und zu bearbeiten. Selbst auf der Arbeit sollte es für dich möglich sein (sofern du die Datei auf den Computer drauf und auch wieder herrunter bekommst, kläre dies bitte vorher mit deinem Arbeitgeber) deine Arbeiten zu vervollständigen.
 
 Als Hilfe gibt es jedoch eine lange Liste an Markdown Editoren die dir, meist in einem Splitscreen, das Ergebnis direkt anzeigen. Den größten mir bekannten Umfang bietet ganz klar Atom, dabei handelt es sich nicht um einen reinen Markdown Editor sondern um eine Texteditor der mit vielen zusätzlichen Plugins erweitert werden kann. Er ist OpenSource und steht für alle Plattformen zur verfügung.
 
 ## Pandoc
-Pandoc findest du in den gängigen Linux Distributionen in deren Repositories. Den Befehl zur Installtion für einige Distributionen findest du in der folgenden Box. Um Dateien in ein PDF Übersetzen zu können benötigt Pandoc noch LaTeX. Die LaTeX Umgebung ist sehr groß, wer also auf Speicherplatz achten muss, dem empfehle ich sich mit den benötigten Packeten auseinander zu setzen. Ansonsten ist eine volle Installation von LaTeX der einfachste Weg. 
+Pandoc findest du in den gängigen Linux Distributionen in deren Repositories. Den Befehl zur Installtion für einige Distributionen findest du in der folgenden Box. Um Dateien in ein PDF Übersetzen zu können benötigt Pandoc noch LaTeX. Die LaTeX Umgebung ist sehr groß, wer also auf Speicherplatz achten muss, dem empfehle ich sich mit den benötigten Packeten auseinander zu setzen. Ansonsten ist eine volle Installation von LaTeX der einfachste Weg.
 
-```
+```bash
 # Ubuntu, Kubuntu, Mint
 sudo apt-get install pandoc
 

@@ -36,6 +36,8 @@
 \usepackage[subfigure,titles]{tocloft}
 \usepackage[pdfpagelabels=true]{hyperref}
 \usepackage{helvet}
+
+% Syntax Highligting with colors
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -75,13 +77,14 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
 \newcommand{\NormalTok}[1]{#1}
 
+
 \usepackage{listings}
 \lstset{basicstyle=\footnotesize, captionpos=b, breaklines=true, showstringspaces=false, tabsize=2, frame=lines, numbers=left, numberstyle=\tiny, xleftmargin=2em, framexleftmargin=2em}
 \makeatletter
 \def\l@lstlisting#1#2{\@dottedtocline{1}{0em}{1em}{\hspace{1,5em} Lst. #1}{#2}}
 \makeatother
 
-\geometry{a4paper, top=27mm, left=30mm, right=20mm, bottom=35mm, headsep=10mm, footskip=12mm}
+\geometry{a4paper, top=27mm, left=20mm, right=40mm, bottom=35mm, headsep=10mm, footskip=12mm} % Vorgabe des 4cm Rand auf der rechten Seiten.
 
 \hypersetup{unicode=false, pdftoolbar=true, pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH},
 	pdftitle={B-Prüfung},
@@ -136,7 +139,7 @@
 	\textbf{Technische Informatike}\\
 	\vspace*{2cm}
 	\Huge
-	\textbf{B-Aufgabe}\\
+	\textbf{}\\
 	\vspace*{0.5cm}
 	\large
   Freiwillige\_Arbeit \\
@@ -149,6 +152,7 @@
 	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
 	\begin{tabular}{x{6cm}p{7.5cm}}
 		\rule{0mm}{5ex}\textbf{Student:} & Sebastian Preisner \\
+																		  & wbh@calyrium.org \\ 
 		\rule{0mm}{5ex}\textbf{Matrikelnummer:} & 900266 \\
 		\rule{0mm}{5ex}\textbf{Abgabedatum:} & 08.06.2017 \\
 	\end{tabular}
@@ -342,7 +346,7 @@ benötigten Packeten auseinander zu setzen. Ansonsten ist eine volle
 Installation von LaTeX der einfachste Weg.
 
 \begin{Shaded}
-\begin{Highlighting}[shell]
+\begin{Highlighting}[]
 \CommentTok{# Ubuntu, Kubuntu, Mint}
 \FunctionTok{sudo}\NormalTok{ apt-get install pandoc}
 
@@ -377,7 +381,7 @@ Hiermit versichere ich, dass ich meine Abschlussarbeit selbständig verfasst und
 \begin{minipage}{\linewidth}
 	\begin{tabular}{p{15em}p{15em}}
 		Datum: &  .......................................................\\
-		& \centering (Sebastian Preisner)\\
+		& \centering (true)\\
 	\end{tabular}
 \end{minipage}
 

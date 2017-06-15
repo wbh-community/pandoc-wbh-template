@@ -1,13 +1,19 @@
 ---
-titel: Pandoc und Markdown für deine Texte
-author: Sebastian Preisner
-matrikelnr: 900266
-studiengang: Technische Informatike
-fach: Freizeitgestaltung
-aufgabencode: Freiwillige_Arbeit
+title: Pandoc und Markdown für deine Texte
+author:
+  name: Sebastian Preisner
+  email: wbh@calyrium.org
+  matrikelnr: 900266
+studium:
+  studiengang: Technische Informatike
+  studiengangnr: 1140
+  fach: Freizeitgestaltung
+aufgabe:
+  typ: B-Prüfung
+  code: Freiwillige_Arbeit
 date: 08.06.2017
 lang: de
-toc: true
+toc: t
 
 ---
 

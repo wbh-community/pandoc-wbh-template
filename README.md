@@ -15,15 +15,21 @@ In deinem Projekt fügst du an den anfang folgende Zeilen ein und füllst sie au
 
 ```
 ---
-title: Projektmanagemant für Anfänger
-author: Max Mustermann
-matrikelnr: XXXXXX
-studiengang: Technische Informatike
-fach: Einführungsveranstaltung Projektgruppenleiter
-aufgabencode: X-TA-B2d-AAGD
-date: 08.06.2017
-lang: de
----
+title:
+date:
+author:
+  name:
+  email:
+  matriklnr:
+studium:
+  studiengang:
+  studiengangnr:
+  fach:
+arbeit:
+  typ:
+  code:
+  tutor:
+...
 ```
 
 ### Variablen

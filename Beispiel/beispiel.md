@@ -79,4 +79,4 @@ yum install pandoc
 pacman -S pandoc
 ```
 
-Eine Grafische Oberfläsche wirst du bei Pandoc nicht finden, das Programm wird mit Hilfe von Befehlen auf der Konsole bedient. Da es sich um einen Übersetzer handelt ist dies aber kein Problem denn alle Einstellungen lassen sich Bequem in Textfom fomulieren. Wie das geht werde ich dir im nächsten Kapitel zeigen. Zunächst kannst du jedoch mit dem Befehl `pandoc -v` die installierte Version erfragen.
+Eine grafische Oberfläche wirst du bei Pandoc nicht finden, das Programm wird mit Hilfe von Befehlen auf der Konsole bedient. Da es sich um einen Übersetzer handelt ist dies aber kein Problem denn alle Einstellungen lassen sich Bequem in Textfom fomulieren. Wie das geht werde ich dir im nächsten Kapitel zeigen. Zunächst kannst du jedoch mit dem Befehl `pandoc -v` die installierte Version erfragen.

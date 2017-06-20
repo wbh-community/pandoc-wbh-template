@@ -2,14 +2,13 @@
 titel: Pandoc und Markdown für deine Texte
 author: Sebastian Preisner
 matrikelnr: 900266
-studiengang: Technische Informatike
+studiengang: Technische Informatik
 fach: Freizeitgestaltung
 aufgabencode: Freiwillige_Arbeit
 date: 08.06.2017
 lang: de
 toc: true
-
----
+...
 
 # Einführung
 Im Folgenden möchte ich dir Pandoc und Markdown näher bringen und dir zeigen wieso du in Zukunft nur noch so schreiben möchtest. Dabei werde ich zunächst ein grobes Bild von Pandoc und Markdown zeichnen und dir im weiteren Verlauf die Installation und den Einsatz näher bringen und zum Schluss gehe ich nochmal speziell auf diese Vorlage für Pandoc ein.

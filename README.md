@@ -6,7 +6,19 @@ Es integriert die Vorlage für B-Prüfungen in den Arbeitsablauf für Pandoc.
 
 ## Installation
 
-Kopiere die Vorlage in das Verzeichnis `/user/share/pandoc/data/templates`.
+Zur installation kannst du das entweder das Git Repository mithilfe von `git clone ssh://gogs@git.calyrium.org:2244/WBH/pandoc-b_pruefung.git` clonen oder die Datei `b-pruefung.tex` herunterladen. Danach kopierst du die Datei in das Verzeichnis `pandoc/data/templates`.
+
+```
+Linux:
+sudo cp b-pruefung.tex /usr/share/pandoc/data/templates/wbh.tex
+
+Mac:
+
+Windows:
+
+```
+
+Nun kannst du mit hilfe von `pandoc -s -t wbh.tex -o output.pdf input.md` dein Markdown file in ein PDF mit der gegeben Vorlage umwandeln.
 
 In deinem Projekt fügst du an den anfang folgende Zeilen ein und füllst sie aus:
 
@@ -17,6 +29,7 @@ In deinem Projekt fügst du an den anfang folgende Zeilen ein und füllst sie au
 ---
 title:
 date:
+logo:
 author:
   name:
   email:
@@ -28,14 +41,14 @@ studium:
 arbeit:
   typ:
   code:
-  tutor:
+  tutor: % Not includet now!
 ...
 ```
 
 ### Variablen
 
-|   Variable   |                     Beschreibung                      | Optional |
-| ------------ | ----------------------------------------------------- | -------- |
+| Variable     | Beschreibung                                          | Optional |
+|:-------------|:------------------------------------------------------|:---------|
 | title        | Titel der Arbeit/B-Prüfung                            | nein     |
 | author       | Der Uhrheber der Arbeit, in der Regel dein Name       | nein     |
 | matrikelnr   | Deine Matrikelnummer                                  | nein     |

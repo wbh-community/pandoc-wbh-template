@@ -36,6 +36,9 @@
 \usepackage[subfigure,titles]{tocloft}
 \usepackage[pdfpagelabels=true]{hyperref}
 \usepackage{helvet}
+% This two Packages are needet for Pandoc Table support. Issue is opened: https://github.com/jgm/pandoc/issues/1023
+\usepackage{longtable}
+\usepackage{booktabs}
 
 % Syntax Highligting with colors
 $if(highlighting-macros)$
@@ -74,7 +77,9 @@ $endif$
 
 \titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
 
-% Kopf- und Fusszeile
+% ----------------------------------------------------------------------------------------------------------
+% Kopf und Fußzeile
+% ----------------------------------------------------------------------------------------------------------
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\leftmark}{\rightmark}
 \pagestyle{fancy}
@@ -112,6 +117,8 @@ $endif$
 	\Huge
 	\textbf{$aufageb.typ$}\\
 	\vspace*{0.5cm}
+	$if(title)$\textbf{$title$}$endif$ \\
+	\vspace*{0.3cm}
 	\large
   $if(aufgabe.code)$$aufgabe.code$$endif$ \\
 	\vspace*{1cm}
@@ -130,12 +137,18 @@ $endif$
 \end{center}
 \pagebreak
 
+% ----------------------------------------------------------------------------------------------------------
+% Abstract
+% ----------------------------------------------------------------------------------------------------------
 $if(abstract)$
 \begin{abstract}
 $abstract$
 \end{abstract}
 $endif$
 
+% ----------------------------------------------------------------------------------------------------------
+% Inhalt
+% ----------------------------------------------------------------------------------------------------------
 $for(include-before)$
 $include-before$
 
@@ -147,6 +160,7 @@ $if(colorlinks)$
 \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
 $endif$
 \setcounter{tocdepth}{$toc-depth$}
+
 % ----------------------------------------------------------------------------------------------------------
 % Verzeichnisse
 % ----------------------------------------------------------------------------------------------------------
@@ -178,6 +192,7 @@ $if(lot)$$else$\rhead{VERZEICHNISSE}$endif$
 \listoffigures
 \pagebreak
 $endif$
+
 $if(abk)$
 % ----------------------------------------------------------------------------------------------------------
 % Abkürzungen
@@ -202,7 +217,7 @@ $endif$
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{}
 \renewcommand{\subsubsectionmark}[1]{}
-\lhead{Lösung der Aufgabe: \thesection}
+\lhead{Abschnitt \thesection}
 \rhead{} %hier kann die rechte Seite der Kopfzeile editiert werden!
 
 \onehalfspacing
@@ -230,6 +245,11 @@ $if(biblatex)$
 
 $endif$
 
+
+% ----------------------------------------------------------------------------------------------------------
+% Erklärung zur selbstständigkeit
+% ----------------------------------------------------------------------------------------------------------
+$if(insurance)$
 \newpage
 \thispagestyle{empty}
 \begin{center}
@@ -246,5 +266,6 @@ Hiermit versichere ich, dass ich meine Abschlussarbeit selbständig verfasst und
 		& \centering ($author$)\\
 	\end{tabular}
 \end{minipage}
+$endif$
 
 \end{document}

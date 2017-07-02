@@ -47,14 +47,18 @@ arbeit:
 
 ### Variablen
 
-| Variable     | Beschreibung                                          | Optional |
-|:-------------|:------------------------------------------------------|:---------|
-| title        | Titel der Arbeit/B-Prüfung                            | nein     |
-| author       | Der Uhrheber der Arbeit, in der Regel dein Name       | nein     |
-| matrikelnr   | Deine Matrikelnummer                                  | nein     |
-| studiengang  | Dein Studiengang                                      | nein     |
-| fach         | In welchem Fach wird die Prüfung bearbeitet           | nein     |
-| aufgabencode | Der Code befindet sich auf deiner B-Prüfung ganz oben | nein     |
-| date         | Datum der Abgabe                                      | nein     |
-| lang         | Sprache (Standard ist en = Englisch)                  | ja       |
-| logo         | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       |
+| Variable     | Beschreibung                                          | Optional | Wert               |
+|:-------------|:------------------------------------------------------|:---------|:-------------------|
+| title        | Titel der Arbeit/B-Prüfung                            | nein     |                    |
+| author       | Der Uhrheber der Arbeit, in der Regel dein Name       | nein     |                    |
+| matrikelnr   | Deine Matrikelnummer                                  | nein     |                    |
+| studiengang  | Dein Studiengang                                      | nein     |                    |
+| fach         | In welchem Fach wird die Prüfung bearbeitet           | nein     |                    |
+| aufgabencode | Der Code befindet sich auf deiner B-Prüfung ganz oben | nein     |                    |
+| date         | Datum der Abgabe                                      | nein     |                    |
+| lang         | Sprache (Standard ist en = Englisch)                  | ja       | Ländercode z.B. de |
+| logo         | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       | Pfad zum Bild      |
+| toc          | Hinzufügen des Inhaltsverzeichnises                   | ja       | true / false       |
+| abk          | Abkürzungsverzeichnis                                 | ja       | true /false        |
+| lot          | Verzeichnis der Tabellen                              | ja       | true / false       |
+| lof          | Liste der Figuren/Abbildungen                         | ja       | true / false       |

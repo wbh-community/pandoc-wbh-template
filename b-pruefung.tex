@@ -173,22 +173,22 @@ $endif$
 \titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
 \singlespacing
 \rhead{INHALTSVERZEICHNIS}
-\renewcommand{\contentsname}{II Inhaltsverzeichnis}
+\renewcommand{\contentsname}{I Inhaltsverzeichnis}
 \phantomsection
-\addcontentsline{toc}{section}{\texorpdfstring{II \hspace{0.35em}Inhaltsverzeichnis}{Inhaltsverzeichnis}}
+\addcontentsline{toc}{section}{\texorpdfstring{I \hspace{0.35em}Inhaltsverzeichnis}{Inhaltsverzeichnis}}
 \addtocounter{section}{1}
 \tableofcontents
 \pagebreak
 }
 $endif$
 $if(lot)$
-\rhead{VERZEICHNISSE}
+\rhead{TABELLENVERZEICHNIS}
 \pagebreak
 \listoftables
 $endif$
 $if(lof)$
 % Workaround for the HEADING if you don't use a list of tables
-$if(lot)$$else$\rhead{VERZEICHNISSE}$endif$
+$if(lot)$$else$\rhead{ABBILDUNGSVERZEICHNIS}$endif$
 \listoffigures
 \pagebreak
 $endif$

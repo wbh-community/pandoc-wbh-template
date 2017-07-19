@@ -14,8 +14,7 @@ aufgabe:
 date: 08.06.2017
 lang: de
 toc: t
-
----
+...
 
 # Einführung
 Im Folgenden möchte ich dir Pandoc und Markdown näher bringen und dir zeigen wieso du in Zukunft nur noch so schreiben möchtest. Dabei werde ich zunächst ein grobes Bild von Pandoc und Markdown zeichnen und dir im weiteren Verlauf die Installation und den Einsatz näher bringen und zum Schluss gehe ich nochmal speziell auf diese Vorlage für Pandoc ein.
@@ -85,4 +84,4 @@ yum install pandoc
 pacman -S pandoc
 ```
 
-Eine Grafische Oberfläsche wirst du bei Pandoc nicht finden, das Programm wird mit Hilfe von Befehlen auf der Konsole bedient. Da es sich um einen Übersetzer handelt ist dies aber kein Problem denn alle Einstellungen lassen sich Bequem in Textfom fomulieren. Wie das geht werde ich dir im nächsten Kapitel zeigen. Zunächst kannst du jedoch mit dem Befehl `pandoc -v` die installierte Version erfragen.
+Eine grafische Oberfläche wirst du bei Pandoc nicht finden, das Programm wird mit Hilfe von Befehlen auf der Konsole bedient. Da es sich um einen Übersetzer handelt ist dies aber kein Problem denn alle Einstellungen lassen sich Bequem in Textfom fomulieren. Wie das geht werde ich dir im nächsten Kapitel zeigen. Zunächst kannst du jedoch mit dem Befehl `pandoc -v` die installierte Version erfragen.

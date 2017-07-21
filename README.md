@@ -4,6 +4,16 @@ Pandoc ist ein Programm mit dem man Markdown (und andere formate) in viele versc
 Hier findest du die Vorlage zur generierung einer PDF oder eines Latex-Files für B-Prüfungen an der WBH.
 Es integriert die Vorlage für B-Prüfungen in den Arbeitsablauf für Pandoc.
 
+## Vorraussetzuungen
+Zur Nutzung dieses Templates werden folgende tools Vorrausgesetzt
+
+- Pandoc
+- Pandoc-Citeproc
+- Texlive
+- pdflatex
+
+**! WICHTIG !** Um einen reibungslosen Ablauf zu gewährleisten ist es notwendig immer die neusten Versionen zu verwenden. Auf Debian, Ubuntu und von dort abgeleiteten Distributionen sind die Texlive und Pandoc versionen stark veraltet und funktionieren daher nicht mit diesem Template.
+
 ## Installation
 
 Zur installation kannst du das entweder das Git Repository mithilfe von `git clone ssh://gogs@git.calyrium.org:2244/WBH/pandoc-b_pruefung.git` clonen oder die Datei `b-pruefung.tex` herunterladen. Danach kopierst du die Datei in das Verzeichnis `pandoc/data/templates`.

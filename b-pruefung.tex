@@ -58,13 +58,15 @@ $endif$
 \geometry{a4paper, top=27mm, left=20mm, right=40mm, bottom=35mm, headsep=10mm, footskip=12mm} % Vorgabe des 4cm Rand auf der rechten Seiten.
 
 \hypersetup{unicode=false, pdftoolbar=true, pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH},
-	pdftitle={$if(title)$$title$$endif$},
+	pdftitle={$if(title)$$title$$endif$: $if(aufgabe.code)$$aufgabe.code$$endif$ - $if(author.name)$$author.name$$endif$},
 	pdfauthor={$if(author.name)$$author.name$$endif$, Matrikelnummer: $if(author.matrikelnr)$$author.matrikelnr$$endif$},
-	pdfsubject={$studium.studiengang$},
+	pdfsubject={Studiengang: $studium.studiengang$},
 	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq},
 	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
-	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$$endif$, $if(aufgabe.code)$$aufgabe.code$$endif$ $if(keywords)$ $for(keywords)$$keywords$$sep$, $endfor$ $endif$},
+	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$$endif$, $if(author.matrikelnr)$$author.matrikelnr$$endif$, $if(aufgabe.code)$$aufgabe.code$$endif$ $if(keywords)$ $for(keywords)$$keywords$$sep$, $endfor$ $endif$},
 	pdfnewwindow=true,
+	pdflang=de,
+	pdfdisplaydoctitle=true,
 	colorlinks=true,linkcolor=black,citecolor=gray,filecolor=magenta,urlcolor=black}
 % \pdfinfo{/CreationDate (D:20170605133321)}
 \renewcommand{\familydefault}{\sfdefault}

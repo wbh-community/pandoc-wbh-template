@@ -1,11 +1,10 @@
 # Pandoc Vorlage für B-Prüfungen
 
-Pandoc ist ein Programm mit dem man Markdown (und andere formate) in viele verschiedene Formate überführen kann.
-Hier findest du die Vorlage zur generierung einer PDF oder eines Latex-Files für B-Prüfungen an der WBH.
-Es integriert die Vorlage für B-Prüfungen in den Arbeitsablauf für Pandoc.
+[Pandoc](https://pandoc.org) ist ein Programm mit dessen Hilfe man Dateien von einem Format in ein anderes überführen kann. dem man Markdowndateien (und andere Formate) in viele verschiedene Formate überführen kann. 
+Hier findest du die Vorlage zur generierung einer PDF oder eines Latex-Files für B-Prüfungen an der WBH. Es integriert die Vorlage für B-Prüfungen in den Arbeitsablauf für Pandoc.
 
 ## Vorraussetzuungen
-Zur Nutzung dieses Templates werden folgende tools Vorrausgesetzt
+Zur Nutzung dieses Templates werden folgende Tools vorrausgesetzt
 
 - Pandoc
 - Pandoc-Citeproc
@@ -28,12 +27,10 @@ Windows:
 
 ```
 
-Nun kannst du mit hilfe von `pandoc -s -t wbh.tex -o output.pdf input.md` dein Markdown file in ein PDF mit der gegeben Vorlage umwandeln.
-
-In deinem Projekt fügst du an den anfang folgende Zeilen ein und füllst sie aus:
-
 
 ## Verwendung
+
+Um alle Felder der Vorlage aus zu füllen musst du die folgenden Zeilen an den Anfang deines Dokumentes einfügen und ausfüllen. 
 
 ```
 ---
@@ -55,7 +52,11 @@ arbeit:
 ...
 ```
 
+Nun kannst du mit hilfe von `pandoc -s -t wbh.tex -o output.pdf input.md` dein Markdown file in ein PDF mit der gegeben Vorlage umwandeln.
+
 ### Variablen
+
+Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optionalen Variablen werden nicht benötigt und können somit leer bleiben oder ganz weg gelassen werden.
 
 | Variable     | Beschreibung                                          | Optional | Wert               |
 |:-------------|:------------------------------------------------------|:---------|:-------------------|

@@ -1,6 +1,6 @@
 # Pandoc Vorlage für B-Prüfungen
 
-[Pandoc](https://pandoc.org) ist ein Programm mit dessen Hilfe man Dateien von einem Format in ein anderes überführen kann. dem man Markdowndateien (und andere Formate) in viele verschiedene Formate überführen kann. 
+[Pandoc](https://pandoc.org) ist ein Programm mit dessen Hilfe man Dateien von einem Format in ein anderes überführen kann. dem man Markdowndateien (und andere Formate) in viele verschiedene Formate überführen kann.
 Hier findest du die Vorlage zur generierung einer PDF oder eines Latex-Files für B-Prüfungen an der WBH. Es integriert die Vorlage für B-Prüfungen in den Arbeitsablauf für Pandoc.
 
 ## Vorraussetzuungen
@@ -30,7 +30,7 @@ Windows:
 
 ## Verwendung
 
-Um alle Felder der Vorlage aus zu füllen musst du die folgenden Zeilen an den Anfang deines Dokumentes einfügen und ausfüllen. 
+Um alle Felder der Vorlage aus zu füllen musst du die folgenden Zeilen an den Anfang deines Dokumentes einfügen und ausfüllen.
 
 ```
 ---
@@ -38,6 +38,7 @@ title:
 date:
 logo:
 author:
+student:
   name:
   email:
   matriklnr:
@@ -48,7 +49,6 @@ studium:
 arbeit:
   typ:
   code:
-  tutor: % Not includet now!
 ...
 ```
 
@@ -58,18 +58,23 @@ Nun kannst du mit hilfe von `pandoc -s -t wbh.tex -o output.pdf input.md` dein M
 
 Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optionalen Variablen werden nicht benötigt und können somit leer bleiben oder ganz weg gelassen werden.
 
-| Variable     | Beschreibung                                          | Optional | Wert               |
-|:-------------|:------------------------------------------------------|:---------|:-------------------|
-| title        | Titel der Arbeit/B-Prüfung                            | nein     |                    |
-| author       | Der Uhrheber der Arbeit, in der Regel dein Name       | nein     |                    |
-| matrikelnr   | Deine Matrikelnummer                                  | nein     |                    |
-| studiengang  | Dein Studiengang                                      | nein     |                    |
-| fach         | In welchem Fach wird die Prüfung bearbeitet           | nein     |                    |
-| aufgabencode | Der Code befindet sich auf deiner B-Prüfung ganz oben | nein     |                    |
-| date         | Datum der Abgabe                                      | nein     |                    |
-| lang         | Sprache (Standard ist en = Englisch)                  | ja       | Ländercode z.B. de |
-| logo         | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       | Pfad zum Bild      |
-| toc          | Hinzufügen des Inhaltsverzeichnises                   | ja       | true / false       |
-| abk          | Abkürzungsverzeichnis                                 | ja       | true /false        |
-| lot          | Verzeichnis der Tabellen                              | ja       | true / false       |
-| lof          | Liste der Figuren/Abbildungen                         | ja       | true / false       |
+|   Variable    |                     Beschreibung                      | Optional |    default    |
+|:------------- |:----------------------------------------------------- |:-------- |:------------- |
+| title         | Titel der Arbeit/B-Prüfung                            | nein     |               |
+| author        | Der Uhrheber der Arbeit, in der Regel dein Name       | ja       |               |
+| student       | Informationen über dich                               | nein     |               |
+| name          | Dein Name, wird als Author verwendet                  | nein     |               |
+| matrikelnr    | Deine Matrikelnummer                                  | ja       |               |
+| email         | Deine E-Mail Adresse                                  | ja       |               |
+| studium       | Informationen zum Studiengang und dem Fach            | ja       |               |
+| studiengang   | Dein Studiengang                                      | ja       |               |
+| studiengangnr | Diese findest du unter "Main Studium" SG-Nr.          | ja       |               |
+| fach          | In welchem Fach wird die Prüfung bearbeitet           | ja       |               |
+| aufgabencode  | Der Code befindet sich auf deiner B-Prüfung ganz oben | ja       |               |
+| date          | Datum der Abgabe                                      | ja       | today         |
+| lang          | Sprache des Dokumentes "Ländercode"                   | ja       | de            |
+| logo          | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       | Pfad zum Bild |
+| toc           | Hinzufügen des Inhaltsverzeichnises                   | ja       | true / false  |
+| abk           | Abkürzungsverzeichnis                                 | ja       | true /false   |
+| lot           | Verzeichnis der Tabellen                              | ja       | true / false  |
+| lof           | Liste der Figuren/Abbildungen                         | ja       | true / false  |

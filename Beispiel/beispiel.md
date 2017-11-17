@@ -1,6 +1,7 @@
 ---
 title: Pandoc und Markdown für deine Texte
-author:
+author: Sebastian Preisner
+student:
   name: Sebastian Preisner
   email: wbh@calyrium.org
   matrikelnr: 900266
@@ -16,11 +17,17 @@ lang: de
 toc: t
 ...
 
-# Einführung
+# Einführungauthor
 Im Folgenden möchte ich dir Pandoc und Markdown näher bringen und dir zeigen wieso du in Zukunft nur noch so schreiben möchtest. Dabei werde ich zunächst ein grobes Bild von Pandoc und Markdown zeichnen und dir im weiteren Verlauf die Installation und den Einsatz näher bringen und zum Schluss gehe ich nochmal speziell auf diese Vorlage für Pandoc ein.
 
 ## Was ist Markdown?
 Markdown ist eine Auszeichnungssprache und wurde maßgeblich von den frühen Text-E-Mails beeinflusst. Zu Zeiten wo man noch keine E-Mails mit Überschriften, kursiver und fettgedruckter Schrift usw. verfassen konnte musste man sich anderweitig behelfen. Das Ziel von Markdown ist die Lesbarkeit und einfache Schreibbarkeit von Texten. Das ermöglicht dem Schreiber eine hohe Konzentration auf den Text und wenig ablenkung durch Formatierungen verglichen WISIWYG (What you see is what you get) Editoren wie Microsoft Word. Zur Veranschaulischung möchte ich dir hier kruz ein paar Formatierungen im Dokument zeigen:
+
+Blockquote:
+
+> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Codeblock:
 
 ```markdown
 # Überschrift 1. Grades

@@ -36,6 +36,18 @@
 \usepackage[subfigure,titles]{tocloft}
 \usepackage[pdfpagelabels=true]{hyperref}
 \usepackage{helvet}
+% This two Packages are needet for Pandoc Table support. Issue is opened: https://github.com/jgm/pandoc/issues/1023
+\usepackage{longtable}
+\usepackage{booktabs}
+
+
+% blockquote
+\definecolor{blockquote-border}{RGB}{221,221,221}
+\definecolor{blockquote-text}{RGB}{119,119,119}
+\usepackage{mdframed}
+\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=\parskip]{customblockquote}
+\renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
+\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
 
 % Syntax Highligting with colors
 \usepackage{color}
@@ -87,15 +99,23 @@
 \geometry{a4paper, top=27mm, left=20mm, right=40mm, bottom=35mm, headsep=10mm, footskip=12mm} % Vorgabe des 4cm Rand auf der rechten Seiten.
 
 \hypersetup{unicode=false, pdftoolbar=true, pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH},
-	pdftitle={B-Prüfung},
-	pdfauthor={Sebastian Preisner, Matrikelnummer: 900266},
-	pdfsubject={Technische Informatike},
-	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq},
+
+	pdftitle={Pandoc und Markdown für deine Texte: Freiwillige\_Arbeit - },
+
+			pdfauthor={Sebastian Preisner, Matrikelnummer: 900266},
+				pdfsubject={Studiengang: Technische Informatike},
+		pdfcreator={\LaTeX\ with package \flqq hyperref\frqq},
 	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
-	pdfkeywords={B-Prüfung Freiwillige\_Arbeit},
+	pdfkeywords={B-Prüfung, 900266, Freiwillige\_Arbeit },
 	pdfnewwindow=true,
-	colorlinks=true,linkcolor=black,citecolor=black,filecolor=magenta,urlcolor=black}
-\pdfinfo{/CreationDate (D:20170605133321)}
+	pdflang=de,
+	pdfdisplaydoctitle=true,
+	colorlinks=true,
+	linkcolor=black,
+	citecolor=gray,
+	filecolor=magenta,
+	urlcolor=black}
+% \pdfinfo{/CreationDate (D:20170605133321)}
 \renewcommand{\familydefault}{\sfdefault}
 
 % Pandoc tightlisting
@@ -106,14 +126,16 @@
 
 \titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
 
-% Kopf- und Fusszeile
+% ----------------------------------------------------------------------------------------------------------
+% Kopf und Fußzeile
+% ----------------------------------------------------------------------------------------------------------
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\leftmark}{\rightmark}
 \pagestyle{fancy}
 \lhead{}
 \chead{}
 \rhead{\thesection\space\contentsname}
-\lfoot{\tiny B-Prüfung des Studenten: Sebastian Preisner (Matrikelnr.: 900266) Studiengang: Technische Informatike - Prüfung: Freiwillige\_Arbeit}
+\lfoot{\tiny B-Prüfung des Studenten: Sebastian Preisner (Matrikelnr.: 900266) Studiengang: Technische Informatike - Prüfung: Freiwillige\_Arbeit }
 \cfoot{}
 \rfoot{\ \linebreak Seite \thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -133,55 +155,65 @@
 % ----------------------------------------------------------------------------------------------------------
 \thispagestyle{empty}
 \begin{center}
-        \vspace*{2cm}
+      \vspace*{2cm}
 	\Large
-	\textbf{Studiengang:}\\
-	\textbf{Technische Informatike}\\
-	\vspace*{2cm}
-	\Huge
-	\textbf{}\\
-	\vspace*{0.5cm}
+			\textbf{Studiengang:}\\
+		\textbf{Technische Informatike}\\
+		\vspace*{2cm}
+		\Huge
+			\textbf{}\\
+		\vspace*{0.5cm}
+				\textbf{Pandoc und Markdown für deine Texte} \\
+		\vspace*{0.3cm}
 	\large
-  Freiwillige\_Arbeit \\
-	\vspace*{1cm}
-	\textbf{Freizeitgestaltung}\\
-	\vspace*{2cm}
+  		Freiwillige\_Arbeit \\
+		\vspace*{1cm}
+			\textbf{Freizeitgestaltung}\\
+		\vspace*{2cm}
 
 	\vfill
 	\normalsize
 	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
 	\begin{tabular}{x{6cm}p{7.5cm}}
-		\rule{0mm}{5ex}\textbf{Student:} & Sebastian Preisner \\
-																		  & wbh@calyrium.org \\ 
-		\rule{0mm}{5ex}\textbf{Matrikelnummer:} & 900266 \\
-		\rule{0mm}{5ex}\textbf{Abgabedatum:} & 08.06.2017 \\
-	\end{tabular}
+					\rule{0mm}{5ex}\textbf{Student:} & Sebastian Preisner
+							\newline wbh@calyrium.org
+			 \\
+							\rule{0mm}{5ex}\textbf{Matrikelnummer:} & 900266 \\
+							\rule{0mm}{5ex}\textbf{Abgabedatum:} & 08.06.2017 \\
+			\end{tabular}
 \end{center}
 \pagebreak
 
 
-
-{
-\setcounter{tocdepth}{3}
 % ----------------------------------------------------------------------------------------------------------
-% Verzeichnisse
+% Content
 % ----------------------------------------------------------------------------------------------------------
-% TODO Typ vor Nummer
-\renewcommand{\cfttabpresnum}{Tab. }
-\renewcommand{\cftfigpresnum}{Abb. }
-\settowidth{\cfttabnumwidth}{Abb. 10\quad}
-\settowidth{\cftfignumwidth}{Abb. 10\quad}
 
-\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
-\singlespacing
-\rhead{INHALTSVERZEICHNIS}
-\renewcommand{\contentsname}{II Inhaltsverzeichnis}
-\phantomsection
-\addcontentsline{toc}{section}{\texorpdfstring{II \hspace{0.35em}Inhaltsverzeichnis}{Inhaltsverzeichnis}}
-\addtocounter{section}{1}
-\tableofcontents
-\pagebreak
-}
+	{
+	
+	\setcounter{tocdepth}{3}
+
+	% ----------------------------------------------------------------------------------------------------------
+	% Verzeichnisse
+	% ----------------------------------------------------------------------------------------------------------
+	% TODO Typ vor Nummer
+	\renewcommand{\cfttabpresnum}{Tab. }
+	\renewcommand{\cftfigpresnum}{Abb. }
+	\settowidth{\cfttabnumwidth}{Abb. 10\quad}
+	\settowidth{\cftfignumwidth}{Abb. 10\quad}
+
+	\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
+	\singlespacing
+	\rhead{INHALTSVERZEICHNIS}
+	\renewcommand{\contentsname}{I Inhaltsverzeichnis}
+	\phantomsection
+	\addcontentsline{toc}{section}{\texorpdfstring{I \hspace{0.35em}Inhaltsverzeichnis}{Inhaltsverzeichnis}}
+	\addtocounter{section}{1}
+	\tableofcontents
+	\pagebreak
+	}
+
+
 
 % ----------------------------------------------------------------------------------------------------------
 % Inhalt
@@ -195,7 +227,7 @@
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{}
 \renewcommand{\subsubsectionmark}[1]{}
-\lhead{Lösung der Aufgabe: \thesection}
+\lhead{Abschnitt \thesection}
 \rhead{} %hier kann die rechte Seite der Kopfzeile editiert werden!
 
 \onehalfspacing
@@ -206,7 +238,8 @@
 \setcounter{page}{1}
 
 
-\section{Einführung}\label{einfuxfchrung}
+\hypertarget{einfuxfchrung}{%
+\section{Einführung}\label{einfuxfchrung}}
 
 Im Folgenden möchte ich dir Pandoc und Markdown näher bringen und dir
 zeigen wieso du in Zukunft nur noch so schreiben möchtest. Dabei werde
@@ -214,7 +247,8 @@ ich zunächst ein grobes Bild von Pandoc und Markdown zeichnen und dir im
 weiteren Verlauf die Installation und den Einsatz näher bringen und zum
 Schluss gehe ich nochmal speziell auf diese Vorlage für Pandoc ein.
 
-\subsection{Was ist Markdown?}\label{was-ist-markdown}
+\hypertarget{was-ist-markdown}{%
+\subsection{Was ist Markdown?}\label{was-ist-markdown}}
 
 Markdown ist eine Auszeichnungssprache und wurde maßgeblich von den
 frühen Text-E-Mails beeinflusst. Zu Zeiten wo man noch keine E-Mails mit
@@ -247,7 +281,8 @@ Parser für Markdown entwickelt haben welche die einfache Syntax nutzen
 um perfekt Formatierte Texte zu erstellen. Eines dieser Tools und noch
 dazu das wohl mächtigste, ist Pandoc.
 
-\subsection{Was ist Pandoc?}\label{was-ist-pandoc}
+\hypertarget{was-ist-pandoc}{%
+\subsection{Was ist Pandoc?}\label{was-ist-pandoc}}
 
 \href{http://pandoc.org/}{Pandoc} ist ein Übersetzer der eine Datei von
 einem Markup in ein anderes übersetzt. Markup ist das englische Wort für
@@ -300,21 +335,24 @@ zusätzlich:
   AsciiDoc
 \end{itemize}
 
+\hypertarget{wieso-sollte-ich-pandoc-einsetzen}{%
 \subsection{Wieso sollte ich Pandoc
-einsetzen?}\label{wieso-sollte-ich-pandoc-einsetzen}
+einsetzen?}\label{wieso-sollte-ich-pandoc-einsetzen}}
 
 Hierfür gibt es viele gute Argumente. Zum einen kannst du deine
 geschriebene Arbeit
 
+\hypertarget{installation-und-einrichtung}{%
 \section{Installation und
-Einrichtung}\label{installation-und-einrichtung}
+Einrichtung}\label{installation-und-einrichtung}}
 
 In diesem Kapitel geht es um die Installation und die Einrichtung der
 Tools. Da ich persönlich kein Windows besitze richtet sich die Anleitung
 ausschließlich an Linux nutzer. Ich würde mich jedoch über ergänzende
 Beiträge freuen.
 
-\subsection{Markdown}\label{markdown}
+\hypertarget{markdown}{%
+\subsection{Markdown}\label{markdown}}
 
 Da Markdown lediglich eine Auszeichnungssprache ist benötigst du
 eigentlich nichts außer einen Texteditor. Diesen findet man unter allen
@@ -335,7 +373,8 @@ um einen reinen Markdown Editor sondern um eine Texteditor der mit
 vielen zusätzlichen Plugins erweitert werden kann. Er ist OpenSource und
 steht für alle Plattformen zur verfügung.
 
-\subsection{Pandoc}\label{pandoc}
+\hypertarget{pandoc}{%
+\subsection{Pandoc}\label{pandoc}}
 
 Pandoc findest du in den gängigen Linux Distributionen in deren
 Repositories. Den Befehl zur Installtion für einige Distributionen
@@ -358,31 +397,16 @@ Installation von LaTeX der einfachste Weg.
 \end{Highlighting}
 \end{Shaded}
 
-Eine Grafische Oberfläsche wirst du bei Pandoc nicht finden, das
-Programm wird mit Hilfe von Befehlen auf der Konsole bedient. Da es sich
-um einen Übersetzer handelt ist dies aber kein Problem denn alle
-Einstellungen lassen sich Bequem in Textfom fomulieren. Wie das geht
-werde ich dir im nächsten Kapitel zeigen. Zunächst kannst du jedoch mit
-dem Befehl \texttt{pandoc\ -v} die installierte Version erfragen.
+Eine grafische Oberfläche wirst du bei Pandoc nicht finden, das Programm
+wird mit Hilfe von Befehlen auf der Konsole bedient. Da es sich um einen
+Übersetzer handelt ist dies aber kein Problem denn alle Einstellungen
+lassen sich Bequem in Textfom fomulieren. Wie das geht werde ich dir im
+nächsten Kapitel zeigen. Zunächst kannst du jedoch mit dem Befehl
+\texttt{pandoc\ -v} die installierte Version erfragen.
 
 
 
 
-\newpage
-\thispagestyle{empty}
-\begin{center}
-	\vspace*{5em}
-	\huge\textbf{Erklärung}\\
-\end{center}
-\vspace{2em}
-Hiermit versichere ich, dass ich meine Abschlussarbeit selbständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe.
 
-\vspace{4em}
-\begin{minipage}{\linewidth}
-	\begin{tabular}{p{15em}p{15em}}
-		Datum: &  .......................................................\\
-		& \centering (true)\\
-	\end{tabular}
-\end{minipage}
 
 \end{document}

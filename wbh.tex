@@ -2,8 +2,10 @@
 \documentclass[12pt,a4paper,bibliography=totocnumbered,listof=totocnumbered]{scrartcl}
 
 % Support German annotation
+$if(lang.de)$
 \usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
+$endif$
 
 % Symbols:
 % Pandoc imports the extensive `amsmath` collection of symbols
@@ -206,10 +208,10 @@ $if(toc)$
 
 	\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
 	\singlespacing
-	\rhead{INHALTSVERZEICHNIS}
-	\renewcommand{\contentsname}{I Inhaltsverzeichnis}
+	\rhead{$if(lang.de)$INHALTSVERZEICHNIS$else$TABLE OF CONTENTS$endif$}
+	\renewcommand{\contentsname}{I $if(lang.de)$Inhaltsverzeichnis$else$Table of contents$endif$}
 	\phantomsection
-	\addcontentsline{toc}{section}{\texorpdfstring{I \hspace{0.35em}Inhaltsverzeichnis}{Inhaltsverzeichnis}}
+	\addcontentsline{toc}{section}{\texorpdfstring{I \hspace{0.35em}$if(lang.de)$Inhaltsverzeichnis$else$Table of contents$endif$}{$if(lang.de)$Inhaltsverzeichnis$else$Table of contents$endif$}}
 	\addtocounter{section}{1}
 	\tableofcontents
 	\pagebreak
@@ -217,7 +219,7 @@ $if(toc)$
 $endif$
 
 $if(lot)$
-	\rhead{TABELLENVERZEICHNIS}
+	\rhead{$if(lang.de)$TABELLENVERZEICHNIS$else$LIST OF TABLES$endif$}
 	\pagebreak
 	\listoftables
 $endif$
@@ -225,7 +227,7 @@ $if(lof)$
 	$if(lot)$
 		% Workaround for the HEADING if you don't use a list of tables
 	$else$
-		\rhead{ABBILDUNGSVERZEICHNIS}
+		\rhead{$if(lang.de)$ABBILDUNGSVERZEICHNIS$else$LIST OF FIGURES$endif$}
 	$endif$
 	\listoffigures
 	\pagebreak
@@ -247,15 +249,15 @@ $endif$
 % Inhalt
 % ----------------------------------------------------------------------------------------------------------
 % Abstände Überschrift
-\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
-\titlespacing{\subsection}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
-\titlespacing{\subsubsection}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
+\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{4pt plus 2pt minus 2pt}
+\titlespacing{\subsection}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
+\titlespacing{\subsubsection}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
 
 % Kopfzeile
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{}
 \renewcommand{\subsubsectionmark}[1]{}
-\lhead{Abschnitt \thesection}
+\lhead{$if(lang.de)$Abschnitt$else$Chapter$endif$ \thesection}
 \rhead{} %hier kann die rechte Seite der Kopfzeile editiert werden!
 
 \onehalfspacing
@@ -264,24 +266,26 @@ $endif$
 \setcounter{section}{0}
 \pagenumbering{arabic}
 \setcounter{page}{1}
-
+%\renewcommand{\includegraphics}[1][]{\includegraphics[width=0.9\columnwidth,keepaspectratio]{#1}}
 
 $body$
-
 
 
 $if(biblatex)$
 	% ----------------------------------------------------------------------------------------------------------
 	% Literatur
 	% ----------------------------------------------------------------------------------------------------------
-	\renewcommand\refname{Quellenverzeichnis}
-	\bibliographystyle{myalpha}
+	\pagebreak
+	\lhead{}
+	\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
+	\renewcommand{\refname}{Quellenverzeichnis}	
+
+	\ bibliographystyle{myalpha}
 	\bibliography{bibo}
 	\pagebreak
 
-	\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+	%\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 $endif$
-
 
 $if(insurance)$
 	% ----------------------------------------------------------------------------------------------------------

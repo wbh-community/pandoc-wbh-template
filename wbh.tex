@@ -31,7 +31,6 @@ $endif$
 \usepackage{colortbl}
 \usepackage{paralist}
 \usepackage{array}
-\usepackage{titlesec}
 \usepackage{parskip}
 \usepackage[right]{eurosym}
 %\usepackage{picins}
@@ -92,7 +91,6 @@ $endif$
 
 \begin{document}
 
-\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
 
 % ----------------------------------------------------------------------------------------------------------
 % Kopf und Fußzeile
@@ -207,7 +205,6 @@ $if(toc)$
 	\settowidth{\cfttabnumwidth}{Abb. 10\quad}
 	\settowidth{\cftfignumwidth}{Abb. 10\quad}
 
-	\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
 	\singlespacing
 	\rhead{$if(lang.de)$INHALTSVERZEICHNIS$else$TABLE OF CONTENTS$endif$}
 	\renewcommand{\contentsname}{I $if(lang.de)$Inhaltsverzeichnis$else$Table of contents$endif$}
@@ -249,11 +246,6 @@ $endif$
 % ----------------------------------------------------------------------------------------------------------
 % Inhalt
 % ----------------------------------------------------------------------------------------------------------
-% Abstände Überschrift
-\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{4pt plus 2pt minus 2pt}
-\titlespacing{\subsection}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
-\titlespacing{\subsubsection}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
-
 % Kopfzeile
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{}

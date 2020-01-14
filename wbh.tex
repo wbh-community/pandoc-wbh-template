@@ -1,11 +1,20 @@
 % TeX für WBH B-Prüfungen
-\documentclass[12pt,a4paper,bibliography=totocnumbered,listof=totocnumbered]{scrartcl}
+\documentclass[
+    12pt,
+    a4paper,
+    $if(lang)$
+        $babel-lang$,
+    $endif$
+    bibliography=totocnumbered,
+    listof=totocnumbered
+]{scrartcl}
 
 % Support German annotation
-$if(lang.de)$
-\usepackage[ngerman]{babel}
-\usepackage[utf8]{inputenc}
-$endif$
+%$if(lang)$
+%\usepackage[ngerman]{babel}
+%\usepackage[utf8]{inputenc}
+%$endif$
+
 
 % Symbols:
 % Pandoc imports the extensive `amsmath` collection of symbols
@@ -73,13 +82,15 @@ $if(author)$
 	pdfauthor={$if(author.name)$$author.name$$else$$author$$endif$$if(author.matrikelnr)$, Matrikelnummer: $author.matrikelnr$$endif$},
 $endif$
 $if(studium.studiengang)$
-	pdfsubject={Studiengang: $studium.studiengang$},
+    pdfsubject={Studiengang: $studium.studiengang$},
 $endif$
 	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq},
 	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
 	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$$endif$, $if(author.matrikelnr)$$author.matrikelnr$$endif$, $if(aufgabe.code)$$aufgabe.code$$endif$ $if(keywords)$ $for(keywords)$$keywords$$sep$, $endfor$ $endif$},
 	pdfnewwindow=true,
-	pdflang=$if(lang)$$lang$$else$de$endif$,
+$if(lang)$
+    pdflang=$lang$,
+$endif$
 	pdfdisplaydoctitle=true, colorlinks=true, linkcolor=black, citecolor=gray, filecolor=magenta,	urlcolor=black}
 % \pdfinfo{/CreationDate (D:20170605133321)}
 \renewcommand{\familydefault}{\sfdefault}
@@ -205,10 +216,10 @@ $if(toc)$
 	\settowidth{\cftfignumwidth}{Abb. 10\quad}
 
 	\singlespacing
-	\rhead{$if(lang.de)$INHALTSVERZEICHNIS$else$TABLE OF CONTENTS$endif$}
-	\renewcommand{\contentsname}{I $if(lang.de)$Inhaltsverzeichnis$else$Table of contents$endif$}
+	\rhead{$if(lang)$INHALTSVERZEICHNIS$else$TABLE OF CONTENTS$endif$}
+	\renewcommand{\contentsname}{I $if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}
 	\phantomsection
-	\addcontentsline{toc}{section}{\texorpdfstring{I \hspace{0.35em}$if(lang.de)$Inhaltsverzeichnis$else$Table of contents$endif$}{$if(lang.de)$Inhaltsverzeichnis$else$Table of contents$endif$}}
+	\addcontentsline{toc}{section}{\texorpdfstring{I \hspace{0.35em}$if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}{$if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}}
 	\addtocounter{section}{1}
 	\tableofcontents
 	\pagebreak
@@ -216,7 +227,7 @@ $if(toc)$
 $endif$
 
 $if(lot)$
-	\rhead{$if(lang.de)$TABELLENVERZEICHNIS$else$LIST OF TABLES$endif$}
+	\rhead{$if(lang)$TABELLENVERZEICHNIS$else$LIST OF TABLES$endif$}
 	\pagebreak
 	\listoftables
 $endif$
@@ -224,7 +235,7 @@ $if(lof)$
 	$if(lot)$
 		% Workaround for the HEADING if you don't use a list of tables
 	$else$
-		\rhead{$if(lang.de)$ABBILDUNGSVERZEICHNIS$else$LIST OF FIGURES$endif$}
+		\rhead{$if(lang)$ABBILDUNGSVERZEICHNIS$else$LIST OF FIGURES$endif$}
 	$endif$
 	\listoffigures
 	\pagebreak
@@ -249,7 +260,7 @@ $endif$
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{}
 \renewcommand{\subsubsectionmark}[1]{}
-\lhead{$if(lang.de)$Abschnitt$else$Chapter$endif$ \thesection}
+\lhead{$if(lang)$Abschnitt$else$Chapter$endif$ \thesection}
 \rhead{} %hier kann die rechte Seite der Kopfzeile editiert werden!
 
 \onehalfspacing

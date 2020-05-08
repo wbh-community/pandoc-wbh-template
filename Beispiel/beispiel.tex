@@ -1,9 +1,16 @@
 % TeX für WBH B-Prüfungen
-\documentclass[12pt,a4paper,bibliography=totocnumbered,listof=totocnumbered]{scrartcl}
+\documentclass[
+    12pt,
+    a4paper,
+            ngerman,
+        bibliography=totocnumbered,
+    listof=totocnumbered
+]{scrartcl}
 
 % Support German annotation
-\usepackage[ngerman]{babel}
-\usepackage[utf8]{inputenc}
+%%\usepackage[ngerman]{babel}
+%\usepackage[utf8]{inputenc}
+%
 
 % Symbols:
 % Pandoc imports the extensive `amsmath` collection of symbols
@@ -21,6 +28,7 @@
 \usepackage{tabularx}
 \usepackage{geometry}
 \usepackage{setspace}
+\usepackage{siunitx}                        % For using SI Units https://www.ctan.org/pkg/siunitx
 \usepackage[right]{eurosym}
 \usepackage[printonlyused]{acronym}
 \usepackage{subfig}
@@ -29,19 +37,17 @@
 \usepackage{colortbl}
 \usepackage{paralist}
 \usepackage{array}
-\usepackage{titlesec}
 \usepackage{parskip}
 \usepackage[right]{eurosym}
-%\usepackage{picins}
 \usepackage[subfigure,titles]{tocloft}
 \usepackage[pdfpagelabels=true]{hyperref}
 \usepackage{helvet}
+
 % This two Packages are needet for Pandoc Table support. Issue is opened: https://github.com/jgm/pandoc/issues/1023
 \usepackage{longtable}
 \usepackage{booktabs}
 
-
-% blockquote
+% Designing blockquote
 \definecolor{blockquote-border}{RGB}{221,221,221}
 \definecolor{blockquote-text}{RGB}{119,119,119}
 \usepackage{mdframed}
@@ -57,37 +63,37 @@
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
 % Add ',fontsize=\small' for more characters per line
 \newenvironment{Shaded}{}{}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
 \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
 \newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
 
 
 \usepackage{listings}
@@ -99,22 +105,15 @@
 \geometry{a4paper, top=27mm, left=20mm, right=40mm, bottom=35mm, headsep=10mm, footskip=12mm} % Vorgabe des 4cm Rand auf der rechten Seiten.
 
 \hypersetup{unicode=false, pdftoolbar=true, pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH},
-
 	pdftitle={Pandoc und Markdown für deine Texte: Freiwillige\_Arbeit - },
-
-			pdfauthor={Sebastian Preisner, Matrikelnummer: 900266},
-				pdfsubject={Studiengang: Technische Informatike},
-		pdfcreator={\LaTeX\ with package \flqq hyperref\frqq},
+	pdfauthor={Sebastian Preisner},
+    pdfsubject={Studiengang: Technische Informatike},
+	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq},
 	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
-	pdfkeywords={B-Prüfung, 900266, Freiwillige\_Arbeit },
+	pdfkeywords={B-Prüfung, , Freiwillige\_Arbeit },
 	pdfnewwindow=true,
-	pdflang=de,
-	pdfdisplaydoctitle=true,
-	colorlinks=true,
-	linkcolor=black,
-	citecolor=gray,
-	filecolor=magenta,
-	urlcolor=black}
+    pdflang=de,
+	pdfdisplaydoctitle=true, colorlinks=true, linkcolor=black, citecolor=gray, filecolor=magenta,	urlcolor=black}
 % \pdfinfo{/CreationDate (D:20170605133321)}
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -124,7 +123,6 @@
 
 \begin{document}
 
-\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
 
 % ----------------------------------------------------------------------------------------------------------
 % Kopf und Fußzeile
@@ -135,7 +133,8 @@
 \lhead{}
 \chead{}
 \rhead{\thesection\space\contentsname}
-\lfoot{\tiny B-Prüfung des Studenten: Sebastian Preisner (Matrikelnr.: 900266) Studiengang: Technische Informatike - Prüfung: Freiwillige\_Arbeit }
+\lfoot{\tiny B-Prüfung des Studenten:   Studiengang: Technische
+Informatike - Prüfung: Freiwillige\_Arbeit }
 \cfoot{}
 \rfoot{\ \linebreak Seite \thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -175,11 +174,7 @@
 	\normalsize
 	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
 	\begin{tabular}{x{6cm}p{7.5cm}}
-					\rule{0mm}{5ex}\textbf{Student:} & Sebastian Preisner
-							\newline wbh@calyrium.org
-			 \\
-							\rule{0mm}{5ex}\textbf{Matrikelnummer:} & 900266 \\
-							\rule{0mm}{5ex}\textbf{Abgabedatum:} & 08.06.2017 \\
+									\rule{0mm}{5ex}\textbf{Abgabedatum:} & 08.06.2017 \\
 			\end{tabular}
 \end{center}
 \pagebreak
@@ -202,7 +197,6 @@
 	\settowidth{\cfttabnumwidth}{Abb. 10\quad}
 	\settowidth{\cftfignumwidth}{Abb. 10\quad}
 
-	\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
 	\singlespacing
 	\rhead{INHALTSVERZEICHNIS}
 	\renewcommand{\contentsname}{I Inhaltsverzeichnis}
@@ -218,11 +212,6 @@
 % ----------------------------------------------------------------------------------------------------------
 % Inhalt
 % ----------------------------------------------------------------------------------------------------------
-% Abstände Überschrift
-\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
-\titlespacing{\subsection}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
-\titlespacing{\subsubsection}{0pt}{12pt plus 4pt minus 2pt}{-6pt plus 2pt minus 2pt}
-
 % Kopfzeile
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{}
@@ -236,10 +225,10 @@
 \setcounter{section}{0}
 \pagenumbering{arabic}
 \setcounter{page}{1}
+%\renewcommand{\includegraphics}[1][]{\includegraphics[width=0.9\columnwidth,keepaspectratio]{#1}}
 
-
-\hypertarget{einfuxfchrung}{%
-\section{Einführung}\label{einfuxfchrung}}
+\hypertarget{einfuxfchrungauthor}{%
+\section{Einführungauthor}\label{einfuxfchrungauthor}}
 
 Im Folgenden möchte ich dir Pandoc und Markdown näher bringen und dir
 zeigen wieso du in Zukunft nur noch so schreiben möchtest. Dabei werde
@@ -260,14 +249,28 @@ Formatierungen verglichen WISIWYG (What you see is what you get)
 Editoren wie Microsoft Word. Zur Veranschaulischung möchte ich dir hier
 kruz ein paar Formatierungen im Dokument zeigen:
 
+Blockquote:
+
+\begin{quote}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+\end{quote}
+
+Codeblock:
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{# Überschrift 1. Grades}
-\FunctionTok{## Überschrift 2. Grades}
+\FunctionTok{\# Überschrift 1. Grades}
+\FunctionTok{\#\# Überschrift 2. Grades}
 
-\NormalTok{* }\FloatTok{Listenpunkt 1}
-\FloatTok{* Listenpunkt 2}
-\FloatTok{* Listenpunkt 3}
+\SpecialStringTok{* }\NormalTok{Listenpunkt 1}
+\SpecialStringTok{* }\NormalTok{Listenpunkt 2}
+\SpecialStringTok{* }\NormalTok{Listenpunkt 3}
 
 \NormalTok{Ich bin ein Text mit *kursiven* und **fetten** Elementen.}
 \end{Highlighting}
@@ -386,14 +389,14 @@ Installation von LaTeX der einfachste Weg.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Ubuntu, Kubuntu, Mint}
-\FunctionTok{sudo}\NormalTok{ apt-get install pandoc}
+\CommentTok{\# Ubuntu, Kubuntu, Mint}
+\FunctionTok{sudo}\NormalTok{ apt{-}get install pandoc}
 
-\CommentTok{# Fedora}
+\CommentTok{\# Fedora}
 \ExtensionTok{yum}\NormalTok{ install pandoc}
 
-\CommentTok{# Archlinux}
-\ExtensionTok{pacman}\NormalTok{ -S pandoc}
+\CommentTok{\# Archlinux}
+\ExtensionTok{pacman}\NormalTok{ {-}S pandoc}
 \end{Highlighting}
 \end{Shaded}
 
@@ -403,8 +406,6 @@ wird mit Hilfe von Befehlen auf der Konsole bedient. Da es sich um einen
 lassen sich Bequem in Textfom fomulieren. Wie das geht werde ich dir im
 nächsten Kapitel zeigen. Zunächst kannst du jedoch mit dem Befehl
 \texttt{pandoc\ -v} die installierte Version erfragen.
-
-
 
 
 

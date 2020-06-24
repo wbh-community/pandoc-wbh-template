@@ -50,6 +50,17 @@
 % This two Packages are needet for Pandoc Table support. Issue is opened: https://github.com/jgm/pandoc/issues/1023
 \usepackage{longtable}
 \usepackage{booktabs}
+\usepackage{multirow}
+
+% Support for citation
+ $if(csl-refs)$
+ \newlength{\cslhangindent}
+ \setlength{\cslhangindent}{1.5em}
+ \newenvironment{cslreferences}%
+   {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
+   \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
+   {\par}
+ $endif$
 
 % Designing blockquote
 \definecolor{blockquote-border}{RGB}{221,221,221}

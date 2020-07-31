@@ -1,4 +1,13 @@
-% TeX für WBH B-Prüfungen
+% pandoc WBH Prüfungsvorlage
+%
+% Diese Vorlage ist für Prüfungen an der Wilhelm-Büchner-Hochschule erstellt worden
+% sie entspricht den Vorgaben für Hausarbeiten und Thesis zum aktuellen Zeitpunkt.
+% 
+% Authoren:
+%
+% Created:
+% Changed: 26.06.2020
+
 \documentclass[
     12pt,
     a4paper,
@@ -9,30 +18,25 @@
     listof=totocnumbered
 ]{scrartcl}
 
-% Support German annotation
-%$if(lang)$
-%\usepackage[ngerman]{babel}
-%\usepackage[utf8]{inputenc}
-%$endif$
+% Support different languages
+% default: en
+% -----------------------------------------------------------------------
+$if(lang)$
+  \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
+	$if(babel-newcommands)$
+    $babel-newcommands$
+  $endif$
+	%\usepackage[utf8]{inputenc}
+$endif$
 
-
-% Symbols:
-% Pandoc imports the extensive `amsmath` collection of symbols
-% for typesetting ordinary math.
-\usepackage{amsmath}
-% if you use exotic symbols you need to import specific packages, eg. for
-% electrical engineering diagrams, musical notation, exotic currency symbols,
-% the unspeakable rites of freemasonry etc.
-\usepackage{amsfonts}
-\usepackage{amssymb}
-
-
-\usepackage{graphicx}
+\usepackage{amsmath}												% For pandoc extensive `amsmath` collection of symbols for typesetting ordinary math
+\usepackage{amsfonts}												% More symboles for exotic currency notation and engeneering diagrams
+\usepackage{amssymb}												% More symboles for exotic currency notation and engeneering diagrams
+\usepackage{siunitx}                        % For using SI Units https://www.ctan.org/pkg/siunitx
 \usepackage{fancyhdr}
 \usepackage{tabularx}
-\usepackage{geometry}
+\usepackage[a4paper, top=27mm, left=20mm, right=40mm, bottom=35mm, headsep=10mm, footskip=12mm]{geometry} % Vorgabe 4cm Rand auf der rechten Seite.
 \usepackage{setspace}
-\usepackage{siunitx}                        % For using SI Units https://www.ctan.org/pkg/siunitx
 \usepackage[right]{eurosym}
 \usepackage[printonlyused]{acronym}
 \usepackage{subfig}
@@ -44,25 +48,88 @@
 \usepackage{parskip}
 \usepackage[right]{eurosym}
 \usepackage[subfigure,titles]{tocloft}
-\usepackage[pdfpagelabels=true]{hyperref}
 \usepackage{helvet}
 
-% This two Packages are needet for Pandoc Table support. Issue is opened: https://github.com/jgm/pandoc/issues/1023
-\usepackage{longtable}
-\usepackage{booktabs}
+$if(tables)$
+	\usepackage{longtable,booktabs} % This two Packages are needet for Pandoc Table support. Issue is opened: https://github.com/jgm/pandoc/issues/1023
+$endif$
 \usepackage{multirow}
 
-% Support for citation
- $if(csl-refs)$
- \newlength{\cslhangindent}
- \setlength{\cslhangindent}{1.5em}
- \newenvironment{cslreferences}%
-   {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
-   \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
-   {\par}
- $endif$
+$if(graphics)$
+ \usepackage{graphicx}
+ \makeatletter
+ \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+ \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+ \makeatother
+ % Scale images if necessary, so that they will not overflow the page
+ % margins by default, and it is still possible to overwrite the defaults
+ % using explicit options in \includegraphics[width, height, ...]{}
+ \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+ % Set default figure placement to htbp
+ \makeatletter
+ \def\fps@figure{htbp}
+ \makeatother
+$endif$
+
+% Support hyperref with colorisation
+% -------------------------------------------------------------------------
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage[pdfpagelabels=true]{hyperref}}
+\urlstyle{same} % disable monospaced font for URLs
+
+$if(verbatim-in-note)$
+	\VerbatimFootnotes % allow verbatim text in footnotes
+$endif$
+
+$if(links-as-notes)$
+	% Make links footnotes instead of hotlinks:
+	\DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
+$endif$
+
+$if(strikeout)$
+	\usepackage[normalem]{ulem}
+	% Avoid problems with \sout in headers with hyperref
+	\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+$endif$
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+% PDF Metadata
+\hypersetup{
+	unicode=false, 
+	pdftoolbar=true, 
+	pdfmenubar=true, 
+	pdffitwindow=false, 
+	pdfstartview={FitH},
+	pdftitle={$if(title)$$title$:$endif$ $if(aufgabe.code)$$aufgabe.code$ - $endif$$if(author.name)$$author.name$$endif$},
+	$if(author)$
+		pdfauthor={$if(author.name)$$author.name$$else$$author$$endif$$if(author.matrikelnr)$, Matrikelnummer: $author.matrikelnr$$endif$},
+	$endif$
+	$if(studium.studiengang)$
+			pdfsubject={Studiengang: $studium.studiengang$},
+	$endif$
+	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq via pandoc},
+	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
+	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$$endif$, $if(author.matrikelnr)$$author.matrikelnr$$endif$, $if(aufgabe.code)$$aufgabe.code$$endif$ $if(keywords)$ $for(keywords)$$keywords$$sep$, $endfor$ $endif$},
+	pdfnewwindow=true,
+	$if(lang)$
+			pdflang=$lang$,
+	$endif$
+	pdfdisplaydoctitle=true, 
+	$if(colorlinks)$
+		colorlinks=true,
+		linkcolor=$if(linkcolor)$$linkcolor$$else$gray$endif$,
+		filecolor=$if(filecolor)$$filecolor$$else$magenta$endif$,
+		citecolor=$if(citecolor)$$citecolor$$else$gray$endif$,
+		urlcolor=$if(urlcolor)$$urlcolor$$else$black$endif$,
+	$else$
+		hidelinks,
+	$endif$
+	}
 
 % Designing blockquote
+% ------------------------------------------------------------------
 \definecolor{blockquote-border}{RGB}{221,221,221}
 \definecolor{blockquote-text}{RGB}{119,119,119}
 \usepackage{mdframed}
@@ -71,6 +138,7 @@
 \item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
 
 % Syntax Highligting with colors
+% -----------------------------------------------------------------
 $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
@@ -78,37 +146,57 @@ $if(verbatim-in-note)$
 \usepackage{fancyvrb}
 $endif$
 
-
-\usepackage{listings}
-\lstset{basicstyle=\footnotesize, captionpos=b, breaklines=true, showstringspaces=false, tabsize=2, frame=lines, numbers=left, numberstyle=\tiny, xleftmargin=2em, framexleftmargin=2em}
-\makeatletter
-\def\l@lstlisting#1#2{\@dottedtocline{1}{0em}{1em}{\hspace{1,5em} Lst. #1}{#2}}
-\makeatother
-
-\geometry{a4paper, top=27mm, left=20mm, right=40mm, bottom=35mm, headsep=10mm, footskip=12mm} % Vorgabe des 4cm Rand auf der rechten Seiten.
-
-\hypersetup{unicode=false, pdftoolbar=true, pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH},
-	pdftitle={$if(title)$$title$:$endif$ $if(aufgabe.code)$$aufgabe.code$ - $endif$$if(author.name)$$author.name$$endif$},
-$if(author)$
-	pdfauthor={$if(author.name)$$author.name$$else$$author$$endif$$if(author.matrikelnr)$, Matrikelnummer: $author.matrikelnr$$endif$},
+$if(listings)$
+  \usepackage{listings}
+  \newcommand{\passthrough}[1]{#1}
+  \lstset{basicstyle=\footnotesize, captionpos=b, breaklines=true, showstringspaces=false, tabsize=2, frame=lines, numbers=left, numberstyle=\tiny, xleftmargin=2em, framexleftmargin=2em}
+	\makeatletter
+	\def\l@lstlisting#1#2{\@dottedtocline{1}{0em}{1em}{\hspace{1,5em} Lst. #1}{#2}}
+	\makeatother
 $endif$
-$if(studium.studiengang)$
-    pdfsubject={Studiengang: $studium.studiengang$},
-$endif$
-	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq},
-	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
-	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$$endif$, $if(author.matrikelnr)$$author.matrikelnr$$endif$, $if(aufgabe.code)$$aufgabe.code$$endif$ $if(keywords)$ $for(keywords)$$keywords$$sep$, $endfor$ $endif$},
-	pdfnewwindow=true,
-$if(lang)$
-    pdflang=$lang$,
-$endif$
-	pdfdisplaydoctitle=true, colorlinks=true, linkcolor=black, citecolor=gray, filecolor=magenta,	urlcolor=black}
+
 % \pdfinfo{/CreationDate (D:20170605133321)}
 \renewcommand{\familydefault}{\sfdefault}
 
 % Pandoc tightlisting
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+% Support for citation
+% -------------------------------------------------------------------
+$if(natbib)$
+\usepackage[$natbiboptions$]{natbib}
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+$endif$
+$if(biblatex)$
+\usepackage[backend=bibtex]{biblatex}
+	$for(bibliography)$
+	\addbibresource{$bibliography$}
+	$endfor$
+$endif$
+
+\usepackage[T1]{fontenc}
+
+$if(csl-refs)$
+ \newlength{\cslhangindent}
+ \setlength{\cslhangindent}{1.5em}
+ \newenvironment{cslreferences}%
+   {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
+   \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
+   {\par}
+$endif$
+
+$if(numbersections)$
+	\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+	$else$
+	\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+	%\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+$endif$
+
+% ----------------------------------------------------------------------------
+% begin document
+% ----------------------------------------------------------------------------
 
 \begin{document}
 
@@ -210,6 +298,9 @@ $for(include-before)$
 $endfor$
 
 $if(toc)$
+	$if(toc-title)$
+	\renewcommand*\contentsname{$toc-title$}
+	$endif$
 	{
 	$if(colorlinks)$
 		\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
@@ -285,21 +376,47 @@ $endif$
 $body$
 
 
+% ----------------------------------------------------------------------------------------------------------
+% Literatur
+% ----------------------------------------------------------------------------------------------------------
 $if(biblatex)$
-	% ----------------------------------------------------------------------------------------------------------
-	% Literatur
-	% ----------------------------------------------------------------------------------------------------------
 	\pagebreak
 	\lhead{}
 	\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
-	\renewcommand{\refname}{Quellenverzeichnis}	
-
-	\ bibliographystyle{myalpha}
-	\bibliography{bibo}
+	\renewcommand{\refname}{Quellenverzeichnis}
+	\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 	\pagebreak
+$endif$
+$if(natbib)$
+  $if(bibliography)$
+		\pagebreak
+		\lhead{}
+		\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
+		\renewcommand{\refname}{Quellenverzeichnis}
+    \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+ 	$endif$
+$endif$
+$if(csl-refs)$
+	\lhead{}
+	\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
+$endif$
+
+
+%$if(biblatex)$
+	% ----------------------------------------------------------------------------------------------------------
+	% Literatur
+	% ----------------------------------------------------------------------------------------------------------
+%	\pagebreak
+%	\lhead{}
+%	\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
+%	\renewcommand{\refname}{Quellenverzeichnis}	
+
+%	\ bibliographystyle{myalpha}
+%	\bibliography{bibo}
+%	\pagebreak
 
 	%\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-$endif$
+%$endif$
 
 $if(insurance)$
 	% ----------------------------------------------------------------------------------------------------------
@@ -322,5 +439,8 @@ $if(insurance)$
 		\end{tabular}
 	\end{minipage}
 $endif$
+$for(include-after)$
+$include-after$
 
+$endfor$
 \end{document}

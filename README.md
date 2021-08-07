@@ -52,7 +52,7 @@ arbeit:
 ...
 ```
 
-Nun kannst du mit hilfe von `pandoc -s -t wbh.tex -o output.pdf input.md` dein Markdown file in ein PDF mit der gegeben Vorlage umwandeln.
+Nun kannst du mit hilfe von `pandoc -s --template=wbh.tex -o output.pdf input.md` dein Markdown file in ein PDF mit der gegeben Vorlage umwandeln.
 
 ### Variablen
 

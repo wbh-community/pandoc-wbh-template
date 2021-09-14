@@ -3,7 +3,7 @@
 % Diese Vorlage ist für Prüfungen an der Wilhelm-Büchner-Hochschule erstellt worden
 % sie entspricht den Vorgaben für Hausarbeiten und Thesis zum aktuellen Zeitpunkt.
 % 
-% Authoren:
+% Autoren:
 %
 % Created:
 % Changed: 26.06.2020
@@ -102,16 +102,14 @@ $endif$
 	pdfmenubar=true, 
 	pdffitwindow=false, 
 	pdfstartview={FitH},
-	pdftitle={$if(title)$$title$:$endif$ $if(aufgabe.code)$$aufgabe.code$ - $endif$$if(author.name)$$author.name$$endif$},
-	$if(author)$
-		pdfauthor={$if(author.name)$$author.name$$else$$author$$endif$$if(author.matrikelnr)$, Matrikelnummer: $author.matrikelnr$$endif$},
-	$endif$
+	pdftitle={$if(title)$$title$:$endif$ $if(aufgabe.code)$$aufgabe.code$ - $endif$$if(student.name)$$student.name$$endif$},
+	pdfauthor={$if(student.name)$$student.name$$else$$author$$endif$$if(student.matrikelnr)$, Matrikelnummer: $student.matrikelnr$$endif$},
 	$if(studium.studiengang)$
 			pdfsubject={Studiengang: $studium.studiengang$},
 	$endif$
 	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq via pandoc},
 	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
-	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$$endif$, $if(author.matrikelnr)$$author.matrikelnr$$endif$, $if(aufgabe.code)$$aufgabe.code$$endif$ $if(keywords)$ $for(keywords)$$keywords$$sep$, $endfor$ $endif$},
+	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$$endif$, $if(student.matrikelnr)$$student.matrikelnr$$endif$, $if(aufgabe.code)$$aufgabe.code$$endif$ $if(keywords)$ $for(keywords)$$keywords$$sep$, $endfor$ $endif$},
 	pdfnewwindow=true,
 	$if(lang)$
 			pdflang=$lang$,
@@ -210,7 +208,7 @@ $endif$
 \lhead{}
 \chead{}
 \rhead{\thesection\space\contentsname}
-\lfoot{\tiny $if(aufgabe.typ)$$aufgabe.typ$ des Studenten: $endif$$if(author.name)$$author.name$$endif$ $if(author.matrikelnr)$(Matrikelnr.: $author.matrikelnr$)$endif$ $if(studium.studiengang)$Studiengang: $studium.studiengang$$endif$ $if(aufgabe.code)$- Prüfung: $aufgabe.code$ $endif$}
+\lfoot{\tiny $if(aufgabe.typ)$$aufgabe.typ$ des Studenten: $endif$$if(student.name)$$student.name$$endif$ $if(student.matrikelnr)$(Matrikelnr.: $student.matrikelnr$)$endif$ $if(studium.studiengang)$Studiengang: $studium.studiengang$$endif$ $if(aufgabe.code)$- Prüfung: $aufgabe.code$ $endif$}
 \cfoot{}
 \rfoot{\ \linebreak Seite \thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -231,7 +229,7 @@ $endif$
 \thispagestyle{empty}
 \begin{center}
   $if(logo)$
-    \includegraphics[scale=0.2]{$logo$}\\
+    \includegraphics{$logo$}\\
 	$endif$
     \vspace*{2cm}
 	\Large
@@ -257,20 +255,29 @@ $endif$
 	$if(studium.fach)$
 		\textbf{$studium.fach$}\\
 	$endif$
-	\vspace*{2cm}
+	\vspace*{1cm}
 
 	\vfill
 	\normalsize
 	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
 	\begin{tabular}{x{6cm}p{7.5cm}}
-		$if(author.name)$
-			\rule{0mm}{5ex}\textbf{Student:} & $author.name$
-			$if(author.email)$
-				\newline $author.email$
+		$if(student.name)$
+			\rule{0mm}{5ex}\textbf{Student:} & $student.name$
+			$if(student.strasse)$
+				\newline $student.strasse$
+			$endif$
+			$if(student.ort)$
+				\newline $student.ort$
+			$endif$
+			$if(student.email)$
+				\newline $student.email$
 			$endif$ \\
 		$endif$
-		$if(author.matrikelnr)$
-			\rule{0mm}{5ex}\textbf{Matrikelnummer:} & $author.matrikelnr$ \\
+		$if(betreuung)$
+			\rule{0mm}{5ex}\textbf{Betreuung:} & $betreuung$ \\
+		$endif$
+		$if(student.matrikelnr)$
+			\rule{0mm}{5ex}\textbf{Matrikelnummer:} & $student.matrikelnr$ \\
 		$endif$
 		$if(date)$
 			\rule{0mm}{5ex}\textbf{Abgabedatum:} & $date$ \\
@@ -435,7 +442,7 @@ $if(insurance)$
 	\begin{minipage}{\linewidth}
 		\begin{tabular}{p{15em}p{15em}}
 			Datum: &  .......................................................\\
-			& \centering ($author.name$)\\
+			& \centering ($student.name$)\\
 		\end{tabular}
 	\end{minipage}
 $endif$

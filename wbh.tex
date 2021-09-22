@@ -49,6 +49,7 @@ $endif$
 \usepackage[right]{eurosym}
 \usepackage[subfigure,titles]{tocloft}
 \usepackage{helvet}
+\usepackage{graphicx}
 
 $if(tables)$
 	\usepackage{longtable,booktabs} % This two Packages are needet for Pandoc Table support. Issue is opened: https://github.com/jgm/pandoc/issues/1023
@@ -137,7 +138,7 @@ $endif$
 \renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
 \item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
 
-% Syntax Highligting with colors
+% Syntax Highlighting with colors
 % -----------------------------------------------------------------
 $if(highlighting-macros)$
 $highlighting-macros$

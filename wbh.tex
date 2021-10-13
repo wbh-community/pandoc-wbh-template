@@ -321,77 +321,82 @@ $endif$
 \pagebreak
 
 $if(abstract)$
-	% ----------------------------------------------------------------------------------------------------------
-	% Abstract
-	% ----------------------------------------------------------------------------------------------------------
-	\begin{abstract}
-		$abstract$
-	\end{abstract}
+% ----------------------------------------------------------------------------------------------------------
+% Abstract
+% ----------------------------------------------------------------------------------------------------------
+\begin{abstract}
+	$abstract$
+\end{abstract}
 $endif$
 
-% ----------------------------------------------------------------------------------------------------------
-% Content
-% ----------------------------------------------------------------------------------------------------------
+
 $for(include-before)$
-	$include-before$
+% ----------------------------------------------------------------------------------------------------------
+% include-before Section
+% ----------------------------------------------------------------------------------------------------------
+$include-before$
 $endfor$
 
 $if(toc)$
-	$if(toc-title)$
-	\renewcommand*\contentsname{$toc-title$}
-	$endif$
-	{
-	$if(colorlinks)$
-		\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
-	$endif$
+$if(toc-title)$
+\renewcommand*\contentsname{$toc-title$}
+$endif$
+{
+$if(colorlinks)$
+\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}		% Setup the link color of the toc
+$endif$
 
-	\setcounter{tocdepth}{$toc-depth$}
+\setcounter{tocdepth}{$toc-depth$}
 
-	% ----------------------------------------------------------------------------------------------------------
-	% Verzeichnisse
-	% ----------------------------------------------------------------------------------------------------------
-	% TODO Typ vor Nummer
-	\renewcommand{\cfttabpresnum}{Tab. }
-	\renewcommand{\cftfigpresnum}{Abb. }
-	\settowidth{\cfttabnumwidth}{Abb. 10\quad}
-	\settowidth{\cftfignumwidth}{Abb. 10\quad}
+% ----------------------------------------------------------------------------------------------------------
+% Inhaltsverzeichnis
+% ----------------------------------------------------------------------------------------------------------
+% TODO Typ vor Nummer
+\renewcommand{\cfttabpresnum}{Tab. }
+\renewcommand{\cftfigpresnum}{Abb. }
+\settowidth{\cfttabnumwidth}{Abb. 10\quad}
+\settowidth{\cftfignumwidth}{Abb. 10\quad}
 
-	\singlespacing
-	\rhead{$if(lang)$INHALTSVERZEICHNIS$else$TABLE OF CONTENTS$endif$}
-	\renewcommand{\contentsname}{I $if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}
-	\phantomsection
-	\addcontentsline{toc}{section}{\texorpdfstring{I \hspace{0.35em}$if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}{$if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}}
-	\addtocounter{section}{1}
-	\tableofcontents
-	\pagebreak
-	}
+\singlespacing
+\rhead{$if(lang)$INHALTSVERZEICHNIS$else$TABLE OF CONTENTS$endif$}
+\renewcommand{\contentsname}{I $if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}
+\phantomsection
+\addcontentsline{toc}{section}{\texorpdfstring{I \hspace{0.35em}$if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}{$if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}}
+\addtocounter{section}{1}
+\tableofcontents
+\pagebreak
+}
 $endif$
 
 $if(lot)$
-	\rhead{$if(lang)$TABELLENVERZEICHNIS$else$LIST OF TABLES$endif$}
-	\pagebreak
-	\listoftables
+% ----------------------------------------------------------------------------------------------------------
+% Tabellenverzeichnis
+% ----------------------------------------------------------------------------------------------------------
+\rhead{$if(lang)$TABELLENVERZEICHNIS$else$LIST OF TABLES$endif$}
+\listoftables
+\pagebreak
 $endif$
+
 $if(lof)$
-	$if(lot)$
-		% Workaround for the HEADING if you don't use a list of tables
-	$else$
-		\rhead{$if(lang)$ABBILDUNGSVERZEICHNIS$else$LIST OF FIGURES$endif$}
-	$endif$
-	\listoffigures
-	\pagebreak
+% ----------------------------------------------------------------------------------------------------------
+% Abbildungsverzeichnis
+% ----------------------------------------------------------------------------------------------------------
+\rhead{$if(lang)$ABBILDUNGSVERZEICHNIS$else$LIST OF FIGURES$endif$}
+\listoffigures
+\pagebreak
 $endif$
 
 $if(abk)$
-	% ----------------------------------------------------------------------------------------------------------
-	% Abkürzungen
-	% ----------------------------------------------------------------------------------------------------------
-	\section{Abkürzungsverzeichnis}
-	\begin{acronym}[OSGi] % längste Abkürzung steht in eckigen Klammern
-		\setlength{\itemsep}{-\parsep} % geringerer Zeilenabstand
-		\acro{OSGi}{Open Service Gateway initiative}
-	\end{acronym}
-	\newpage
+% ----------------------------------------------------------------------------------------------------------
+% Abkürzungsverzeichnis
+% ----------------------------------------------------------------------------------------------------------
+\rhead{$if(lang)$ABKÜRZUNGSVERZEICHNIS$else$LIST OF ABBREVIATIONS$endif$}
+\section{Abkürzungsverzeichnis}
+\begin{acronym}[OSGi] 						% längste Abkürzung steht in eckigen Klammern
+	\setlength{\itemsep}{-\parsep} 			% geringerer Zeilenabstand
+	\acro{OSGi}{Open Service Gateway initiative}
+\end{acronym}
+\newpage
 $endif$
 
 % ----------------------------------------------------------------------------------------------------------
@@ -415,7 +420,7 @@ $endif$
 $body$
 
 % ----------------------------------------------------------------------------------------------------------
-% Literatur
+% Literaturverzeichnis
 % ----------------------------------------------------------------------------------------------------------
 
 $if(natbib)$

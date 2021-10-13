@@ -52,6 +52,8 @@ $endif$
 \usepackage[subfigure,titles]{tocloft}
 \usepackage{helvet}
 \usepackage{graphicx}
+\usepackage[export]{adjustbox} % also loads graphicx, to have max width for graphics
+
 
 $if(tables)$
 	\usepackage{longtable,booktabs} % This two Packages are needet for Pandoc Table support. Issue is opened: https://github.com/jgm/pandoc/issues/1023
@@ -258,7 +260,7 @@ $endif$
 \thispagestyle{empty}
 \begin{center}
   $if(logo)$
-    \includegraphics[]{$logo$}\\
+    \includegraphics[max width=\textwidth]{$logo$}\\
 	$endif$
     \vspace*{2cm}
 	\Large

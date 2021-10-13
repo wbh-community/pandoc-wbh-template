@@ -491,28 +491,29 @@ $endfor$
 %$endif$
 
 $if(insurance)$
-	% ----------------------------------------------------------------------------------------------------------
-	% Erklärung zur selbstständigkeit
-	% ----------------------------------------------------------------------------------------------------------
-	\newpage
-	\thispagestyle{empty}
-	\begin{center}
-		\vspace*{5em}
-		\huge\textbf{Erklärung}\\
-	\end{center}
-	\vspace{2em}
-	Ich, $student.name$,  versichere  durch  meine  Unterschrift,  dass  ich  die  vorliegende Arbeit selbstständig erstellt habe. Andere als die angegebenen Hilfsmittel habe ich nicht ver-wendet. 
-	
-	Soweit  ich  fremde  Gedankengänge  oder  Texte  verwendet  habe,  sind  diese  von  mir  als solche kenntlich gemacht und dem Urheber eindeutig zuordenbar. Dazu zählen sowohl wört-liche als auch nicht wörtliche Übernahmen.
+% ----------------------------------------------------------------------------------------------------------
+% Erklärung zur Selbstständigkeit
+% ----------------------------------------------------------------------------------------------------------
+\newpage
+\thispagestyle{empty}
+\begin{center}
+	\vspace*{5em}
+	\huge\textbf{Erklärung}\\
+\end{center}
+\vspace{2em}
+Ich, $student.name$,  versichere  durch  meine  Unterschrift,  dass  ich  die  vorliegende Arbeit selbstständig erstellt habe. Andere als die angegebenen Hilfsmittel habe ich nicht ver-wendet. 
 
-	\vspace{4em}
-	\begin{minipage}{\linewidth}
-		\begin{tabular}{p{15em}p{15em}}
-			Datum: &  .......................................................\\
-			& \centering ($student.name$)\\
-		\end{tabular}
-	\end{minipage}
+Soweit  ich  fremde  Gedankengänge  oder  Texte  verwendet  habe,  sind  diese  von  mir  als solche kenntlich gemacht und dem Urheber eindeutig zuordenbar. Dazu zählen sowohl wört-liche als auch nicht wörtliche Übernahmen.
+
+\vspace{4em}
+\begin{minipage}{\linewidth}
+	\begin{tabular}{p{15em}p{15em}}
+		Datum: &  .......................................................\\
+		& \centering ($student.name$)\\
+	\end{tabular}
+\end{minipage}
 $endif$
+
 $for(include-after)$
 $include-after$
 

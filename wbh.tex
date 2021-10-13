@@ -18,15 +18,17 @@
     listof=totocnumbered
 ]{scrartcl}
 
+$if(lang)$
 % Support different languages
 % default: en
 % -----------------------------------------------------------------------
-$if(lang)$
-  \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
-	$if(babel-newcommands)$
-    $babel-newcommands$
-  $endif$
-	%\usepackage[utf8]{inputenc}
+\usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
+
+$if(babel-newcommands)$
+$babel-newcommands$
+$endif$
+
+%\usepackage[utf8]{inputenc}
 $endif$
 
 \usepackage{amsmath}												% For pandoc extensive `amsmath` collection of symbols for typesetting ordinary math

@@ -58,6 +58,12 @@ arbeit:
 
 Nun kannst du mit hilfe von `pandoc -s --template=wbh.tex -o output.pdf input.md` dein Markdown file in ein PDF mit der gegeben Vorlage umwandeln.
 
+Alternativ kannst du das `Makefile` im Ordner `Beispiel/` nutzen, dazu einfach "make" eingeben - vorrausgesetzt du hast make installiert bist im richtigen Pfad:
+
+`user@machine ~/Documents/pandoc-wbh-template/Beispiel:$ make`
+
+Make ist in der Regel Teil des Pakets `build-essentials`, welches du mit  `sudo apt-get install build-essential` unter Ubuntu/Mint, `yum install gcc gcc-c++ kernel-devel make`unter CentOS / RHEL, oder unter Arch mit `sudo pacman -Sy base-devel` installieren kannst.
+
 ### Variablen
 
 Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optionalen Variablen werden nicht benötigt und können somit leer bleiben oder ganz weg gelassen werden.

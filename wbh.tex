@@ -400,9 +400,8 @@ $if(abk)$
 $endif$
 
 % ----------------------------------------------------------------------------------------------------------
-% Inhalt
+% Einrichtung der Kopfzeile
 % ----------------------------------------------------------------------------------------------------------
-% Kopfzeile
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{}
 \renewcommand{\subsubsectionmark}[1]{}
@@ -416,6 +415,11 @@ $endif$
 \pagenumbering{arabic}
 \setcounter{page}{1}
 %\renewcommand{\includegraphics}[1][]{\includegraphics[width=0.9\columnwidth,keepaspectratio]{#1}}
+
+
+% ----------------------------------------------------------------------------------------------------------
+% Inhalt
+% ----------------------------------------------------------------------------------------------------------
 
 $body$
 

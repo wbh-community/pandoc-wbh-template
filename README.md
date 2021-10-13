@@ -24,6 +24,8 @@ sudo cp b-pruefung.tex /usr/share/pandoc/data/templates/wbh.tex
 Mac:
 
 Windows:
+C:\Users\Username\AppData\Roaming\pandoc\templates
+Falls der Ordner noch nicht existiert einfach anlegen.
 
 ```
 
@@ -41,6 +43,8 @@ author:
 student:
   name:
   email:
+  strasse:
+  ort:
   matriklnr:
 studium:
   studiengang:

@@ -1,4 +1,5 @@
 ---
+logo: Bilder/logo.png
 title: Pandoc und Markdown für deine Texte
 author: Sebastian Preisner
 student:
@@ -6,7 +7,7 @@ student:
   email: wbh@calyrium.org
   matrikelnr: 900266
 studium:
-  studiengang: Technische Informatike
+  studiengang: Technische Informatik
   studiengangnr: 1140
   fach: Freizeitgestaltung
 aufgabe:

@@ -107,29 +107,29 @@ $endif$
 	pdfmenubar=true, 
 	pdffitwindow=false, 
 	pdfstartview={FitH},
-	pdftitle={$if(title)$$title$:$endif$ $if(aufgabe.code)$$aufgabe.code$ - $endif$$if(student.name)$$student.name$$endif$},
+	pdftitle={$if(title)$$title$$endif$$if(aufgabe.code)$: $aufgabe.code$$endif$$if(student.name)$ - $student.name$$endif$},
 	pdfauthor={$if(student.name)$$student.name$$else$$author$$endif$$if(student.matrikelnr)$, Matrikelnummer: $student.matrikelnr$$endif$},
 	$if(studium.studiengang)$
-			pdfsubject={Studiengang: $studium.studiengang$},
+	pdfsubject={Studiengang: $studium.studiengang$}, 
 	$endif$
 	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq via pandoc},
 	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
-	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$$endif$, $if(student.matrikelnr)$$student.matrikelnr$$endif$, $if(aufgabe.code)$$aufgabe.code$$endif$ $if(keywords)$ $for(keywords)$$keywords$$sep$, $endfor$ $endif$},
+	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$,$endif$ $if(student.matrikelnr)$$student.matrikelnr$,$endif$ $if(aufgabe.code)$$aufgabe.code$,$endif$ $if(keywords)$ $for(keywords)$ $keywords$ $sep$, $endfor$$endif$},
 	pdfnewwindow=true,
 	$if(lang)$
-			pdflang=$lang$,
+	pdflang=$lang$,
 	$endif$
 	pdfdisplaydoctitle=true, 
 	$if(colorlinks)$
-		colorlinks=true,
-		linkcolor=$if(linkcolor)$$linkcolor$$else$gray$endif$,
-		filecolor=$if(filecolor)$$filecolor$$else$magenta$endif$,
-		citecolor=$if(citecolor)$$citecolor$$else$gray$endif$,
-		urlcolor=$if(urlcolor)$$urlcolor$$else$black$endif$,
+	colorlinks=true,
+	linkcolor=$if(linkcolor)$$linkcolor$$else$gray$endif$,
+	filecolor=$if(filecolor)$$filecolor$$else$magenta$endif$,
+	citecolor=$if(citecolor)$$citecolor$$else$gray$endif$,
+	urlcolor=$if(urlcolor)$$urlcolor$$else$black$endif$,
 	$else$
-		hidelinks,
+	hidelinks,
 	$endif$
-	}
+}
 
 % Designing blockquote
 % ------------------------------------------------------------------

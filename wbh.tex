@@ -178,13 +178,39 @@ $endif$
 \usepackage[T1]{fontenc}
 
 $if(csl-refs)$
- \newlength{\cslhangindent}
- \setlength{\cslhangindent}{1.5em}
- \newenvironment{cslreferences}%
-   {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
-   \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
-   {\par}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  %\setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {\par}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 $endif$
+
+%$if(csl-refs)$
+%\newlength{\cslhangindent}
+%\setlength{\cslhangindent}{1.5em}
+%\newenvironment{CSLReferences}%
+%  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
+%  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
+%  {\par}
+%$endif$
 
 $if(numbersections)$
 	\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
@@ -230,7 +256,7 @@ $endif$
 \thispagestyle{empty}
 \begin{center}
   $if(logo)$
-    \includegraphics{$logo$}\\
+    \includegraphics[]{$logo$}\\
 	$endif$
     \vspace*{2cm}
 	\Large
@@ -383,31 +409,69 @@ $endif$
 
 $body$
 
-
 % ----------------------------------------------------------------------------------------------------------
 % Literatur
 % ----------------------------------------------------------------------------------------------------------
-$if(biblatex)$
-	\pagebreak
-	\lhead{}
-	\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
-	\renewcommand{\refname}{Quellenverzeichnis}
-	\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-	\pagebreak
-$endif$
+
 $if(natbib)$
-  $if(bibliography)$
-		\pagebreak
-		\lhead{}
-		\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
-		\renewcommand{\refname}{Quellenverzeichnis}
-    \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
- 	$endif$
+    $if(bibliography)$
+        $if(biblio-title)$
+            $if(has-chapters)$
+\renewcommand\bibname{$biblio-title$}
+            $else$
+\renewcommand\refname{$biblio-title$}
+            $endif$
+        $endif$
+        $if(beamer)$
+\begin{frame}[allowframebreaks]{$biblio-title$}
+  \bibliographytrue
+        $endif$
+  \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+        $if(beamer)$
+\end{frame}
+        $endif$
+    $endif$
 $endif$
-$if(csl-refs)$
-	\lhead{}
-	\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
+
+$if(biblatex)$
+    $if(beamer)$
+\begin{frame}[allowframebreaks]{$biblio-title$}
+  \bibliographytrue
+  \printbibliography[heading=none]
+\end{frame}
+    $else$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+    $endif$
 $endif$
+
+$for(include-after)$
+$include-after$
+
+$endfor$
+
+%$if(biblatex)$
+%	\pagebreak
+%	\lhead{}
+%	\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
+%	\renewcommand{\refname}{Quellenverzeichnis}
+%	\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+%	\pagebreak
+%$endif$
+%$if(natbib)$
+%  $if(bibliography)$
+%		\pagebreak
+%		\lhead{}
+%		\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
+%		\renewcommand{\refname}{Quellenverzeichnis}
+ %   \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+ %	$endif$
+%$endif$
+%$if(csl-refs)$
+%	\pagebreak
+%\lhead{}
+%\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
+%\renewcommand{\refname}{Quellenverzeichnis}
+%$endif$
 
 
 %$if(biblatex)$
@@ -437,7 +501,9 @@ $if(insurance)$
 		\huge\textbf{Erklärung}\\
 	\end{center}
 	\vspace{2em}
-	Hiermit versichere ich, dass ich meine Abschlussarbeit selbständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe.
+	Ich, $student.name$,  versichere  durch  meine  Unterschrift,  dass  ich  die  vorliegende Arbeit selbstständig erstellt habe. Andere als die angegebenen Hilfsmittel habe ich nicht ver-wendet. 
+	
+	Soweit  ich  fremde  Gedankengänge  oder  Texte  verwendet  habe,  sind  diese  von  mir  als solche kenntlich gemacht und dem Urheber eindeutig zuordenbar. Dazu zählen sowohl wört-liche als auch nicht wörtliche Übernahmen.
 
 	\vspace{4em}
 	\begin{minipage}{\linewidth}

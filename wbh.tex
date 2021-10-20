@@ -288,7 +288,7 @@ $endif$
 		\textbf{$studium.fach$}\\
 	$endif$
 	\vspace*{1cm}
-
+	
 	\vfill
 	\normalsize
 	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
@@ -319,6 +319,11 @@ $endif$
 	\end{tabular}
 \end{center}
 \pagebreak
+
+$if(skipfirstpage)$ % Skip first page count, if skipfirstpage = 1
+    \clearpage
+    \setcounter{page}{1}
+$endif$
 
 $if(abstract)$
 % ----------------------------------------------------------------------------------------------------------

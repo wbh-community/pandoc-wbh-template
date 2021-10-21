@@ -1,5 +1,5 @@
 ---
-logo: Bilder/logo.png
+logo: ../Bilder/logo.png
 title: Pandoc und Markdown für deine Texte
 author: Sebastian Preisner
 student:
@@ -40,6 +40,11 @@ Codeblock:
 * Listenpunkt 3
 
 Ich bin ein Text mit *kursiven* und **fetten** Elementen.
+
+![Bildunterschrift](relativer/pfad/zum/bild.png){#fig:LABEL width=90%}
+
+Verweis auf eine Abbildung  (siehe +@fig:LABEL) 
+
 ```
 
 Anhand dieses Beispiels kann man sehen wie einfach das Schreiben von Markdown ist. Nun wirst du dir sicherlich denken was dir diese einfachheit bringt wenn dein Dokument aber aussieht wie E-Mails vor 10 Jahren. Die Antwort darauf ist, das sich in den ganzen Jahren viele Parser für Markdown entwickelt haben welche die einfache Syntax nutzen um perfekt Formatierte Texte zu erstellen. Eines dieser Tools und noch dazu das wohl mächtigste, ist Pandoc.
@@ -95,19 +100,25 @@ pacman -S pandoc
 
 Eine grafische Oberfläche wirst du bei Pandoc nicht finden, das Programm wird mit Hilfe von Befehlen auf der Konsole bedient. Da es sich um einen Übersetzer handelt ist dies aber kein Problem denn alle Einstellungen lassen sich Bequem in Textfom fomulieren. Wie das geht werde ich dir im nächsten Kapitel zeigen. Zunächst kannst du jedoch mit dem Befehl `pandoc -v` die installierte Version erfragen.
 
-## PDF aus Beispiel Markdown erzeugen
+## Weitere Abhängigkeiten
 
-### Manuell
+Um die das *Cleveref* package zu nutzen, sollte noch der Filter *pandoc-xnos* genutzt werden. Dieser kann z.b. über `pip` installiert werden:
+
+`pip install --user pandoc-xnos`
+
+# PDF aus Beispiel Markdown erzeugen
+
+## Manuell
 
 Dem Projekt liegt im Ordner `Beispiel/` ein in Markdown geschriebenes Beispiel bei, welches du gerade liest :-) 
 
 Du kannst das Beispiel mit Markdown nach PDF konvertieren in dem du folgendes Kommando nutzt:
 
-`pandoc -s --template="wbh.tex" -o Beispiel/beispiel.pdf Beispiel/beispiel.md`
+`pandoc -s --template="wbh.tex" --filter pandoc-xnos -o Beispiel/beispiel.pdf Beispiel/beispiel.md`
 
 Die Datei `beispiel.pdf` wird ebenfalls im Unterordner `Beispiel/`erzeugt. Das Kommando musst du natürlich aus dem Stammverzeichnis des Projekts starten, damit das Template `wbh.tex` gefunden wird. Alternativ kannst du auch den Pfad anpassen.
 
-### Über Editor 
+## Mit einen Editor 
 
 Viele Editoren erlauben, dass du Quellcode über ein Tastaturkürzel, z.b. F5 oder F9 automatisch kompilieren kannst. Bei der Vielzahl der Editoren ist es schwierig das für alle zu beschreiben, es lohnt sich trotzdem in den Einstellungen zu prüfen ob das mit deinem Editor möglich ist. Jeder bessere Sourcecode Editor kann das.
 

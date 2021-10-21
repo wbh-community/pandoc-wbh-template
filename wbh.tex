@@ -83,6 +83,11 @@ $endif$
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage[pdfpagelabels=true]{hyperref}}
 \urlstyle{same} % disable monospaced font for URLs
 
+% Cleveref for easy markdown references using pandoc-fignos / pandoc-xnos
+% -------------------------------------------------------------------------
+\usepackage{cleveref}
+
+
 $if(verbatim-in-note)$
 	\VerbatimFootnotes % allow verbatim text in footnotes
 $endif$

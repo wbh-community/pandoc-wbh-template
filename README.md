@@ -10,6 +10,7 @@ Zur Nutzung dieses Templates werden folgende Tools vorrausgesetzt
 - Pandoc-Citeproc
 - Texlive
 - pdflatex
+- pandoc-xnos Filter    
 
 **! WICHTIG !** Um einen reibungslosen Ablauf zu gewährleisten ist es notwendig immer die neusten Versionen zu verwenden. Auf Debian, Ubuntu und von dort abgeleiteten Distributionen sind die Texlive und Pandoc versionen stark veraltet und funktionieren daher nicht mit diesem Template.
 

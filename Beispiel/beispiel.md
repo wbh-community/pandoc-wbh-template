@@ -16,11 +16,11 @@ aufgabe:
 date: 08.06.2017
 lang: de
 toc: \\
-skipfirstpage: 1 
+skipfirstpage: 1 % set any value, to skip the counting for Titlepage, so TOC will start with Page 1
 assignment: 
   include: 1 
-  file: \noescape{Aufgabenstellung/Aufgabenstellung.pdf}
-  pages: '-'
+  file: \noescape{Aufgabenstellung/Aufgabenstellung_1.pdf}
+  pages: '-'  
 
 ...
 

@@ -53,6 +53,8 @@ $endif$
 \usepackage{helvet}
 \usepackage{graphicx}
 \usepackage[export]{adjustbox} % also loads graphicx, to have max width for graphics
+\usepackage{pdfpages}
+\newcommand{\noescape}[1]{#1}
 
 
 $if(tables)$
@@ -229,6 +231,19 @@ $endif$
 % ----------------------------------------------------------------------------
 
 \begin{document}
+
+% ----------------------------------------------------------------------------------------------------------
+% Aufgabenstellung
+% ----------------------------------------------------------------------------------------------------------
+% Debug: 
+% include: $assignment.include$ file: $assignment.file$ pages: $assignment.pages$
+$if(assignment.include)$
+    % include assignment is on
+\includepdf[pages=$assignment.pages$]{$assignment.file$}
+$else$
+    %include assignment was off
+$endif$
+
 
 
 % ----------------------------------------------------------------------------------------------------------

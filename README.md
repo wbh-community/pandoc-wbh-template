@@ -53,6 +53,10 @@ studium:
 arbeit:
   typ:
   code:
+assignment:
+  include: 1 
+  file: \noescape{Aufgabenstellung/Aufgabenstellung_1.pdf}
+  pages: -
 ...
 ```
 
@@ -68,27 +72,62 @@ Make ist in der Regel Teil des Pakets `build-essentials`, welches du mit  `sudo 
 
 Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optionalen Variablen werden nicht benötigt und können somit leer bleiben oder ganz weg gelassen werden.
 
-|   Variable    |                     Beschreibung                      | Optional |    default    |
-|:------------- |:----------------------------------------------------- |:-------- |:------------- |
-| title         | Titel der Arbeit/B-Prüfung                            | nein     |               |
-| author        | Der Uhrheber der Arbeit, in der Regel dein Name       | ja       |               |
-| student       | Informationen über dich                               | nein     |               |
-| name          | Dein Name, wird als Author verwendet                  | nein     |               |
-| matrikelnr    | Deine Matrikelnummer                                  | ja       |               |
-| email         | Deine E-Mail Adresse                                  | ja       |               |
-| studium       | Informationen zum Studiengang und dem Fach            | ja       |               |
-| studiengang   | Dein Studiengang                                      | ja       |               |
-| studiengangnr | Diese findest du unter "Main Studium" SG-Nr.          | ja       |               |
-| fach          | In welchem Fach wird die Prüfung bearbeitet           | ja       |               |
-| aufgabencode  | Der Code befindet sich auf deiner B-Prüfung ganz oben | ja       |               |
-| date          | Datum der Abgabe                                      | ja       | today         |
-| lang          | Sprache des Dokumentes "Ländercode"                   | ja       | de            |
-| logo          | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       | Pfad zum Bild |
-| toc           | Hinzufügen des Inhaltsverzeichnises                   | ja       | true / false  |
-| abk           | Abkürzungsverzeichnis                                 | ja       | true /false   |
-| lot           | Verzeichnis der Tabellen                              | ja       | true / false  |
-| lof           | Liste der Figuren/Abbildungen                         | ja       | true / false  |
-| skipfirstpage | Zählt die Titleseite nicht mit                        | ja       | true          |
+|   Variable         |                     Beschreibung                      | Optional |    default    |
+|:------------------ |:----------------------------------------------------- |:-------- |:------------- |
+| title              | Titel der Arbeit/B-Prüfung                            | nein     |               |
+| author             | Der Uhrheber der Arbeit, in der Regel dein Name       | ja       |               |
+| student            | Informationen über dich                               | nein     |               |
+| name               | Dein Name, wird als Author verwendet                  | nein     |               |
+| matrikelnr         | Deine Matrikelnummer                                  | ja       |               |
+| email              | Deine E-Mail Adresse                                  | ja       |               |
+| studium            | Informationen zum Studiengang und dem Fach            | ja       |               |
+| studiengang        | Dein Studiengang                                      | ja       |               |
+| studiengangnr      | Diese findest du unter "Main Studium" SG-Nr.          | ja       |               |
+| fach               | In welchem Fach wird die Prüfung bearbeitet           | ja       |               |
+| aufgabencode       | Der Code befindet sich auf deiner B-Prüfung ganz oben | ja       |               |
+| date               | Datum der Abgabe                                      | ja       | today         |
+| lang               | Sprache des Dokumentes "Ländercode"                   | ja       | de            |
+| logo               | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       | Pfad zum Bild |
+| toc                | Hinzufügen des Inhaltsverzeichnises                   | ja       | true / false  |
+| abk                | Abkürzungsverzeichnis                                 | ja       | true /false   |
+| lot                | Verzeichnis der Tabellen                              | ja       | true / false  |
+| lof                | Liste der Figuren/Abbildungen                         | ja       | true / false  |
+| skipfirstpage      | Zählt die Titleseite nicht mit                        | ja       | true          |
+| assignment.include | Aufgabenstellung mit einbinden?                       | ja       | true / false  |
+| assignment.file    | Pfad zur Aufgabenstellung                             | ja       | string        |
+| assignment.pages   | Seitenzahlen der Aufgabenstellung                     | ja       | string        |
+
+
+### Aufgabenstellung mit einbinden
+
+Das Template erlaubt es, durch setzen der Variablen im Block `assignment`, die Aufgabenstellung mit einzubinden und vor das eigentliche PDF zu stellen. Das Inhaltsverzeichnis der Lösung bleibt dabei korrekt erhalten, anders als wenn man die PDFs nachträglich zusammensetzt.
+
+Um dem Escaping von pandoc vorzubeugen wird im Template ein Workaround eingesetzt, der dies durch inline Latex verhindert.
+
+
+**Seitenbereich**
+
+Für einzelne Seiten kann man folgendes schreiben:
+```
+assignment: 
+  include: 1 
+  file: \noescape{Aufgabenstellung/Aufgabenstellung.pdf}
+  pages: 1-2  
+```
+
+
+**Einzelne Seiten**
+
+Für einzelne Seiten kann man folgendes schreiben:
+```
+assignment: 
+  include: 1 
+  file: \noescape{Aufgabenstellung/Aufgabenstellung.pdf}
+  pages: '-'  
+```
+
+Dabei unbedingt die einfachen Anführungszeichen drin lassen
+
 
 ## ToDo
 

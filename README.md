@@ -56,7 +56,7 @@ arbeit:
 #assignment: 
 #  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
 #  pages: '`{1-2}`{=latex}'  # Page 1 to 2
-#  pages: '`-`{=latex}'  # Page 1 to 2
+#  pages: '`-`{=latex}'  # All pages
 #  pages: '`1,3`{=latex}'  # Page 1 and 3
 ...
 ```

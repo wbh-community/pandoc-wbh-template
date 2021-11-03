@@ -1,4 +1,13 @@
-% TeX für WBH B-Prüfungen
+% pandoc WBH Prüfungsvorlage
+%
+% Diese Vorlage ist für Prüfungen an der Wilhelm-Büchner-Hochschule erstellt worden
+% sie entspricht den Vorgaben für Hausarbeiten und Thesis zum aktuellen Zeitpunkt.
+% 
+% Autoren:
+%
+% Created:
+% Changed: 26.06.2020
+
 \documentclass[
     12pt,
     a4paper,
@@ -7,28 +16,22 @@
     listof=totocnumbered
 ]{scrartcl}
 
-% Support German annotation
-%%\usepackage[ngerman]{babel}
+% Support different languages
+% default: en
+% -----------------------------------------------------------------------
+\usepackage[shorthands=off,main=ngerman]{babel}
+
+
 %\usepackage[utf8]{inputenc}
-%
 
-% Symbols:
-% Pandoc imports the extensive `amsmath` collection of symbols
-% for typesetting ordinary math.
-\usepackage{amsmath}
-% if you use exotic symbols you need to import specific packages, eg. for
-% electrical engineering diagrams, musical notation, exotic currency symbols,
-% the unspeakable rites of freemasonry etc.
-\usepackage{amsfonts}
-\usepackage{amssymb}
-
-
-\usepackage{graphicx}
+\usepackage{amsmath}												% For pandoc extensive `amsmath` collection of symbols for typesetting ordinary math
+\usepackage{amsfonts}												% More symboles for exotic currency notation and engeneering diagrams
+\usepackage{amssymb}												% More symboles for exotic currency notation and engeneering diagrams
+\usepackage{siunitx}                        % For using SI Units https://www.ctan.org/pkg/siunitx
 \usepackage{fancyhdr}
 \usepackage{tabularx}
-\usepackage{geometry}
+\usepackage[a4paper, top=27mm, left=20mm, right=40mm, bottom=35mm, headsep=10mm, footskip=12mm]{geometry} % Vorgabe 4cm Rand auf der rechten Seite.
 \usepackage{setspace}
-\usepackage{siunitx}                        % For using SI Units https://www.ctan.org/pkg/siunitx
 \usepackage[right]{eurosym}
 \usepackage[printonlyused]{acronym}
 \usepackage{subfig}
@@ -40,14 +43,50 @@
 \usepackage{parskip}
 \usepackage[right]{eurosym}
 \usepackage[subfigure,titles]{tocloft}
-\usepackage[pdfpagelabels=true]{hyperref}
 \usepackage{helvet}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox} % also loads graphicx, to have max width for graphics
+\usepackage{pdfpages}
 
-% This two Packages are needet for Pandoc Table support. Issue is opened: https://github.com/jgm/pandoc/issues/1023
-\usepackage{longtable}
-\usepackage{booktabs}
+
+\usepackage{multirow}
+
+
+% Support hyperref with colorisation
+% -------------------------------------------------------------------------
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage[pdfpagelabels=true]{hyperref}}
+\urlstyle{same} % disable monospaced font for URLs
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+% PDF Metadata
+% ------------------------------------------------------------------
+\hypersetup{
+	unicode=false, 
+	pdftoolbar=true, 
+	pdfmenubar=true, 
+	pdffitwindow=false, 
+	pdfstartview={FitH},
+	pdftitle={Pandoc und Markdown für deine
+Texte: Freiwillige\_Arbeit - Sebastian Preisner},
+	pdfauthor={Sebastian Preisner, Matrikelnummer: 900266},
+		pdfsubject={Studiengang: Technische Informatik}, 
+		pdfcreator={\LaTeX\ with package \flqq hyperref\frqq via pandoc},
+	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
+	pdfkeywords={B-Prüfung, 900266, Freiwillige\_Arbeit, },
+	pdfnewwindow=true,
+		pdflang=de,
+		pdfdisplaydoctitle=true, 
+		hidelinks,
+	}
 
 % Designing blockquote
+% ------------------------------------------------------------------
 \definecolor{blockquote-border}{RGB}{221,221,221}
 \definecolor{blockquote-text}{RGB}{119,119,119}
 \usepackage{mdframed}
@@ -55,7 +94,8 @@
 \renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
 \item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
 
-% Syntax Highligting with colors
+% Syntax Highlighting with colors
+% -----------------------------------------------------------------
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -96,32 +136,38 @@
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
 
 
-\usepackage{listings}
-\lstset{basicstyle=\footnotesize, captionpos=b, breaklines=true, showstringspaces=false, tabsize=2, frame=lines, numbers=left, numberstyle=\tiny, xleftmargin=2em, framexleftmargin=2em}
-\makeatletter
-\def\l@lstlisting#1#2{\@dottedtocline{1}{0em}{1em}{\hspace{1,5em} Lst. #1}{#2}}
-\makeatother
-
-\geometry{a4paper, top=27mm, left=20mm, right=40mm, bottom=35mm, headsep=10mm, footskip=12mm} % Vorgabe des 4cm Rand auf der rechten Seiten.
-
-\hypersetup{unicode=false, pdftoolbar=true, pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH},
-	pdftitle={Pandoc und Markdown für deine Texte: Freiwillige\_Arbeit - },
-	pdfauthor={Sebastian Preisner},
-    pdfsubject={Studiengang: Technische Informatike},
-	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq},
-	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
-	pdfkeywords={B-Prüfung, , Freiwillige\_Arbeit },
-	pdfnewwindow=true,
-    pdflang=de,
-	pdfdisplaydoctitle=true, colorlinks=true, linkcolor=black, citecolor=gray, filecolor=magenta,	urlcolor=black}
-% \pdfinfo{/CreationDate (D:20170605133321)}
 \renewcommand{\familydefault}{\sfdefault}
 
 % Pandoc tightlisting
+% ------------------------------------------------------------------
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
+
+% Support for citation
+% -------------------------------------------------------------------
+
+\usepackage[T1]{fontenc}
+
+
+%
+	\setcounter{secnumdepth}{5}
+	%\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+% ----------------------------------------------------------------------------
+% begin document
+% ----------------------------------------------------------------------------
+
 \begin{document}
+
+% ----------------------------------------------------------------------------------------------------------
+% Aufgabenstellung
+% ----------------------------------------------------------------------------------------------------------
+% Debug: 
+% include:  file: Aufgabenstellung/Aufgabenstellung.pdf pages: {1-2}
+    % include assignment is on
+\includepdf[pages={1-2}]{Aufgabenstellung/Aufgabenstellung.pdf}
+
 
 
 % ----------------------------------------------------------------------------------------------------------
@@ -133,8 +179,9 @@
 \lhead{}
 \chead{}
 \rhead{\thesection\space\contentsname}
-\lfoot{\tiny B-Prüfung des Studenten:   Studiengang: Technische
-Informatike - Prüfung: Freiwillige\_Arbeit }
+\lfoot{\tiny B-Prüfung des Studenten: Sebastian
+Preisner (Matrikelnr.: 900266) Studiengang: Technische
+Informatik - Prüfung: Freiwillige\_Arbeit }
 \cfoot{}
 \rfoot{\ \linebreak Seite \thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -154,10 +201,11 @@ Informatike - Prüfung: Freiwillige\_Arbeit }
 % ----------------------------------------------------------------------------------------------------------
 \thispagestyle{empty}
 \begin{center}
-      \vspace*{2cm}
+      \includegraphics[max width=\textwidth]{../Bilder/logo.png}\\
+	    \vspace*{2cm}
 	\Large
 			\textbf{Studiengang:}\\
-		\textbf{Technische Informatike}\\
+		\textbf{Technische Informatik}\\
 		\vspace*{2cm}
 		\Huge
 			\textbf{}\\
@@ -168,51 +216,58 @@ Informatike - Prüfung: Freiwillige\_Arbeit }
   		Freiwillige\_Arbeit \\
 		\vspace*{1cm}
 			\textbf{Freizeitgestaltung}\\
-		\vspace*{2cm}
-
+		\vspace*{1cm}
+	
 	\vfill
 	\normalsize
 	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
 	\begin{tabular}{x{6cm}p{7.5cm}}
-									\rule{0mm}{5ex}\textbf{Abgabedatum:} & 08.06.2017 \\
+					\rule{0mm}{5ex}\textbf{Student:} & Sebastian Preisner
+													\newline wbh@calyrium.org
+			 \\
+									\rule{0mm}{5ex}\textbf{Matrikelnummer:} & 900266 \\
+							\rule{0mm}{5ex}\textbf{Abgabedatum:} & 08.06.2017 \\
 			\end{tabular}
 \end{center}
 \pagebreak
 
+ % Skip first page count, if skipfirstpage = 1
+    \clearpage
+    \setcounter{page}{1}
+
+
+
+
+
+{
+
+\setcounter{tocdepth}{3}
 
 % ----------------------------------------------------------------------------------------------------------
-% Content
+% Inhaltsverzeichnis
 % ----------------------------------------------------------------------------------------------------------
+% TODO Typ vor Nummer
+\renewcommand{\cfttabpresnum}{Tab. }
+\renewcommand{\cftfigpresnum}{Abb. }
+\settowidth{\cfttabnumwidth}{Abb. 10\quad}
+\settowidth{\cftfignumwidth}{Abb. 10\quad}
 
-	{
-	
-	\setcounter{tocdepth}{3}
+\singlespacing
+\rhead{INHALTSVERZEICHNIS}
+\renewcommand{\contentsname}{I Inhaltsverzeichnis}
+\phantomsection
+\addcontentsline{toc}{section}{\texorpdfstring{I \hspace{0.35em}Inhaltsverzeichnis}{Inhaltsverzeichnis}}
+\addtocounter{section}{1}
+\tableofcontents
+\pagebreak
+}
 
-	% ----------------------------------------------------------------------------------------------------------
-	% Verzeichnisse
-	% ----------------------------------------------------------------------------------------------------------
-	% TODO Typ vor Nummer
-	\renewcommand{\cfttabpresnum}{Tab. }
-	\renewcommand{\cftfigpresnum}{Abb. }
-	\settowidth{\cfttabnumwidth}{Abb. 10\quad}
-	\settowidth{\cftfignumwidth}{Abb. 10\quad}
-
-	\singlespacing
-	\rhead{INHALTSVERZEICHNIS}
-	\renewcommand{\contentsname}{I Inhaltsverzeichnis}
-	\phantomsection
-	\addcontentsline{toc}{section}{\texorpdfstring{I \hspace{0.35em}Inhaltsverzeichnis}{Inhaltsverzeichnis}}
-	\addtocounter{section}{1}
-	\tableofcontents
-	\pagebreak
-	}
 
 
 
 % ----------------------------------------------------------------------------------------------------------
-% Inhalt
+% Einrichtung der Kopfzeile
 % ----------------------------------------------------------------------------------------------------------
-% Kopfzeile
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{}
 \renewcommand{\subsubsectionmark}[1]{}
@@ -226,6 +281,11 @@ Informatike - Prüfung: Freiwillige\_Arbeit }
 \pagenumbering{arabic}
 \setcounter{page}{1}
 %\renewcommand{\includegraphics}[1][]{\includegraphics[width=0.9\columnwidth,keepaspectratio]{#1}}
+
+
+% ----------------------------------------------------------------------------------------------------------
+% Inhalt
+% ----------------------------------------------------------------------------------------------------------
 
 \hypertarget{einfuxfchrungauthor}{%
 \section{Einführungauthor}\label{einfuxfchrungauthor}}
@@ -396,7 +456,7 @@ Installation von LaTeX der einfachste Weg.
 \ExtensionTok{yum}\NormalTok{ install pandoc}
 
 \CommentTok{\# Archlinux}
-\ExtensionTok{pacman}\NormalTok{ {-}S pandoc}
+\ExtensionTok{pacman} \AttributeTok{{-}S}\NormalTok{ pandoc}
 \end{Highlighting}
 \end{Shaded}
 
@@ -407,7 +467,84 @@ lassen sich Bequem in Textfom fomulieren. Wie das geht werde ich dir im
 nächsten Kapitel zeigen. Zunächst kannst du jedoch mit dem Befehl
 \texttt{pandoc\ -v} die installierte Version erfragen.
 
+\hypertarget{pdf-aus-beispiel-markdown-erzeugen}{%
+\subsection{PDF aus Beispiel Markdown
+erzeugen}\label{pdf-aus-beispiel-markdown-erzeugen}}
+
+\hypertarget{manuell}{%
+\subsubsection{Manuell}\label{manuell}}
+
+Dem Projekt liegt im Ordner \texttt{Beispiel/} ein in Markdown
+geschriebenes Beispiel bei, welches du gerade liest :-)
+
+Du kannst das Beispiel mit Markdown nach PDF konvertieren in dem du
+folgendes Kommando nutzt:
+
+\texttt{pandoc\ -s\ -\/-template="wbh.tex"\ -o\ Beispiel/beispiel.pdf\ Beispiel/beispiel.md}
+
+Die Datei \texttt{beispiel.pdf} wird ebenfalls im Unterordner
+\texttt{Beispiel/}erzeugt. Das Kommando musst du natürlich aus dem
+Stammverzeichnis des Projekts starten, damit das Template
+\texttt{wbh.tex} gefunden wird. Alternativ kannst du auch den Pfad
+anpassen.
+
+\hypertarget{uxfcber-editor}{%
+\subsubsection{Über Editor}\label{uxfcber-editor}}
+
+Viele Editoren erlauben, dass du Quellcode über ein Tastaturkürzel, z.b.
+F5 oder F9 automatisch kompilieren kannst. Bei der Vielzahl der Editoren
+ist es schwierig das für alle zu beschreiben, es lohnt sich trotzdem in
+den Einstellungen zu prüfen ob das mit deinem Editor möglich ist. Jeder
+bessere Sourcecode Editor kann das.
+
+\hypertarget{latex-mathtex-beispiele}{%
+\section{Latex Mathtex Beispiele}\label{latex-mathtex-beispiele}}
+
+Hier ein paar Beispiele für mathematische Formeln
+
+\hypertarget{matrix}{%
+\subsection{Matrix}\label{matrix}}
+
+Wenn die Matrix mehr als 10 Spalten enthält, dann muss zwingend
+\texttt{\textbackslash{}setcounter\{MaxMatrixCols\}\{12\}} entsprechend
+der Anzahl der Spalten gesetzt sein. Standarmäßig geht es sonst nur bis
+10 Spalten.
+
+\[
+\setcounter{MaxMatrixCols}{12}X = 
+ \begin{pmatrix}
+P(A) & P(B) & P(C) & P(D) & P(E) & P(F) & P(G) & P(H) & P(I) & P(J) & P(K) & P(L)\\
+1/19 & 2/19 & 3/19 & 3/19 & 3/19 & 1/19 & 1/19 & 1/19 & 1/19 & 1/19 & 1/19 & 1/19\\
+\end{pmatrix}\]
+
+\hypertarget{am-gleichheitszeichen-ausgerichtete-gleichungen}{%
+\subsection{Am Gleichheitszeichen ausgerichtete
+Gleichungen}\label{am-gleichheitszeichen-ausgerichtete-gleichungen}}
+
+Wenn du Gleichungen über mehrere Zeilen schreist und diese am
+Gleichheitszeichen ausrichten möchtest, dann nutze
+\texttt{\textbackslash{}begin\{aligned\}}. Zeilenumbrüche fügst du mit
+\texttt{\textbackslash{}\textbackslash{}} hinzu.
+
+Die Ausrichtung richtet sich am \texttt{\&} welches als Spaltenseparator
+dient.
+
+\[ \displaystyle
+\begin{aligned}
+A &  = B + C + D + E + F\\
+& \\
+ A - F & = B + C + D + E 
+\end{aligned}\]
+
+% ----------------------------------------------------------------------------------------------------------
+% Literaturverzeichnis
+% ----------------------------------------------------------------------------------------------------------
 
 
+
+
+%%%
+
+%
 
 \end{document}

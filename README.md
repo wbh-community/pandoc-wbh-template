@@ -93,16 +93,15 @@ Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optional
 | lot                | Verzeichnis der Tabellen                              | ja       | true / false  |
 | lof                | Liste der Figuren/Abbildungen                         | ja       | true / false  |
 | skipfirstpage      | Zählt die Titleseite nicht mit                        | ja       | true          |
-| assignment.include | Aufgabenstellung mit einbinden?                       | ja       | true / false  |
 | assignment.file    | Pfad zur Aufgabenstellung                             | ja       | string        |
 | assignment.pages   | Seitenzahlen der Aufgabenstellung                     | ja       | string        |
 
 
 ### Aufgabenstellung mit einbinden
 
-Das Template erlaubt es, durch setzen der Variablen im Block `assignment`, die Aufgabenstellung mit einzubinden und vor das eigentliche PDF zu stellen. Das Inhaltsverzeichnis der Lösung bleibt dabei korrekt erhalten, anders als wenn man die PDFs nachträglich zusammensetzt.
+Das Template erlaubt es, durch setzen der Variablen im Block `assignment`, die Aufgabenstellung mit einzubinden und vor das eigentliche PDF zu stellen. Das Inhaltsverzeichnis der Lösung bleibt dabei korrekt erhalten, anders als es teilweise passieren kann wenn man die PDFs nachträglich zusammengesetzt werden.
 
-Um dem Escaping von pandoc vorzubeugen wird im Template ein Workaround eingesetzt, der dies durch inline Latex verhindert.
+Um dem Escaping von pandoc vorzubeugen müssen die Angaben im `assignment` Block in ` '`Wert`{=latex}' ` eingeschlossen werden.
 
 
 **Seitenbereich**
@@ -110,9 +109,8 @@ Um dem Escaping von pandoc vorzubeugen wird im Template ein Workaround eingesetz
 Für einzelne Seiten kann man folgendes schreiben:
 ```
 assignment: 
-  include: 1 
-  file: \noescape{Aufgabenstellung/Aufgabenstellung.pdf}
-  pages: 1-2  
+  file: '`Aufgabenstellung/Aufgabenstellung_1.pdf`{=latex}'     
+  pages: '`1-2`{=latex}'  
 ```
 
 
@@ -121,9 +119,8 @@ assignment:
 Für einzelne Seiten kann man folgendes schreiben:
 ```
 assignment: 
-  include: 1 
-  file: \noescape{Aufgabenstellung/Aufgabenstellung.pdf}
-  pages: '-'  
+  file: '`Aufgabenstellung/Aufgabenstellung_1.pdf`{=latex}'     
+  pages: '`-`{=latex}'  
 ```
 
 Dabei unbedingt die einfachen Anführungszeichen drin lassen

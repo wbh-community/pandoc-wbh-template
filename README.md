@@ -53,10 +53,11 @@ studium:
 arbeit:
   typ:
   code:
-assignment:
-  include: 1 
-  file: \noescape{Aufgabenstellung/Aufgabenstellung_1.pdf}
-  pages: -
+#assignment: 
+#  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
+#  pages: '`{1-2}`{=latex}'  # Page 1 to 2
+#  pages: '`-`{=latex}'  # Page 1 to 2
+#  pages: '`1,3`{=latex}'  # Page 1 and 3
 ...
 ```
 

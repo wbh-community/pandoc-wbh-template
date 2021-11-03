@@ -19,7 +19,7 @@ toc: \\
 skipfirstpage: 1 # set any value, to skip the counting for Titlepage, so TOC will start with Page 1
 #assignment: 
 #  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
-#  pages: '`-`{=latex}'  
+#  pages: '`{1-2}`{=latex}'  
 
 ...
 

@@ -164,8 +164,9 @@ Texte: Freiwillige\_Arbeit - Sebastian Preisner},
 % Aufgabenstellung
 % ----------------------------------------------------------------------------------------------------------
 % Debug: 
-% include:  file:  pages: 
-    %include assignment was off
+% include:  file: Aufgabenstellung/Aufgabenstellung.pdf pages: {1-2}
+    % include assignment is on
+\includepdf[pages={1-2}]{Aufgabenstellung/Aufgabenstellung.pdf}
 
 
 
@@ -230,6 +231,9 @@ Informatik - Prüfung: Freiwillige\_Arbeit }
 \end{center}
 \pagebreak
 
+ % Skip first page count, if skipfirstpage = 1
+    \clearpage
+    \setcounter{page}{1}
 
 
 

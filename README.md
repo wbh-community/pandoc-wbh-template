@@ -123,7 +123,18 @@ assignment:
   pages: '`-`{=latex}'  
 ```
 
-Dabei unbedingt die einfachen Anführungszeichen drin lassen
+**Bereich (Range)**
+
+Eine Range kann durch `{x-y}` angegeben werden.
+
+```
+#assignment: 
+#  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
+#  pages: '`{1-2}`{=latex}'  
+```
+Dabei unbedingt die einfachen Anführungszeichen drin lassen. Eine Range kann leider nicht angegeben
+
+Weitere Hinweise stehen in der (Dokumentation)[https://texdoc.org/serve/pdfpages.pdf/0] des LaTeX packages `pdfpages`
 
 
 ## ToDo

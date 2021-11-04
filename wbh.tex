@@ -43,7 +43,7 @@ $endif$
 \usepackage[printonlyused]{acronym}
 \usepackage{subfig}
 \usepackage{floatflt}
-\usepackage[usenames,dvipsnames]{color}
+%\usepackage[usenames,dvipsnames]{color}
 \usepackage{colortbl}
 \usepackage{paralist}
 \usepackage{array}
@@ -54,6 +54,64 @@ $endif$
 \usepackage{graphicx}
 \usepackage[export]{adjustbox} % also loads graphicx, to have max width for graphics
 \usepackage{pdfpages}
+\usepackage{tikz}
+
+
+% ----------------------------------------------------------------------------------------------------------
+% Firstname + Lastname
+% ----------------------------------------------------------------------------------------------------------
+
+$if(student.firstname)$
+    %% Firstname is set, assume name is Firstnaem + Lastname
+    \def \studentname{$student.firstname$ $student.lastname$}
+$else$
+    %% Firstname is not set, studentname = name
+    \def \studentname{$student.name$}
+$endif$
+
+% ----------------------------------------------------------------------------------------------------------
+% Aufgabenstellung
+% ----------------------------------------------------------------------------------------------------------
+% Debug: 
+% include: $assignment.include$ file: $assignment.file$ pages: $assignment.pages$
+
+\def \assignment{
+    
+    % Regular include for historic reasons
+    %------------------
+    % include assignment is on
+    % \includepdf[pages=$assignment.pages$]{$assignment.file$}
+    % New include for historic reasons
+    %------------------
+    
+    % check if assignment.file is set at all 
+    $if(assignment.file)$
+        % check if form shall be filled out
+        $if(assignment.fillform)$
+            \includepdf[pagecommand={  % 23mm, 6mm
+            \begin{tikzpicture}[remember picture, overlay, x=1mm,y=1mm,%
+                    mybox/.style={rectangle,minimum width=56mm, draw opacity=0.0, line width=0,  minimum height=8mm, align=left,text width=56mm},%
+                    info/.style={mybox,draw=black,align=left}]
+                \node at (34,-34) [info] {$student.firstname$}; % etwas länger länger};
+                \node at (95,-34) [info] {$student.lastname$}; % etwas länger länger};
+                \node at (34,-47) [info] {$student.strasse$};
+                \node at (95,-47) [info] {$student.ort$}; % etwas länger länger};
+                \node at (34,-59) [info] {$student.matrikelnr$}; % etwas länger länger};
+                \node at (95,-59) [info] {$studium.studiengangnr$}; % etwas länger länger};
+            \end{tikzpicture}}, pages=1]{$assignment.file$}
+            % check if we need to include the rest of the document
+            $if(assignment.multipage)$ 
+                % Include rest of document
+                \includepdf[pages=$assignment.pages$]{$assignment.file$}
+            $endif$
+        $else$
+             \includepdf[pages=$assignment.pages$]{$assignment.file$}
+        $endif$
+    $else$
+        %include assignment was off
+    $endif$
+}
+
 
 $if(tables)$
 \usepackage{longtable,booktabs} 			% This two Packages are needet for Pandoc Table support. Issue is opened: https://github.com/jgm/pandoc/issues/1023
@@ -108,8 +166,8 @@ $endif$
 	pdfmenubar=true, 
 	pdffitwindow=false, 
 	pdfstartview={FitH},
-	pdftitle={$if(title)$$title$$endif$$if(aufgabe.code)$: $aufgabe.code$$endif$$if(student.name)$ - $student.name$$endif$},
-	pdfauthor={$if(student.name)$$student.name$$else$$author$$endif$$if(student.matrikelnr)$, Matrikelnummer: $student.matrikelnr$$endif$},
+	pdftitle={$if(title)$$title$$endif$$if(aufgabe.code)$: $aufgabe.code$$endif$- \studentname},
+	pdfauthor={$if(author)$ $author$ $else$ \studentname $endif$ $if(student.matrikelnr)$, Matrikelnummer: $student.matrikelnr$$endif$},
 	$if(studium.studiengang)$
 	pdfsubject={Studiengang: $studium.studiengang$}, 
 	$endif$
@@ -230,19 +288,15 @@ $endif$
 
 \begin{document}
 
-% ----------------------------------------------------------------------------------------------------------
-% Aufgabenstellung
-% ----------------------------------------------------------------------------------------------------------
-% Debug: 
-% include: $assignment.include$ file: $assignment.file$ pages: $assignment.pages$
+
+%
+% Assignment
+% -------------------
 $if(assignment.file)$
-    % include assignment is on
-\includepdf[pages=$assignment.pages$]{$assignment.file$}
-$else$
-    %include assignment was off
+    $if(assignment.beforetitle)$
+    \assignment
+    $endif$
 $endif$
-
-
 
 % ----------------------------------------------------------------------------------------------------------
 % Kopf und Fußzeile
@@ -253,7 +307,7 @@ $endif$
 \lhead{}
 \chead{}
 \rhead{\thesection\space\contentsname}
-\lfoot{\tiny $if(aufgabe.typ)$$aufgabe.typ$ des Studenten: $endif$$if(student.name)$$student.name$$endif$ $if(student.matrikelnr)$(Matrikelnr.: $student.matrikelnr$)$endif$ $if(studium.studiengang)$Studiengang: $studium.studiengang$$endif$ $if(aufgabe.code)$- Prüfung: $aufgabe.code$ $endif$}
+\lfoot{\tiny $if(aufgabe.typ)$$aufgabe.typ$ des Studenten: $endif$ $if(author)$ $author$ $else$ \studentname $endif$ $if(student.matrikelnr)$ (Matrikelnr.: $student.matrikelnr$)$endif$ $if(studium.studiengang)$Studiengang: $studium.studiengang$$endif$ $if(aufgabe.code)$- Prüfung: $aufgabe.code$ $endif$}
 \cfoot{}
 \rfoot{\ \linebreak Seite \thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -281,7 +335,7 @@ $endif$
 	$if(studium.studiengang)$
 		\textbf{Studiengang:}\\
 		\textbf{$studium.studiengang$}\\
-		\vspace*{2cm}
+		\vspace*{1cm}
 	$endif$
 	\Huge
 	$if(aufgabe.typ)$
@@ -296,18 +350,18 @@ $endif$
   $if(aufgabe.code)$
 		$aufgabe.code$ \\
 	$endif$
-	\vspace*{1cm}
+	\vspace*{0.5cm}
 	$if(studium.fach)$
 		\textbf{$studium.fach$}\\
 	$endif$
-	\vspace*{1cm}
+	\vspace*{0.5cm}
 	
 	\vfill
 	\normalsize
 	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
 	\begin{tabular}{x{6cm}p{7.5cm}}
-		$if(student.name)$
-			\rule{0mm}{5ex}\textbf{Student:} & $student.name$
+		$if(student)$
+			\rule{0mm}{5ex}\textbf{Student:} & \studentname
 			$if(student.strasse)$
 				\newline $student.strasse$
 			$endif$
@@ -332,6 +386,18 @@ $endif$
 	\end{tabular}
 \end{center}
 \pagebreak
+
+% ----------------------------------------------------------------------------------------------------------
+% Assignment
+% ----------------------------------------------------------------------------------------------------------
+
+$if(assignment.file)$
+    $if(assignment.beforetitle)$
+    $else$
+        \assignment
+    $endif$
+$endif$
+
 
 $if(skipfirstpage)$ % Skip first page count, if skipfirstpage = 1
     \clearpage
@@ -533,7 +599,7 @@ $if(insurance)$
 	\huge\textbf{Erklärung}\\
 \end{center}
 \vspace{2em}
-Ich, $student.name$,  versichere  durch  meine  Unterschrift,  dass  ich  die  vorliegende Arbeit selbstständig erstellt habe. Andere als die angegebenen Hilfsmittel habe ich nicht ver-wendet. 
+Ich, \studentname,  versichere  durch  meine  Unterschrift,  dass  ich  die  vorliegende Arbeit selbstständig erstellt habe. Andere als die angegebenen Hilfsmittel habe ich nicht ver-wendet. 
 
 Soweit  ich  fremde  Gedankengänge  oder  Texte  verwendet  habe,  sind  diese  von  mir  als solche kenntlich gemacht und dem Urheber eindeutig zuordenbar. Dazu zählen sowohl wört-liche als auch nicht wörtliche Übernahmen.
 
@@ -541,7 +607,7 @@ Soweit  ich  fremde  Gedankengänge  oder  Texte  verwendet  habe,  sind  diese 
 \begin{minipage}{\linewidth}
 	\begin{tabular}{p{15em}p{15em}}
 		Datum: &  .......................................................\\
-		& \centering ($student.name$)\\
+		& \centering (\studentname)\\
 	\end{tabular}
 \end{minipage}
 $endif$

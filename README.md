@@ -41,7 +41,8 @@ date:
 logo:
 author:
 student:
-  name:
+  firstname:
+  lastname:
   email:
   strasse:
   ort:
@@ -56,8 +57,11 @@ arbeit:
 #assignment: 
 #  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
 #  pages: '`{1-2}`{=latex}'  # Page 1 to 2
-#  pages: '`-`{=latex}'  # All pages
-#  pages: '`1,3`{=latex}'  # Page 1 and 3
+#  pages: '`-`{=latex}'      # All pages
+#  pages: '`1,3`{=latex}'    # Page 1 and 3
+#  beforetitle: 1
+#  multipage: 1
+#  fillform: 1
 ...
 ```
 
@@ -73,29 +77,35 @@ Make ist in der Regel Teil des Pakets `build-essentials`, welches du mit  `sudo 
 
 Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optionalen Variablen werden nicht benötigt und können somit leer bleiben oder ganz weg gelassen werden.
 
-|   Variable         |                     Beschreibung                      | Optional |    default    |
-|:------------------ |:----------------------------------------------------- |:-------- |:------------- |
-| title              | Titel der Arbeit/B-Prüfung                            | nein     |               |
-| author             | Der Uhrheber der Arbeit, in der Regel dein Name       | ja       |               |
-| student            | Informationen über dich                               | nein     |               |
-| name               | Dein Name, wird als Author verwendet                  | nein     |               |
-| matrikelnr         | Deine Matrikelnummer                                  | ja       |               |
-| email              | Deine E-Mail Adresse                                  | ja       |               |
-| studium            | Informationen zum Studiengang und dem Fach            | ja       |               |
-| studiengang        | Dein Studiengang                                      | ja       |               |
-| studiengangnr      | Diese findest du unter "Main Studium" SG-Nr.          | ja       |               |
-| fach               | In welchem Fach wird die Prüfung bearbeitet           | ja       |               |
-| aufgabencode       | Der Code befindet sich auf deiner B-Prüfung ganz oben | ja       |               |
-| date               | Datum der Abgabe                                      | ja       | today         |
-| lang               | Sprache des Dokumentes "Ländercode"                   | ja       | de            |
-| logo               | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       | Pfad zum Bild |
-| toc                | Hinzufügen des Inhaltsverzeichnises                   | ja       | true / false  |
-| abk                | Abkürzungsverzeichnis                                 | ja       | true /false   |
-| lot                | Verzeichnis der Tabellen                              | ja       | true / false  |
-| lof                | Liste der Figuren/Abbildungen                         | ja       | true / false  |
-| skipfirstpage      | Zählt die Titleseite nicht mit                        | ja       | true          |
-| assignment.file    | Pfad zur Aufgabenstellung                             | ja       | string        |
-| assignment.pages   | Seitenzahlen der Aufgabenstellung                     | ja       | string        |
+|   Variable             |                     Beschreibung                      | Optional |    default    |
+|:---------------------- |:----------------------------------------------------- |:-------- |:------------- |
+| title                  | Titel der Arbeit/B-Prüfung                            | nein     |               |
+| author                 | Der Uhrheber der Arbeit, in der Regel dein Name       | ja       |               |
+| student                | Informationen über dich                               | nein     |               |
+| student.firstname      | Vorname                                               | nein     |               |
+| student.lastname       | Nachname                                              | nein     |               |
+| student.strasse        | Strasse                                               | nein     |               |
+| student.ort            | PLZ + Ort                                             | nein     |               |
+| matrikelnr             | Deine Matrikelnummer                                  | ja       |               |
+| email                  | Deine E-Mail Adresse                                  | ja       |               |
+| studium                | Informationen zum Studiengang und dem Fach            | ja       |               |
+| studiengang            | Dein Studiengang                                      | ja       |               |
+| studiengangnr          | Diese findest du unter "Main Studium" SG-Nr.          | ja       |               |
+| fach                   | In welchem Fach wird die Prüfung bearbeitet           | ja       |               |
+| aufgabencode           | Der Code befindet sich auf deiner B-Prüfung ganz oben | ja       |               |
+| date                   | Datum der Abgabe                                      | ja       | today         |
+| lang                   | Sprache des Dokumentes "Ländercode"                   | ja       | de            |
+| logo                   | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       | Pfad zum Bild |
+| toc                    | Hinzufügen des Inhaltsverzeichnises                   | ja       | true / false  |
+| abk                    | Abkürzungsverzeichnis                                 | ja       | true /false   |
+| lot                    | Verzeichnis der Tabellen                              | ja       | true / false  |
+| lof                    | Liste der Figuren/Abbildungen                         | ja       | true / false  |
+| skipfirstpage          | Zählt die Titleseite nicht mit                        | ja       | true          |
+| assignment.file        | Pfad zur Aufgabenstellung                             | ja       |               |
+| assignment.pages       | Seitenzahlen der Aufgabenstellung                     | ja       | -             |
+| assignment.beforetitle | Seitenzahlen der Aufgabenstellung                     | ja       | 1             |
+| assignment.fillform    | Füllt Name und Addresse auf der Aufgabenstellung aus  | ja       | 1             |
+| assignment.multipage   | Mehr als die erste Seite einbinden                    | ja       | 1             |
 
 
 ### Aufgabenstellung mit einbinden
@@ -103,7 +113,6 @@ Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optional
 Das Template erlaubt es, durch setzen der Variablen im Block `assignment`, die Aufgabenstellung mit einzubinden und vor das eigentliche PDF zu stellen. Das Inhaltsverzeichnis der Lösung bleibt dabei korrekt erhalten, anders als es teilweise passieren kann wenn man die PDFs nachträglich zusammengesetzt werden.
 
 Um dem Escaping von pandoc vorzubeugen müssen die Angaben im `assignment` Block in ` '`Wert`{=latex}' ` eingeschlossen werden.
-
 
 **Seitenbereich**
 
@@ -113,7 +122,6 @@ assignment:
   file: '`Aufgabenstellung/Aufgabenstellung_1.pdf`{=latex}'     
   pages: '`1-2`{=latex}'  
 ```
-
 
 **Einzelne Seiten**
 
@@ -136,6 +144,16 @@ Eine Range kann durch `{x-y}` angegeben werden.
 Dabei unbedingt die einfachen Anführungszeichen drin lassen. Eine Range kann leider nicht angegeben
 
 Weitere Hinweise stehen in der (Dokumentation)[https://texdoc.org/serve/pdfpages.pdf/0] des LaTeX packages `pdfpages`
+
+**Vor oder Nach der Titelseite?**
+
+Die Variable `assignment.beforetitle` steuert, ob die Aufgabenstellung vor oder nach der Titelseite eingebunden wird. Die Seitenzahlen zählen in beiden Fällen nicht mit. 
+
+### Ausfüllen des Adressteils der Aufgabenstellung
+
+Wenn `assignment.fillform` gesetzt ist, kann das Pandoc Template Name und Adresse des Studenten in den Kopfteil von A-/B- Aufgaben der WBH ausfüllen. Das Feature ist experimentell und wurde mit B-DSV und B-HFT getestet. Die Felder sind pixelbasiert platziert, es kann also bei Abweichungen in der Aufgabenstellung dazu kommen das die Koordinaten in `wbh.tex` angepasst werden müssen.
+
+Da zuerst die erste Seite des PDFs ausgefüllt wird, muss der Rest des Formulars separat eingebunden werden. Wenn die Aufgabenstellung mehr als eine Seite ist, daher muss für diesen Fall `assignment.multiplage` gesetzt sein.
 
 
 ## ToDo

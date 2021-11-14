@@ -54,8 +54,8 @@
 % Firstname + Lastname
 % ----------------------------------------------------------------------------------------------------------
 
-    %% Firstname is set, assume name is Firstnaem + Lastname
-    \def \studentname{Sebastian Preisner}
+% Firstname is set, assume name is Firstnaem + Lastname
+\def \studentname{Sebastian Preisner}
 
 % ----------------------------------------------------------------------------------------------------------
 % Aufgabenstellung
@@ -65,33 +65,32 @@
 
 \def \assignment{
     
-    % Regular include for historic reasons
-    %------------------
-    % include assignment is on
-    % \includepdf[pages=2-]{Aufgabenstellung/Aufgabenstellung.pdf}
-    % New include for historic reasons
-    %------------------
-    
-    % check if assignment.file is set at all 
-            % check if form shall be filled out
-                    \includepdf[pagecommand={  % 23mm, 6mm
-            \begin{tikzpicture}[remember picture, overlay, x=1mm,y=1mm,%
-                    mybox/.style={rectangle,minimum width=56mm, draw opacity=0.0, line width=0,  minimum height=8mm, align=left,text width=56mm},%
-                    info/.style={mybox,draw=black,align=left}]
-                \node at (34,-34) [info] {Sebastian}; % etwas länger länger};
-                \node at (95,-34) [info] {Preisner}; % etwas länger länger};
-                \node at (34,-47) [info] {Hilpertstr. 31};
-                \node at (95,-47) [info] {64295
-Darmstadt}; % etwas länger länger};
-                \node at (34,-59) [info] {900266}; % etwas länger länger};
-                \node at (95,-59) [info] {1140}; % etwas länger länger};
-            \end{tikzpicture}}, pages=1]{Aufgabenstellung/Aufgabenstellung.pdf}
-            % check if we need to include the rest of the document
-             
-                % Include rest of document
-                \includepdf[pages=2-]{Aufgabenstellung/Aufgabenstellung.pdf}
-            
-            }
+% Regular include for historic reasons
+%------------------
+% include assignment is on
+% \includepdf[pages=2-]{Aufgabenstellung/Aufgabenstellung.pdf}
+% New include for historic reasons
+%------------------
+
+% check if assignment.file is set at all 
+% check if form shall be filled out
+\includepdf[pagecommand={  % 23mm, 6mm
+\begin{tikzpicture}[remember picture, overlay, x=1mm,y=1mm,%
+mybox/.style={rectangle,minimum width=56mm, draw opacity=0.0, line width=0,  minimum height=8mm, align=left,text width=56mm},%
+info/.style={mybox,draw=black,align=left}]
+\node at (34,-34) [info] {Sebastian}; % etwas länger länger};
+\node at (95,-34) [info] {Preisner}; % etwas länger länger};
+\node at (34,-47) [info] {Hilpertstr. 31};
+\node at (95,-47) [info] {64295 Darmstadt}; % etwas länger länger};
+\node at (34,-59) [info] {900266}; % etwas länger länger};
+\node at (95,-59) [info] {1140}; % etwas länger länger};
+\end{tikzpicture}}, pages=1]{Aufgabenstellung/Aufgabenstellung.pdf}
+% check if we need to include the rest of the document
+ 
+% Include rest of document
+\includepdf[pages=2-]{Aufgabenstellung/Aufgabenstellung.pdf}
+
+}
 
 
 
@@ -210,8 +209,8 @@ Texte: Freiwillige\_Arbeit- \studentname},
 %
 % Assignment
 % -------------------
-        \assignment
-    
+\assignment
+
 % ----------------------------------------------------------------------------------------------------------
 % Kopf und Fußzeile
 % ----------------------------------------------------------------------------------------------------------
@@ -279,11 +278,11 @@ Informatik - Prüfung: Freiwillige\_Arbeit }
 % Assignment
 % ----------------------------------------------------------------------------------------------------------
 
-        
+
 
  % Skip first page count, if skipfirstpage = 1
-    \clearpage
-    \setcounter{page}{1}
+\clearpage
+\setcounter{page}{1}
 
 
 

@@ -62,11 +62,11 @@ $endif$
 % ----------------------------------------------------------------------------------------------------------
 
 $if(student.firstname)$
-    %% Firstname is set, assume name is Firstnaem + Lastname
-    \def \studentname{$student.firstname$ $student.lastname$}
+% Firstname is set, assume name is Firstnaem + Lastname
+\def \studentname{$student.firstname$ $student.lastname$}
 $else$
-    %% Firstname is not set, studentname = name
-    \def \studentname{$student.name$}
+% Firstname is not set, studentname = name
+\def \studentname{$student.name$}
 $endif$
 
 % ----------------------------------------------------------------------------------------------------------
@@ -77,39 +77,39 @@ $endif$
 
 \def \assignment{
     
-    % Regular include for historic reasons
-    %------------------
-    % include assignment is on
-    % \includepdf[pages=$assignment.pages$]{$assignment.file$}
-    % New include for historic reasons
-    %------------------
-    
-    % check if assignment.file is set at all 
-    $if(assignment.file)$
-        % check if form shall be filled out
-        $if(assignment.fillform)$
-            \includepdf[pagecommand={  % 23mm, 6mm
-            \begin{tikzpicture}[remember picture, overlay, x=1mm,y=1mm,%
-                    mybox/.style={rectangle,minimum width=56mm, draw opacity=0.0, line width=0,  minimum height=8mm, align=left,text width=56mm},%
-                    info/.style={mybox,draw=black,align=left}]
-                \node at (34,-34) [info] {$student.firstname$}; % etwas länger länger};
-                \node at (95,-34) [info] {$student.lastname$}; % etwas länger länger};
-                \node at (34,-47) [info] {$student.strasse$};
-                \node at (95,-47) [info] {$student.ort$}; % etwas länger länger};
-                \node at (34,-59) [info] {$student.matrikelnr$}; % etwas länger länger};
-                \node at (95,-59) [info] {$studium.studiengangnr$}; % etwas länger länger};
-            \end{tikzpicture}}, pages=1]{$assignment.file$}
-            % check if we need to include the rest of the document
-            $if(assignment.multipage)$ 
-                % Include rest of document
-                \includepdf[pages=$assignment.pages$]{$assignment.file$}
-            $endif$
-        $else$
-             \includepdf[pages=$assignment.pages$]{$assignment.file$}
-        $endif$
-    $else$
-        %include assignment was off
-    $endif$
+% Regular include for historic reasons
+%------------------
+% include assignment is on
+% \includepdf[pages=$assignment.pages$]{$assignment.file$}
+% New include for historic reasons
+%------------------
+
+% check if assignment.file is set at all 
+$if(assignment.file)$
+% check if form shall be filled out
+$if(assignment.fillform)$
+\includepdf[pagecommand={  % 23mm, 6mm
+\begin{tikzpicture}[remember picture, overlay, x=1mm,y=1mm,%
+mybox/.style={rectangle,minimum width=56mm, draw opacity=0.0, line width=0,  minimum height=8mm, align=left,text width=56mm},%
+info/.style={mybox,draw=black,align=left}]
+\node at (34,-34) [info] {$student.firstname$}; % etwas länger länger};
+\node at (95,-34) [info] {$student.lastname$}; % etwas länger länger};
+\node at (34,-47) [info] {$student.strasse$};
+\node at (95,-47) [info] {$student.ort$}; % etwas länger länger};
+\node at (34,-59) [info] {$student.matrikelnr$}; % etwas länger länger};
+\node at (95,-59) [info] {$studium.studiengangnr$}; % etwas länger länger};
+\end{tikzpicture}}, pages=1]{$assignment.file$}
+% check if we need to include the rest of the document
+$if(assignment.multipage)$ 
+% Include rest of document
+\includepdf[pages=$assignment.pages$]{$assignment.file$}
+$endif$
+$else$
+\includepdf[pages=$assignment.pages$]{$assignment.file$}
+$endif$
+$else$
+%include assignment was off
+$endif$
 }
 
 
@@ -293,9 +293,9 @@ $endif$
 % Assignment
 % -------------------
 $if(assignment.file)$
-    $if(assignment.beforetitle)$
-    \assignment
-    $endif$
+$if(assignment.beforetitle)$
+\assignment
+$endif$
 $endif$
 
 % ----------------------------------------------------------------------------------------------------------
@@ -392,16 +392,16 @@ $endif$
 % ----------------------------------------------------------------------------------------------------------
 
 $if(assignment.file)$
-    $if(assignment.beforetitle)$
-    $else$
-        \assignment
-    $endif$
+$if(assignment.beforetitle)$
+$else$
+\assignment
+$endif$
 $endif$
 
 
 $if(skipfirstpage)$ % Skip first page count, if skipfirstpage = 1
-    \clearpage
-    \setcounter{page}{1}
+\clearpage
+\setcounter{page}{1}
 $endif$
 
 $if(abstract)$

@@ -275,6 +275,9 @@ $endif$
 \begin{center}
   $if(logo)$
     \includegraphics[max width=\textwidth]{$logo$}\\
+	$else$
+	% logo not set, try $hochschule$
+	\Huge \textbf{$hochschule$} \\
 	$endif$
     \vspace*{2cm}
 	\Large

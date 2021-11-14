@@ -36,7 +36,7 @@
 \usepackage[printonlyused]{acronym}
 \usepackage{subfig}
 \usepackage{floatflt}
-\usepackage[usenames,dvipsnames]{color}
+%\usepackage[usenames,dvipsnames]{color}
 \usepackage{colortbl}
 \usepackage{paralist}
 \usepackage{array}
@@ -50,6 +50,10 @@
 
 
 \usepackage{multirow}
+
+% Solution - for double underlined solutions in formulas/equations, uses \underline twice for double underline 
+\newcommand{\solution}[1]{\underline{\underline{#1}}}
+
 
 
 % Support hyperref with colorisation
@@ -164,9 +168,8 @@ Texte: Freiwillige\_Arbeit - Sebastian Preisner},
 % Aufgabenstellung
 % ----------------------------------------------------------------------------------------------------------
 % Debug: 
-% include:  file: Aufgabenstellung/Aufgabenstellung.pdf pages: {1-2}
-    % include assignment is on
-\includepdf[pages={1-2}]{Aufgabenstellung/Aufgabenstellung.pdf}
+% include:  file:  pages: 
+    %include assignment was off
 
 
 
@@ -535,6 +538,18 @@ A &  = B + C + D + E + F\\
 & \\
  A - F & = B + C + D + E 
 \end{aligned}\]
+
+\hypertarget{luxf6sung-doppelt-unterstreichen}{%
+\subsection{Lösung doppelt
+unterstreichen}\label{luxf6sung-doppelt-unterstreichen}}
+
+Um die Lösung einer Gleichung hervorzuheben, kann der alias
+\texttt{\textbackslash{}solution\{x\}} verwendet werden, der das
+Ergebnis einer Gleichung doppelt unterstreicht.
+
+\[
+A = B + C = 5 + 9 = \solution{14}
+\]
 
 % ----------------------------------------------------------------------------------------------------------
 % Literaturverzeichnis

@@ -43,7 +43,7 @@ $endif$
 \usepackage[printonlyused]{acronym}
 \usepackage{subfig}
 \usepackage{floatflt}
-%\usepackage[usenames,dvipsnames]{color}
+\usepackage[usenames,dvipsnames]{color}
 \usepackage{colortbl}
 \usepackage{paralist}
 \usepackage{array}
@@ -273,10 +273,7 @@ $endif$
 % ----------------------------------------------------------------------------------------------------------
 \thispagestyle{empty}
 \begin{center}
-$if(logo)$ $if(hochschule)$ % beides gesetzt
-$else$   \includegraphics[max width=\textwidth]{$logo$}\\ $endif$  $endif$
-$if(hochschule)$ $if(logo)$  % beides gesetzt
-$else$   \Huge \textbf{$hochschule$} \\ $endif$   $endif$
+$if(logo)$ $if(hochschule)$ $else$   \includegraphics[max width=\textwidth]{$logo$}\\ $endif$  $endif$ $if(hochschule)$ $if(logo)$  $else$   \Huge \textbf{$hochschule$} \\ $endif$   $endif$
     \vspace*{2cm}
 	\Large
 	$if(studium.studiengang)$

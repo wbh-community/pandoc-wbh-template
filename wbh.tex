@@ -277,9 +277,7 @@ $endif$
 % ----------------------------------------------------------------------------------------------------------
 \thispagestyle{empty}
 \begin{center}
-  $if(logo)$
-    \includegraphics[max width=\textwidth]{$logo$}\\
-	$endif$
+$if(logo)$ $if(hochschule)$ $else$   \includegraphics[max width=\textwidth]{$logo$}\\ $endif$  $endif$ $if(hochschule)$ $if(logo)$  $else$   \Huge \textbf{$hochschule$} \\ $endif$   $endif$
     \vspace*{2cm}
 	\Large
 	$if(studium.studiengang)$

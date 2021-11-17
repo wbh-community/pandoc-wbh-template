@@ -39,6 +39,7 @@ Um alle Felder der Vorlage aus zu füllen musst du die folgenden Zeilen an den A
 title:
 date:
 logo:
+hochschule:
 author:
 student:
   name:
@@ -89,6 +90,7 @@ Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optional
 | date               | Datum der Abgabe                                      | ja       | today         |
 | lang               | Sprache des Dokumentes "Ländercode"                   | ja       | de            |
 | logo               | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       | Pfad zum Bild |
+| hochschule         | Name der Hochschule                                   | ja       |               |
 | toc                | Hinzufügen des Inhaltsverzeichnises                   | ja       | true / false  |
 | abk                | Abkürzungsverzeichnis                                 | ja       | true /false   |
 | lot                | Verzeichnis der Tabellen                              | ja       | true / false  |
@@ -137,6 +139,9 @@ Dabei unbedingt die einfachen Anführungszeichen drin lassen. Eine Range kann le
 
 Weitere Hinweise stehen in der (Dokumentation)[https://texdoc.org/serve/pdfpages.pdf/0] des LaTeX packages `pdfpages`
 
+### Logo oder Name der Hochschule
+
+Es wird entweder das Logo oder der Name der Hochschule auf dem Titelblatt ausgegeben, jedoch nicht beides. Sollte biedes gesetzt sein, so wird gar nichts ausgegeben.
 
 ## ToDo
 

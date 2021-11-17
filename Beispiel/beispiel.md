@@ -1,5 +1,6 @@
 ---
 logo: ../Bilder/logo.png
+#hochschule: Wilhelm-Büchner-Hochschule # Als Alternative zum Lgo
 title: Pandoc und Markdown für deine Texte
 author: Sebastian Preisner
 student:

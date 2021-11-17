@@ -59,6 +59,13 @@ arbeit:
 #  pages: '`{1-2}`{=latex}'  # Page 1 to 2
 #  pages: '`-`{=latex}'  # All pages
 #  pages: '`1,3`{=latex}'  # Page 1 and 3
+
+# Optionale Seitenrändereinstellungen
+seite:     
+  rand_oben: 20mm
+  rand_unten: 20mm
+  rand_links: 30mm
+  rand_rechts: 40mm
 ...
 ```
 
@@ -98,6 +105,11 @@ Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optional
 | skipfirstpage      | Zählt die Titleseite nicht mit                        | ja       | true          |
 | assignment.file    | Pfad zur Aufgabenstellung                             | ja       | string        |
 | assignment.pages   | Seitenzahlen der Aufgabenstellung                     | ja       | string        |
+| seite.rand_oben    | Seitenrand oben                                       | ja       | 20mm          |
+| seite.rand_unten   | Seitenrand unten                                      | ja       | 20mm          |
+| seite.rand_rechts  | Seitenrand rechts                                     | ja       | 40mm          |
+| seite.rand_links   | Seitenrand links                                      | ja       | 30mm          |
+
 
 
 ### Aufgabenstellung mit einbinden

@@ -22,6 +22,12 @@ skipfirstpage: 1 # set any value, to skip the counting for Titlepage, so TOC wil
 #  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
 #  pages: '`{1-2}`{=latex}'  
 
+# Optionale Seitenrändereinstellungen
+seite:     
+  rand_oben: 20mm
+  rand_unten: 20mm
+  rand_links: 30mm
+  rand_rechts: 40mm
 ...
 
 # Einführungauthor

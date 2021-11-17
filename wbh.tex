@@ -273,18 +273,10 @@ $endif$
 % ----------------------------------------------------------------------------------------------------------
 \thispagestyle{empty}
 \begin{center}
-  $if(logo)$ 
-  $if(hochschule)$
-    % beides gesetzt
-  $else$
-    \includegraphics[max width=\textwidth]{$logo$}\\
-  $endif$  $endif$
-  $if(hochschule)$
-  $if(logo)$ 
-    % beides gesetzt
-  $else$
-  	\Huge \textbf{$hochschule$} \\
-  $endif$   $endif$
+$if(logo)$ $if(hochschule)$ % beides gesetzt
+$else$   \includegraphics[max width=\textwidth]{$logo$}\\ $endif$  $endif$
+$if(hochschule)$ $if(logo)$  % beides gesetzt
+$else$   \Huge \textbf{$hochschule$} \\ $endif$   $endif$
     \vspace*{2cm}
 	\Large
 	$if(studium.studiengang)$

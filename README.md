@@ -89,6 +89,8 @@ Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optional
 | lot           | Verzeichnis der Tabellen                              | ja       | true / false  |
 | lof           | Liste der Figuren/Abbildungen                         | ja       | true / false  |
 | skipfirstpage | Zählt die Titleseite nicht mit                        | ja       | true          |
+| draft	| Draft Wasserzeichen | ja | false |
+| draft.text | Wasserzeichentext | ja | Draft \today |
 
 ## ToDo
 

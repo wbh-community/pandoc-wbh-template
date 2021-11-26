@@ -76,6 +76,14 @@ $if(graphics)$
 \makeatother
 $endif$
 
+$if(draft)$
+\usepackage{blindtext}
+\usepackage{draftwatermark}
+\SetWatermarkLightness{ 0.9 }
+\SetWatermarkText{$if(draft.text)$$draft.text$$else$Draft$endif$}
+\SetWatermarkScale{5}
+$endif$
+
 % Support hyperref with colorisation
 % -------------------------------------------------------------------------
 \usepackage{xcolor}

@@ -56,7 +56,7 @@ $endif$
 \usepackage{helvet}
 \usepackage{graphicx}
 \usepackage[export]{adjustbox} % also loads graphicx, to have max width for graphics
-
+\usepackage{pdfpages}
 
 $if(tables)$
 \usepackage{longtable,booktabs} 			% This two Packages are needet for Pandoc Table support. Issue is opened: https://github.com/jgm/pandoc/issues/1023
@@ -233,6 +233,19 @@ $endif$
 
 \begin{document}
 
+% ----------------------------------------------------------------------------------------------------------
+% Aufgabenstellung
+% ----------------------------------------------------------------------------------------------------------
+% Debug: 
+% include: $assignment.include$ file: $assignment.file$ pages: $assignment.pages$
+$if(assignment.file)$
+    % include assignment is on
+\includepdf[pages=$assignment.pages$]{$assignment.file$}
+$else$
+    %include assignment was off
+$endif$
+
+
 
 % ----------------------------------------------------------------------------------------------------------
 % Kopf und Fußzeile
@@ -263,9 +276,7 @@ $endif$
 % ----------------------------------------------------------------------------------------------------------
 \thispagestyle{empty}
 \begin{center}
-  $if(logo)$
-    \includegraphics[max width=\textwidth]{$logo$}\\
-	$endif$
+$if(logo)$ $if(hochschule)$ $else$   \includegraphics[max width=\textwidth]{$logo$}\\ $endif$  $endif$ $if(hochschule)$ $if(logo)$  $else$   \Huge \textbf{$hochschule$} \\ $endif$   $endif$
     \vspace*{2cm}
 	\Large
 	$if(studium.studiengang)$

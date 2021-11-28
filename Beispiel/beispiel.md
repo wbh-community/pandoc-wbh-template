@@ -1,5 +1,6 @@
 ---
-logo: Bilder/logo.png
+logo: ../Bilder/logo.png
+#hochschule: Wilhelm-Büchner-Hochschule # Als Alternative zum Lgo
 title: Pandoc und Markdown für deine Texte
 author: Sebastian Preisner
 student:
@@ -15,8 +16,12 @@ aufgabe:
   code: Freiwillige_Arbeit
 date: 08.06.2017
 lang: de
-toc: t
-skipfirstpage: 1 % set any value, to skip the counting for Titlepage, so TOC will start with Page 1
+toc: \\
+skipfirstpage: 1 # set any value, to skip the counting for Titlepage, so TOC will start with Page 1
+#assignment: 
+#  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
+#  pages: '`{1-2}`{=latex}'  
+
 ...
 
 # Einführungauthor

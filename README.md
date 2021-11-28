@@ -53,6 +53,7 @@ studium:
 arbeit:
   typ:
   code:
+lang:
 ...
 ```
 
@@ -82,7 +83,7 @@ Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optional
 | fach          | In welchem Fach wird die Prüfung bearbeitet           | ja       |               |
 | aufgabencode  | Der Code befindet sich auf deiner B-Prüfung ganz oben | ja       |               |
 | date          | Datum der Abgabe                                      | ja       | today         |
-| lang          | Sprache des Dokumentes "Ländercode"                   | ja       | de            |
+| lang          | Sprache des Dokumentes "Ländercode"                   | ja       | en            |
 | logo          | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       | Pfad zum Bild |
 | toc           | Hinzufügen des Inhaltsverzeichnises                   | ja       | true / false  |
 | abk           | Abkürzungsverzeichnis                                 | ja       | true /false   |

@@ -39,6 +39,7 @@ Um alle Felder der Vorlage aus zu füllen musst du die folgenden Zeilen an den A
 title:
 date:
 logo:
+hochschule:
 author:
 student:
   firstname:
@@ -76,6 +77,7 @@ Make ist in der Regel Teil des Pakets `build-essentials`, welches du mit  `sudo 
 ### Variablen
 
 Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optionalen Variablen werden nicht benötigt und können somit leer bleiben oder ganz weg gelassen werden.
+
 
 |   Variable             |                     Beschreibung                      | Optional |    default    |
 |:---------------------- |:----------------------------------------------------- |:-------- |:------------- |
@@ -145,6 +147,11 @@ Dabei unbedingt die einfachen Anführungszeichen drin lassen. Eine Range kann le
 
 Weitere Hinweise stehen in der (Dokumentation)[https://texdoc.org/serve/pdfpages.pdf/0] des LaTeX packages `pdfpages`
 
+<<<<<<< HEAD
+### Logo oder Name der Hochschule
+
+Es wird entweder das Logo oder der Name der Hochschule auf dem Titelblatt ausgegeben, jedoch nicht beides. Sollte biedes gesetzt sein, so wird gar nichts ausgegeben.
+=======
 **Vor oder Nach der Titelseite?**
 
 Die Variable `assignment.beforetitle` steuert, ob die Aufgabenstellung vor oder nach der Titelseite eingebunden wird. Die Seitenzahlen zählen in beiden Fällen nicht mit. 
@@ -155,6 +162,7 @@ Wenn `assignment.fillform` gesetzt ist, kann das Pandoc Template Name und Adress
 
 Da zuerst die erste Seite des PDFs ausgefüllt wird, muss der Rest des Formulars separat eingebunden werden. Wenn die Aufgabenstellung mehr als eine Seite ist, daher muss für diesen Fall `assignment.multiplage` gesetzt sein.
 
+>>>>>>> 37e1864ad78adda85f913dcbbf83e6b4c9af4970
 
 ## ToDo
 

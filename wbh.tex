@@ -164,7 +164,7 @@ $endif$
 	pdffitwindow=false, 
 	pdfstartview={FitH},
 	pdftitle={$if(title)$$title$$endif$$if(aufgabe.code)$: $aufgabe.code$$endif$- \studentname},
-	pdfauthor={$if(author)$ $author$ $else$ \studentname $endif$ $if(student.matrikelnr)$, Matrikelnummer: $student.matrikelnr$$endif$},
+	pdfauthor={$if(author)$$author$$else$\studentname$endif$$if(student.matrikelnr)$, Matrikelnummer: $student.matrikelnr$$endif$},
 	$if(studium.studiengang)$
 	pdfsubject={Studiengang: $studium.studiengang$}, 
 	$endif$
@@ -304,7 +304,7 @@ $endif$
 \lhead{}
 \chead{}
 \rhead{\thesection\space\contentsname}
-\lfoot{\tiny $if(aufgabe.typ)$$aufgabe.typ$ des Studenten: $endif$ $if(author)$ $author$ $else$ \studentname $endif$ $if(student.matrikelnr)$ (Matrikelnr.: $student.matrikelnr$)$endif$ $if(studium.studiengang)$Studiengang: $studium.studiengang$$endif$ $if(aufgabe.code)$- Prüfung: $aufgabe.code$ $endif$}
+\lfoot{\tiny $if(aufgabe.typ)$$aufgabe.typ$ des Studenten: $endif$ $if(author)$ $author$ $else$\studentname$endif$ $if(student.matrikelnr)$ (Matrikelnr.: $student.matrikelnr$)$endif$ $if(studium.studiengang)$Studiengang: $studium.studiengang$$endif$ $if(aufgabe.code)$- Prüfung: $aufgabe.code$ $endif$}
 \cfoot{}
 \rfoot{\ \linebreak Seite \thepage}
 \renewcommand{\headrulewidth}{0.4pt}

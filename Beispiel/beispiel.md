@@ -4,9 +4,12 @@ logo: ../Bilder/logo.png
 title: Pandoc und Markdown für deine Texte
 author: Sebastian Preisner
 student:
-  name: Sebastian Preisner
+  firstname: Sebastian
+  lastname: Preisner
   email: wbh@calyrium.org
   matrikelnr: 900266
+  strasse: Hilpertstr. 31
+  ort: 64295 Darmstadt
 studium:
   studiengang: Technische Informatik
   studiengangnr: 1140
@@ -18,10 +21,13 @@ date: 08.06.2017
 lang: de
 toc: \\
 skipfirstpage: 1 # set any value, to skip the counting for Titlepage, so TOC will start with Page 1
-#assignment: 
-#  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
-#  pages: '`{1-2}`{=latex}'  
-
+assignment: 
+  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
+  beforetitle: 1
+  pages: '`2-`{=latex}'  
+  fillform: 1
+  multipage: 1
+   
 ...
 
 # Einführungauthor

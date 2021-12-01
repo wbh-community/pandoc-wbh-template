@@ -36,7 +36,7 @@
 \usepackage[printonlyused]{acronym}
 \usepackage{subfig}
 \usepackage{floatflt}
-\usepackage[usenames,dvipsnames]{color}
+%\usepackage[usenames,dvipsnames]{color}
 \usepackage{colortbl}
 \usepackage{paralist}
 \usepackage{array}
@@ -47,6 +47,51 @@
 \usepackage{graphicx}
 \usepackage[export]{adjustbox} % also loads graphicx, to have max width for graphics
 \usepackage{pdfpages}
+\usepackage{tikz}
+
+
+% ----------------------------------------------------------------------------------------------------------
+% Firstname + Lastname
+% ----------------------------------------------------------------------------------------------------------
+
+% Firstname is set, assume name is Firstnaem + Lastname
+\def \studentname{Sebastian Preisner}
+
+% ----------------------------------------------------------------------------------------------------------
+% Aufgabenstellung
+% ----------------------------------------------------------------------------------------------------------
+% Debug: 
+% include:  file: Aufgabenstellung/Aufgabenstellung.pdf pages: 2-
+
+\def \assignment{
+    
+% Regular include for historic reasons
+%------------------
+% include assignment is on
+% \includepdf[pages=2-]{Aufgabenstellung/Aufgabenstellung.pdf}
+% New include for historic reasons
+%------------------
+
+% check if assignment.file is set at all 
+% check if form shall be filled out
+\includepdf[pagecommand={  % 23mm, 6mm
+\begin{tikzpicture}[remember picture, overlay, x=1mm,y=1mm,%
+mybox/.style={rectangle,minimum width=56mm, draw opacity=0.0, line width=0,  minimum height=8mm, align=left,text width=56mm},%
+info/.style={mybox,draw=black,align=left}]
+\node at (34,-34) [info] {Sebastian}; % etwas länger länger};
+\node at (95,-34) [info] {Preisner}; % etwas länger länger};
+\node at (34,-47) [info] {Hilpertstr. 31};
+\node at (95,-47) [info] {64295 Darmstadt}; % etwas länger länger};
+\node at (34,-59) [info] {900266}; % etwas länger länger};
+\node at (95,-59) [info] {1140}; % etwas länger länger};
+\end{tikzpicture}}, pages=1]{Aufgabenstellung/Aufgabenstellung.pdf}
+% check if we need to include the rest of the document
+ 
+% Include rest of document
+\includepdf[pages=2-]{Aufgabenstellung/Aufgabenstellung.pdf}
+
+}
+
 
 
 \usepackage{multirow}
@@ -73,8 +118,8 @@
 	pdffitwindow=false, 
 	pdfstartview={FitH},
 	pdftitle={Pandoc und Markdown für deine
-Texte: Freiwillige\_Arbeit - Sebastian Preisner},
-	pdfauthor={Sebastian Preisner, Matrikelnummer: 900266},
+Texte: Freiwillige\_Arbeit- \studentname},
+	pdfauthor={ Sebastian Preisner  , Matrikelnummer: 900266},
 		pdfsubject={Studiengang: Technische Informatik}, 
 		pdfcreator={\LaTeX\ with package \flqq hyperref\frqq via pandoc},
 	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
@@ -160,14 +205,11 @@ Texte: Freiwillige\_Arbeit - Sebastian Preisner},
 
 \begin{document}
 
-% ----------------------------------------------------------------------------------------------------------
-% Aufgabenstellung
-% ----------------------------------------------------------------------------------------------------------
-% Debug: 
-% include:  file:  pages: 
-    %include assignment was off
 
-
+%
+% Assignment
+% -------------------
+\assignment
 
 % ----------------------------------------------------------------------------------------------------------
 % Kopf und Fußzeile
@@ -178,8 +220,8 @@ Texte: Freiwillige\_Arbeit - Sebastian Preisner},
 \lhead{}
 \chead{}
 \rhead{\thesection\space\contentsname}
-\lfoot{\tiny B-Prüfung des Studenten: Sebastian
-Preisner (Matrikelnr.: 900266) Studiengang: Technische
+\lfoot{\tiny B-Prüfung des Studenten:   Sebastian
+Preisner   (Matrikelnr.: 900266) Studiengang: Technische
 Informatik - Prüfung: Freiwillige\_Arbeit }
 \cfoot{}
 \rfoot{\ \linebreak Seite \thepage}
@@ -200,12 +242,12 @@ Informatik - Prüfung: Freiwillige\_Arbeit }
 % ----------------------------------------------------------------------------------------------------------
 \thispagestyle{empty}
 \begin{center}
-     \Huge \textbf{Wilhelm-Büchner-Hochschule} \\    
+    \includegraphics[max width=\textwidth]{../Bilder/logo.png}\\    
     \vspace*{2cm}
 	\Large
 			\textbf{Studiengang:}\\
 		\textbf{Technische Informatik}\\
-		\vspace*{2cm}
+		\vspace*{1cm}
 		\Huge
 			\textbf{}\\
 		\vspace*{0.5cm}
@@ -213,16 +255,18 @@ Informatik - Prüfung: Freiwillige\_Arbeit }
 		\vspace*{0.3cm}
 	\large
   		Freiwillige\_Arbeit \\
-		\vspace*{1cm}
+		\vspace*{0.5cm}
 			\textbf{Freizeitgestaltung}\\
-		\vspace*{1cm}
+		\vspace*{0.5cm}
 	
 	\vfill
 	\normalsize
 	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
 	\begin{tabular}{x{6cm}p{7.5cm}}
-					\rule{0mm}{5ex}\textbf{Student:} & Sebastian Preisner
-													\newline wbh@calyrium.org
+					\rule{0mm}{5ex}\textbf{Student:} & \studentname
+							\newline Hilpertstr. 31
+										\newline 64295 Darmstadt
+										\newline wbh@calyrium.org
 			 \\
 									\rule{0mm}{5ex}\textbf{Matrikelnummer:} & 900266 \\
 							\rule{0mm}{5ex}\textbf{Abgabedatum:} & 08.06.2017 \\
@@ -230,9 +274,15 @@ Informatik - Prüfung: Freiwillige\_Arbeit }
 \end{center}
 \pagebreak
 
+% ----------------------------------------------------------------------------------------------------------
+% Assignment
+% ----------------------------------------------------------------------------------------------------------
+
+
+
  % Skip first page count, if skipfirstpage = 1
-    \clearpage
-    \setcounter{page}{1}
+\clearpage
+\setcounter{page}{1}
 
 
 

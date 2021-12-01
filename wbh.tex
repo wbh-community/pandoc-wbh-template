@@ -30,7 +30,7 @@ $endif$
 
 %\usepackage[utf8]{inputenc}
 $endif$
-
+\usepackage[usenames,dvipsnames]{color}
 \usepackage{amsmath}												% For pandoc extensive `amsmath` collection of symbols for typesetting ordinary math
 \usepackage{amsfonts}												% More symboles for exotic currency notation and engeneering diagrams
 \usepackage{amssymb}												% More symboles for exotic currency notation and engeneering diagrams
@@ -43,7 +43,6 @@ $endif$
 \usepackage[printonlyused]{acronym}
 \usepackage{subfig}
 \usepackage{floatflt}
-%\usepackage[usenames,dvipsnames]{color}
 \usepackage{colortbl}
 \usepackage{paralist}
 \usepackage{array}
@@ -92,17 +91,15 @@ $if(assignment.fillform)$
 \begin{tikzpicture}[remember picture, overlay, x=1mm,y=1mm,%
 mybox/.style={rectangle,minimum width=56mm, draw opacity=0.0, line width=0,  minimum height=8mm, align=left,text width=56mm},%
 info/.style={mybox,draw=black,align=left}]
-\node at (34,-34) [info] {$student.firstname$}; % etwas länger länger};
-\node at (95,-34) [info] {$student.lastname$}; % etwas länger länger};
+\node at (34,-34) [info] {$student.firstname$};
+\node at (95,-34) [info] {$student.lastname$};
 \node at (34,-47) [info] {$student.strasse$};
-\node at (95,-47) [info] {$student.ort$}; % etwas länger länger};
-\node at (34,-59) [info] {$student.matrikelnr$}; % etwas länger länger};
-\node at (95,-59) [info] {$studium.studiengangnr$}; % etwas länger länger};
+\node at (95,-47) [info] {$student.ort$}; 
+\node at (34,-59) [info] {$student.matrikelnr$};
+\node at (95,-59) [info] {$studium.studiengangnr$};
 \end{tikzpicture}}, pages=1]{$assignment.file$}
-% check if we need to include the rest of the document
-$if(assignment.multipage)$ 
-% Include rest of document
-\includepdf[pages=$assignment.pages$]{$assignment.file$}
+$if(assignment.multipage)$ % check if we need to include the rest of the document
+\includepdf[pages=$assignment.pages$]{$assignment.file$} % Include rest of document
 $endif$
 $else$
 \includepdf[pages=$assignment.pages$]{$assignment.file$}

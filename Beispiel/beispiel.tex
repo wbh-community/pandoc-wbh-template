@@ -23,7 +23,7 @@
 
 
 %\usepackage[utf8]{inputenc}
-
+\usepackage[usenames,dvipsnames]{color}
 \usepackage{amsmath}												% For pandoc extensive `amsmath` collection of symbols for typesetting ordinary math
 \usepackage{amsfonts}												% More symboles for exotic currency notation and engeneering diagrams
 \usepackage{amssymb}												% More symboles for exotic currency notation and engeneering diagrams
@@ -36,7 +36,6 @@
 \usepackage[printonlyused]{acronym}
 \usepackage{subfig}
 \usepackage{floatflt}
-%\usepackage[usenames,dvipsnames]{color}
 \usepackage{colortbl}
 \usepackage{paralist}
 \usepackage{array}
@@ -78,17 +77,15 @@
 \begin{tikzpicture}[remember picture, overlay, x=1mm,y=1mm,%
 mybox/.style={rectangle,minimum width=56mm, draw opacity=0.0, line width=0,  minimum height=8mm, align=left,text width=56mm},%
 info/.style={mybox,draw=black,align=left}]
-\node at (34,-34) [info] {Sebastian}; % etwas länger länger};
-\node at (95,-34) [info] {Preisner}; % etwas länger länger};
+\node at (34,-34) [info] {Sebastian};
+\node at (95,-34) [info] {Preisner};
 \node at (34,-47) [info] {Hilpertstr. 31};
-\node at (95,-47) [info] {64295 Darmstadt}; % etwas länger länger};
-\node at (34,-59) [info] {900266}; % etwas länger länger};
-\node at (95,-59) [info] {1140}; % etwas länger länger};
+\node at (95,-47) [info] {64295 Darmstadt}; 
+\node at (34,-59) [info] {900266};
+\node at (95,-59) [info] {1140};
 \end{tikzpicture}}, pages=1]{Aufgabenstellung/Aufgabenstellung.pdf}
-% check if we need to include the rest of the document
- 
-% Include rest of document
-\includepdf[pages=2-]{Aufgabenstellung/Aufgabenstellung.pdf}
+ % check if we need to include the rest of the document
+\includepdf[pages=2-]{Aufgabenstellung/Aufgabenstellung.pdf} % Include rest of document
 
 }
 

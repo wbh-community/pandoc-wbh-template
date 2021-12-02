@@ -120,6 +120,10 @@ $endif$
 
 \usepackage{multirow}
 
+% Solution - for double underlined solutions in formulas/equations, uses \underline twice for double underline 
+\newcommand{\solution}[1]{\underline{\underline{#1}}}
+
+
 $if(graphics)$
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}

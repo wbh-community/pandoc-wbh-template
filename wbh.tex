@@ -35,6 +35,9 @@ $endif$
 \usepackage{amsfonts}												% More symboles for exotic currency notation and engeneering diagrams
 \usepackage{amssymb}												% More symboles for exotic currency notation and engeneering diagrams
 \usepackage{siunitx}                        % For using SI Units https://www.ctan.org/pkg/siunitx
+$if(lang)$
+\sisetup{locale = $lang/uppercase$}
+$endif$
 \usepackage{fancyhdr}
 \usepackage{tabularx}
 \usepackage[a4paper, top=$if(seite.rand_oben)$$seite.rand_oben$$else$27mm$endif$, left=$if(seite.rand_links)$$seite.rand_links$$else$20mm$endif$, right=$if(seite.rand_rechts)$$seite.rand_rechts$$else$40mm$endif$, bottom=$if(seite.rand_unten)$$seite.rand_unten$$else$35mm$endif$, headsep=10mm, footskip=12mm]{geometry} % Vorgabe 4cm Rand auf der rechten Seite.

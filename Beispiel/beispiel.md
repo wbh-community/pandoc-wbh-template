@@ -159,4 +159,16 @@ A = B + C = 5 + 9 = \solution{14}
 $$
 
 
+## SI-Units
+
+Mit dem Parameter `lang` , z.B.  `lang: de` in den Metadaten am Anfang des Markdown Dokuments lässt sich die Lokalisierung des Packages `siunitx` einstellen. Das ist z.B. für Tausendertrennzeichen relevant. Mehr Informationen dazu in der [siunitx Dokumentation](https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/siunitx/siunitx.pdf)
+
+$$ \displaystyle
+\begin{aligned}
+\qty{1.234}{\metre} \\
+De: \qty[locale = DE]{6.789}{\metre} \\
+Us: \qty[locale = US]{6.789}{\metre} 
+\end{aligned}
+$$
+
 

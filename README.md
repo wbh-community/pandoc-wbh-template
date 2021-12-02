@@ -55,6 +55,7 @@ studium:
 arbeit:
   typ:
   code:
+lang:
 #assignment: 
 #  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
 #  pages: '`-`{=latex}'      # All pages
@@ -116,7 +117,6 @@ Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optional
 | seite.rand_unten   | Seitenrand unten                                      | ja       | 20mm          |
 | seite.rand_rechts  | Seitenrand rechts                                     | ja       | 40mm          |
 | seite.rand_links   | Seitenrand links                                      | ja       | 30mm          |
-
 
 ### Aufgabenstellung mit einbinden
 

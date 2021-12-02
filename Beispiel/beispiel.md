@@ -151,5 +151,13 @@ A &  = B + C + D + E + F\\
  A - F & = B + C + D + E 
 \end{aligned}$$
 
+## Lösung doppelt unterstreichen
+
+Um die Lösung einer Gleichung hervorzuheben, kann der alias `\solution{x}` verwendet werden, der das Ergebnis einer Gleichung doppelt unterstreicht.
+
+$$
+A = B + C = 5 + 9 = \solution{14}
+$$
+
 
 

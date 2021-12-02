@@ -57,12 +57,17 @@ arbeit:
   code:
 #assignment: 
 #  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
-#  pages: '`{1-2}`{=latex}'  # Page 1 to 2
 #  pages: '`-`{=latex}'      # All pages
 #  pages: '`1,3`{=latex}'    # Page 1 and 3
 #  beforetitle: 1
 #  multipage: 1
 #  fillform: 1
+# Optionale Seitenrändereinstellungen
+seite:     
+  rand_oben: 20mm
+  rand_unten: 20mm
+  rand_links: 30mm
+  rand_rechts: 40mm
 ...
 ```
 
@@ -78,36 +83,37 @@ Make ist in der Regel Teil des Pakets `build-essentials`, welches du mit  `sudo 
 
 Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optionalen Variablen werden nicht benötigt und können somit leer bleiben oder ganz weg gelassen werden.
 
-
-|   Variable             |                     Beschreibung                      | Optional |    default    |
-|:---------------------- |:----------------------------------------------------- |:-------- |:------------- |
-| title                  | Titel der Arbeit/B-Prüfung                            | nein     |               |
-| author                 | Der Uhrheber der Arbeit, in der Regel dein Name       | ja       |               |
-| student                | Informationen über dich                               | nein     |               |
-| student.firstname      | Vorname                                               | nein     |               |
-| student.lastname       | Nachname                                              | nein     |               |
-| student.strasse        | Strasse                                               | nein     |               |
-| student.ort            | PLZ + Ort                                             | nein     |               |
-| matrikelnr             | Deine Matrikelnummer                                  | ja       |               |
-| email                  | Deine E-Mail Adresse                                  | ja       |               |
-| studium                | Informationen zum Studiengang und dem Fach            | ja       |               |
-| studiengang            | Dein Studiengang                                      | ja       |               |
-| studiengangnr          | Diese findest du unter "Main Studium" SG-Nr.          | ja       |               |
-| fach                   | In welchem Fach wird die Prüfung bearbeitet           | ja       |               |
-| aufgabencode           | Der Code befindet sich auf deiner B-Prüfung ganz oben | ja       |               |
-| date                   | Datum der Abgabe                                      | ja       | today         |
-| lang                   | Sprache des Dokumentes "Ländercode"                   | ja       | de            |
-| logo                   | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       | Pfad zum Bild |
-| toc                    | Hinzufügen des Inhaltsverzeichnises                   | ja       | true / false  |
-| abk                    | Abkürzungsverzeichnis                                 | ja       | true /false   |
-| lot                    | Verzeichnis der Tabellen                              | ja       | true / false  |
-| lof                    | Liste der Figuren/Abbildungen                         | ja       | true / false  |
-| skipfirstpage          | Zählt die Titleseite nicht mit                        | ja       | true          |
+|   Variable         |                     Beschreibung                      | Optional |    default    |
+|:------------------ |:----------------------------------------------------- |:-------- |:------------- |
+| title              | Titel der Arbeit/B-Prüfung                            | nein     |               |
+| author             | Der Uhrheber der Arbeit, in der Regel dein Name       | ja       |               |
+| student            | Informationen über dich                               | nein     |               |
+| name               | Dein Name, wird als Author verwendet                  | nein     |               |
+| matrikelnr         | Deine Matrikelnummer                                  | ja       |               |
+| email              | Deine E-Mail Adresse                                  | ja       |               |
+| studium            | Informationen zum Studiengang und dem Fach            | ja       |               |
+| studiengang        | Dein Studiengang                                      | ja       |               |
+| studiengangnr      | Diese findest du unter "Main Studium" SG-Nr.          | ja       |               |
+| fach               | In welchem Fach wird die Prüfung bearbeitet           | ja       |               |
+| aufgabencode       | Der Code befindet sich auf deiner B-Prüfung ganz oben | ja       |               |
+| date               | Datum der Abgabe                                      | ja       | today         |
+| lang               | Sprache des Dokumentes "Ländercode"                   | ja       | de            |
+| logo               | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       | Pfad zum Bild |
+| hochschule         | Name der Hochschule                                   | ja       |               |
+| toc                | Hinzufügen des Inhaltsverzeichnises                   | ja       | true / false  |
+| abk                | Abkürzungsverzeichnis                                 | ja       | true /false   |
+| lot                | Verzeichnis der Tabellen                              | ja       | true / false  |
+| lof                | Liste der Figuren/Abbildungen                         | ja       | true / false  |
+| skipfirstpage      | Zählt die Titleseite nicht mit                        | ja       | true          |
 | assignment.file        | Pfad zur Aufgabenstellung                             | ja       |               |
 | assignment.pages       | Seitenzahlen der Aufgabenstellung                     | ja       | -             |
 | assignment.beforetitle | Seitenzahlen der Aufgabenstellung                     | ja       | 1             |
 | assignment.fillform    | Füllt Name und Addresse auf der Aufgabenstellung aus  | ja       | 1             |
 | assignment.multipage   | Mehr als die erste Seite einbinden                    | ja       | 1             |
+| seite.rand_oben    | Seitenrand oben                                       | ja       | 20mm          |
+| seite.rand_unten   | Seitenrand unten                                      | ja       | 20mm          |
+| seite.rand_rechts  | Seitenrand rechts                                     | ja       | 40mm          |
+| seite.rand_links   | Seitenrand links                                      | ja       | 30mm          |
 
 
 ### Aufgabenstellung mit einbinden

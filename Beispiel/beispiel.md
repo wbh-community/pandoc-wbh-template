@@ -27,7 +27,6 @@ assignment:
   pages: '`2-`{=latex}'  
   fillform: 1
   multipage: 1
-   
 ...
 
 # Einführungauthor

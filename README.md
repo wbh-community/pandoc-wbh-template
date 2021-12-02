@@ -57,12 +57,17 @@ arbeit:
   code:
 #assignment: 
 #  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
-#  pages: '`{1-2}`{=latex}'  # Page 1 to 2
 #  pages: '`-`{=latex}'      # All pages
 #  pages: '`1,3`{=latex}'    # Page 1 and 3
 #  beforetitle: 1
 #  multipage: 1
 #  fillform: 1
+# Optionale Seitenrändereinstellungen
+seite:     
+  rand_oben: 20mm
+  rand_unten: 20mm
+  rand_links: 30mm
+  rand_rechts: 40mm
 ...
 ```
 
@@ -77,7 +82,6 @@ Make ist in der Regel Teil des Pakets `build-essentials`, welches du mit  `sudo 
 ### Variablen
 
 Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optionalen Variablen werden nicht benötigt und können somit leer bleiben oder ganz weg gelassen werden.
-
 
 |   Variable             |                     Beschreibung                      | Optional |    default    |
 |:---------------------- |:----------------------------------------------------- |:-------- |:------------- |
@@ -108,6 +112,10 @@ Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optional
 | assignment.beforetitle | Seitenzahlen der Aufgabenstellung                     | ja       | 1             |
 | assignment.fillform    | Füllt Name und Addresse auf der Aufgabenstellung aus  | ja       | 1             |
 | assignment.multipage   | Mehr als die erste Seite einbinden                    | ja       | 1             |
+| seite.rand_oben    | Seitenrand oben                                       | ja       | 20mm          |
+| seite.rand_unten   | Seitenrand unten                                      | ja       | 20mm          |
+| seite.rand_rechts  | Seitenrand rechts                                     | ja       | 40mm          |
+| seite.rand_links   | Seitenrand links                                      | ja       | 30mm          |
 
 
 ### Aufgabenstellung mit einbinden

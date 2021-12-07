@@ -341,80 +341,80 @@ $endif$
 % ----------------------------------------------------------------------------------------------------------
 \thispagestyle{empty}
 \begin{center}
-    $if(logo)$ 
+$if(logo)$ 
     \includegraphics[max width=\textwidth]{$logo$}\\
-    $else$
+$else$
     % Kein Logo definiert
-    $endif$ 
-    $if(hochschule)$ 
-    $if(logo)$
+$endif$ 
+$if(hochschule)$ 
+$if(logo)$
     % Logo eingefügt anstelle des Hochschulnamen
-    $else$   
+$else$   
     \Huge \textbf{$hochschule$} \\
-    $endif$   
-    $endif$
+$endif$   
+$endif$
 
     \vspace*{1cm}
 	
-	$if(aufgabe.typ)$
+$if(aufgabe.typ)$
 	\Huge
     \textbf{$aufgabe.typ$}\\
     \vspace*{0.3cm}
-    $endif$
-	$if(studium.fachbereich)$
+$endif$
+$if(studium.fachbereich)$
 	\large
     \textbf{Fachbereich:}
 		\textbf{$studium.fachbereich$}\\
 		\vspace*{1cm}
-    $else$
-	$if(studium.studiengang)$
+$else$
+$if(studium.studiengang)$
 	\large
     \textbf{Studiengang:}\\
 		\textbf{$studium.studiengang$}\\
 		\vspace*{1cm}
-	$endif$
-	$endif$
-	$if(title)$
+$endif$
+$endif$
+$if(title)$
 	\Huge
     \textbf{$title$} \\
-	$endif$
+$endif$
 	\vspace*{0.3cm}
 	\large
-    $if(aufgabe.code)$
-        $aufgabe.code$ \\
-	$endif$
+$if(aufgabe.code)$
+    $aufgabe.code$ \\ % Aufgabencode
+$endif$
 	\vspace*{0.5cm}
-	$if(studium.fach)$
+$if(studium.fach)$
     \textbf{$studium.fach$}\\
-	$endif$
+$endif$
 	\vspace*{0.5cm}
 	
 	\vfill
 	\normalsize
 	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
 	\begin{tabular}{x{6cm}p{7.5cm}}
-        $if(studium.fachbereich)$
-        $if(studium.studiengang)$
-        \rule{0mm}{5ex}\textbf{Studiengang:} &      $studium.studiengang$ \\
-        $endif$
-        $endif$
-		$if(student)$
-        \rule{0mm}{5ex}\textbf{Student:} &          \studentname
-			$if(student.email)$
+$if(studium.fachbereich)$
+$if(studium.studiengang)$
+        \rule{0mm}{4ex}\textbf{Studiengang:} &      $studium.studiengang$ \\
+$endif$
+$endif$
+$if(student)$
+        \rule{0mm}{4ex}\textbf{Student:} &          \studentname
+$if(student.email)$
                                             \newline $student.email$
-			$endif$ \\
-		$endif$
-		$if(student.matrikelnr)$
-        \rule{0mm}{5ex}\textbf{Matrikelnummer:} &   $student.matrikelnr$ \\
-		$endif$
-		$if(betreuer)$
-        \rule{0mm}{5ex}\textbf{Betreut durch:} &    $for(betreuer)$$betreuer$$sep$\newline $endfor$\\
-		$endif$
-		$if(date)$
-\rule{0mm}{5ex}\textbf{Abgabedatum:} &      $date$ \\ % Fixed date was set
-		$else$
-\rule{0mm}{5ex}\textbf{Abgabedatum:} &      \today \\ % No date set, use today
-		$endif$
+$endif$ \\
+$endif$
+$if(student.matrikelnr)$
+        \rule{0mm}{4ex}\textbf{Matrikelnummer:} &   $student.matrikelnr$ \\
+$endif$
+$if(betreuer)$
+        \rule{0mm}{4ex}\textbf{Betreut durch:} &    $for(betreuer)$$betreuer$$sep$\newline $endfor$\\
+$endif$
+$if(date)$
+        \rule{0mm}{4ex}\textbf{Abgabedatum:} &      $date$ \\ % Fixed date was set
+$else$
+        \rule{0mm}{4ex}\textbf{Abgabedatum:} &      \today \\ % No date set, use today
+$endif$
 	\end{tabular}
 \end{center}
 \pagebreak

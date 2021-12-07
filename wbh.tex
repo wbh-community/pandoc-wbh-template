@@ -341,30 +341,50 @@ $endif$
 % ----------------------------------------------------------------------------------------------------------
 \thispagestyle{empty}
 \begin{center}
-$if(logo)$ $if(hochschule)$ $else$   \includegraphics[max width=\textwidth]{$logo$}\\ $endif$  $endif$ $if(hochschule)$ $if(logo)$  $else$   \Huge \textbf{$hochschule$} \\ $endif$   $endif$
-    \vspace*{2cm}
-	\Large
+    $if(logo)$ 
+    \includegraphics[max width=\textwidth]{$logo$}\\
+    $else$
+    % Kein Logo definiert
+    $endif$ 
+    $if(hochschule)$ 
+    $if(logo)$
+    % Logo eingefügt anstelle des Hochschulnamen
+    $else$   
+    \Huge \textbf{$hochschule$} \\
+    $endif$   
+    $endif$
+
+    \vspace*{1.5cm}
+	
+	\Huge
+	$if(aufgabe.typ)$
+    \textbf{$aufgabe.typ$}\\
+    \vspace*{0.5cm}
+    $endif$
+	\large
+	$if(studium.fachbereich)$
+    \textbf{Fachbereich:}\\
+		\textbf{$studium.fachbereich$}\\
+		\vspace*{1cm}
+    $else$
 	$if(studium.studiengang)$
-		\textbf{Studiengang:}\\
+    \textbf{Studiengang:}\\
 		\textbf{$studium.studiengang$}\\
 		\vspace*{1cm}
 	$endif$
-	\Huge
-	$if(aufgabe.typ)$
-		\textbf{$aufageb.typ$}\\
-		\vspace*{0.5cm}
 	$endif$
+	\Huge
 	$if(title)$
-		\textbf{$title$} \\
+    \textbf{$title$} \\
 	$endif$
 	\vspace*{0.3cm}
 	\large
-  $if(aufgabe.code)$
-		$aufgabe.code$ \\
+    $if(aufgabe.code)$
+        $aufgabe.code$ \\
 	$endif$
 	\vspace*{0.5cm}
 	$if(studium.fach)$
-		\textbf{$studium.fach$}\\
+    \textbf{$studium.fach$}\\
 	$endif$
 	\vspace*{0.5cm}
 	
@@ -372,6 +392,11 @@ $if(logo)$ $if(hochschule)$ $else$   \includegraphics[max width=\textwidth]{$log
 	\normalsize
 	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
 	\begin{tabular}{x{6cm}p{7.5cm}}
+        $if(studium.fachbereich)$
+        $if(studium.studiengang)$
+        \rule{0mm}{5ex}\textbf{Studiengang:} & $studium.studiengang$ \\
+        $endif$
+        $endif$
 		$if(student)$
 			\rule{0mm}{5ex}\textbf{Student:} & \studentname
 			$if(student.strasse)$

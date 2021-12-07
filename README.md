@@ -59,6 +59,7 @@ aufgabe:
 arbeit:
   typ:
   code:
+lang:
 #assignment: 
 #  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
 #  pages: '`-`{=latex}'      # All pages

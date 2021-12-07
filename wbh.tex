@@ -354,27 +354,28 @@ $endif$
     $endif$   
     $endif$
 
-    \vspace*{1.5cm}
+    \vspace*{1cm}
 	
-	\Huge
 	$if(aufgabe.typ)$
+	\Huge
     \textbf{$aufgabe.typ$}\\
-    \vspace*{0.5cm}
+    \vspace*{0.3cm}
     $endif$
-	\large
 	$if(studium.fachbereich)$
-    \textbf{Fachbereich:}\\
+	\large
+    \textbf{Fachbereich:}
 		\textbf{$studium.fachbereich$}\\
 		\vspace*{1cm}
     $else$
 	$if(studium.studiengang)$
+	\large
     \textbf{Studiengang:}\\
 		\textbf{$studium.studiengang$}\\
 		\vspace*{1cm}
 	$endif$
 	$endif$
-	\Huge
 	$if(title)$
+	\Huge
     \textbf{$title$} \\
 	$endif$
 	\vspace*{0.3cm}
@@ -394,31 +395,25 @@ $endif$
 	\begin{tabular}{x{6cm}p{7.5cm}}
         $if(studium.fachbereich)$
         $if(studium.studiengang)$
-        \rule{0mm}{5ex}\textbf{Studiengang:} & $studium.studiengang$ \\
+        \rule{0mm}{5ex}\textbf{Studiengang:} &      $studium.studiengang$ \\
         $endif$
         $endif$
 		$if(student)$
-			\rule{0mm}{5ex}\textbf{Student:} & \studentname
-			$if(student.strasse)$
-				\newline $student.strasse$
-			$endif$
-			$if(student.ort)$
-				\newline $student.ort$
-			$endif$
+        \rule{0mm}{5ex}\textbf{Student:} &          \studentname
 			$if(student.email)$
-				\newline $student.email$
+                                            \newline $student.email$
 			$endif$ \\
 		$endif$
-		$if(betreuung)$
-			\rule{0mm}{5ex}\textbf{Betreuung:} & $betreuung$ \\
-		$endif$
 		$if(student.matrikelnr)$
-			\rule{0mm}{5ex}\textbf{Matrikelnummer:} & $student.matrikelnr$ \\
+        \rule{0mm}{5ex}\textbf{Matrikelnummer:} &   $student.matrikelnr$ \\
+		$endif$
+		$if(betreuer)$
+        \rule{0mm}{5ex}\textbf{Betreut durch:} &    $for(betreuer)$$betreuer$$sep$\newline $endfor$\\
 		$endif$
 		$if(date)$
-			\rule{0mm}{5ex}\textbf{Abgabedatum:} & $date$ \\
+\rule{0mm}{5ex}\textbf{Abgabedatum:} &      $date$ \\ % Fixed date was set
 		$else$
-			\rule{0mm}{5ex}\textbf{Abgabedatum:} & \today \\
+\rule{0mm}{5ex}\textbf{Abgabedatum:} &      \today \\ % No date set, use today
 		$endif$
 	\end{tabular}
 \end{center}

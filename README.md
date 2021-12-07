@@ -47,11 +47,15 @@ student:
   email:
   strasse:
   ort:
-  matriklnr:
+  matrikelnr:
 studium:
   studiengang:
   studiengangnr:
   fach:
+  fachbereich:
+aufgabe:
+  typ:
+  code:
 arbeit:
   typ:
   code:
@@ -95,10 +99,13 @@ Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optional
 | matrikelnr             | Deine Matrikelnummer                                  | ja       |               |
 | email                  | Deine E-Mail Adresse                                  | ja       |               |
 | studium                | Informationen zum Studiengang und dem Fach            | ja       |               |
-| studiengang            | Dein Studiengang                                      | ja       |               |
-| studiengangnr          | Diese findest du unter "Main Studium" SG-Nr.          | ja       |               |
-| fach                   | In welchem Fach wird die Prüfung bearbeitet           | ja       |               |
-| aufgabencode           | Der Code befindet sich auf deiner B-Prüfung ganz oben | ja       |               |
+| studium.studiengang            | Dein Studiengang                                      | ja       |               |
+| studium.studiengangnr          | Diese findest du unter "Main Studium" SG-Nr.          | ja       |               |
+| studium.fach                   | In welchem Fach wird die Prüfung bearbeitet           | ja       |               |
+| studium.fachbereich            | Um welchen Fachbereich handelt es sich beim Studium          | ja       |               |
+| aufgabe           | Informationen zur Studienaufgabe die Bearbeitet wird | ja       |               |
+| aufgabe.typ       | Um welchen Aufgabentyp handelt es sich (B-Aufgabe, Thesis) | ja       |               |
+| aufgabe.code           | Der Code befindet sich auf deiner B-Prüfung ganz oben | ja       |               |
 | date                   | Datum der Abgabe                                      | ja       | today         |
 | lang                   | Sprache des Dokumentes "Ländercode"                   | ja       | de            |
 | logo                   | Der Pfad zum Logo (Standard ./Bilder/logo.png)        | ja       | Pfad zum Bild |

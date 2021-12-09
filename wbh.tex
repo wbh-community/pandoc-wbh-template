@@ -68,6 +68,9 @@ $endif$
 \usepackage{amsfonts}												% More symboles for exotic currency notation and engeneering diagrams
 \usepackage{amssymb}												% More symboles for exotic currency notation and engeneering diagrams
 \usepackage{siunitx}                        % For using SI Units https://www.ctan.org/pkg/siunitx
+$if(lang)$
+\sisetup{locale = $lang/uppercase$}
+$endif$
 
 % ----------------------------------------------------------------------------------------------------------
 % Firstname + Lastname

@@ -36,6 +36,8 @@ $endif$
                         % für den Fließtext und ebenso die mathematische Schrift 
 \usepackage[onehalfspacing]{setspace} % Der 1,5-zeilige Zeilenabstand
 
+\usepackage[nottoc,numbib]{tocbibind}   % No the numbers befor lot and lof and add them to toc
+
 \usepackage{fancyhdr}
 \usepackage{tabularx}
 \usepackage[usenames,dvipsnames]{xcolor}    % Colorize latex
@@ -46,9 +48,6 @@ $endif$
 % Rechts:           4cm (Korrekturrand)
 % ------------------------------------------------------------
 \usepackage[a4paper, top=$if(seite.rand_oben)$$seite.rand_oben$$else$25mm$endif$, left=$if(seite.rand_links)$$seite.rand_links$$else$25mm$endif$, right=$if(seite.rand_rechts)$$seite.rand_rechts$$else$40mm$endif$, bottom=$if(seite.rand_unten)$$seite.rand_unten$$else$30mm$endif$, headsep=10mm, footskip=12mm]{geometry}
-
-% Style the toc like discribed in DIN 1421 
-\usepackage[subfigure,titles]{tocloft} % style for toc lot and lof
 
 \usepackage[right]{eurosym}
 \usepackage[printonlyused]{acronym}
@@ -241,7 +240,6 @@ $endif$
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-
 % Support for citation
 % -------------------------------------------------------------------
 $if(natbib)$
@@ -302,7 +300,6 @@ $endif$
 % --------------------------------------------------------------
 % begin document
 % --------------------------------------------------------------
-
 \begin{document}
 
 
@@ -473,11 +470,6 @@ $endif$
 % --------------------------------------------------------------
 % Inhaltsverzeichnis
 % --------------------------------------------------------------
-% TODO Typ vor Nummer
-\renewcommand{\cfttabpresnum}{Tab. }
-\renewcommand{\cftfigpresnum}{Abb. }
-\settowidth{\cfttabnumwidth}{Abb. 10\quad}
-\settowidth{\cftfignumwidth}{Abb. 10\quad}
 
 \singlespacing
 \rhead{$if(lang)$INHALTSVERZEICHNIS$else$TABLE OF CONTENTS$endif$} % Set Headline right to INHALTSVERZEICHNIS

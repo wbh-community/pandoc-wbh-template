@@ -488,7 +488,7 @@ $endif$
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{}
 \renewcommand{\subsubsectionmark}[1]{}
-\lhead{$if(lang)$Abschnitt$else$Chapter$endif$ \thesection}
+\lhead{\thesection\space\nouppercase{\rightmark}}
 \rhead{} %hier kann die rechte Seite der Kopfzeile editiert werden!
 
 \onehalfspacing

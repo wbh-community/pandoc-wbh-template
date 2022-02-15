@@ -183,7 +183,7 @@ $endif$
 	pdfmenubar=true, 
 	pdffitwindow=false, 
 	pdfstartview={FitH},
-	pdftitle={$if(title)$$title$$endif$$if(aufgabe.code)$: $aufgabe.code$$endif$- \studentname},
+	pdftitle={$if(title)$$title$$endif$$if(aufgabe.code)$: $aufgabe.code$$endif$},
 	pdfauthor={$if(author)$$author$$else$\studentname$endif$$if(student.matrikelnr)$, Matrikelnummer: $student.matrikelnr$$endif$},
 $if(studium.studiengang)$
 	pdfsubject={Studiengang: $studium.studiengang$}, 
@@ -206,6 +206,18 @@ $else$
 	hidelinks,
 $endif$
 }
+
+\usepackage{filecontents}
+\begin{filecontents*}{\jobname.xmpdata}
+\Keywords{$if(aufgabe.typ)$$aufgabe.typ$\sep $endif$ $if(student.matrikelnr)$$student.matrikelnr$\sep $endif$ $if(aufgabe.code)$$aufgabe.code$\sep $endif$ $if(keywords)$ $for(keywords)$ $keywords[\sep ]$ $endfor$$endif$} 
+\Title{$if(title)$$title$$endif$$if(aufgabe.code)$: $aufgabe.code$$endif$} 
+$if(abstract)$\Subject{$abstract$} $endif$
+\Author{$if(student.firstname)$$student.firstname$ $student.lastname$$else$$student.name$$endif$} 
+$if(hochschule.name)$\Org{$hochschule.name$}$endif$
+$if(doi)$\Doi{$doi$}$endif$
+\Language{de-De, en-En}
+%\Publisher{}
+\end{filecontents*}
 
 % Designing blockquote
 % ------------------------------------------------------------------

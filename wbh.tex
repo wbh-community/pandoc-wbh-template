@@ -70,6 +70,7 @@ $endif$
 $if(lang)$
 \sisetup{locale = $lang/uppercase$}
 $endif$
+\usepackage[a-1b]{pdfx} % This needs to be befor hyperref package and is to generate PDF as PDF/A Standard
 
 % ----------------------------------------------------------------------------------------------------------
 % Firstname + Lastname
@@ -511,6 +512,7 @@ $body$
 % --------------------------------------------------------------
 \pagebreak % wird benötigt um den header erst auf der folgeseite beginnen zu lassen.
 \lhead{} % remove the left part of header
+
 $if(lof)$
 % --------------------------------------------------------------
 % Abbildungsverzeichnis

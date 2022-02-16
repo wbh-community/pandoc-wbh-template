@@ -309,6 +309,13 @@ $if(numbersections)$
 	\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
 	%\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 $endif$
+$if(acronym)$
+% This is for adding Acronym with SI units correct
+\newcommand{\siacl}[3]{\num{#1} \acl{#2} (\si{#3})}
+$endif$
+$if(hyphenation)$
+\hyphenation{$for(hyphenation)$$hyphenation$$sep$ $endfor$}
+$endif$
 
 % --------------------------------------------------------------
 % begin document

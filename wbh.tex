@@ -71,7 +71,7 @@ $if(lang)$
 \sisetup{locale = $lang/uppercase$}
 $endif$
 \usepackage[a-1b]{pdfx} % This needs to be befor hyperref package and is to generate PDF as PDF/A Standard
-
+\usepackage{abstract} % For nice abstract formatting
 % ----------------------------------------------------------------------------------------------------------
 % Firstname + Lastname
 % ----------------------------------------------------------------------------------------------------------
@@ -549,7 +549,7 @@ $if(acronym)$
 % --------------------------------------------------------------
 % Abkürzungsverzeichnis
 % --------------------------------------------------------------
-\rhead{\thesection $if(lang)$ABKÜRZUNGSVERZEICHNIS$else$LIST OF ABBREVIATIONS$endif$}
+\rhead{$if(lang)$ABKÜRZUNGSVERZEICHNIS$else$LIST OF ABBREVIATIONS$endif$}
 \section*{Abkürzungsverzeichnis}
 \addcontentsline{toc}{section}{Abkürzungsverzeichnis}
 
@@ -566,7 +566,7 @@ $if(lof)$
 % --------------------------------------------------------------
 % Abbildungsverzeichnis
 % --------------------------------------------------------------
-\rhead{\thesection $if(lang)$ABBILDUNGSVERZEICHNIS$else$LIST OF FIGURES$endif$}
+\rhead{$if(lang)$ABBILDUNGSVERZEICHNIS$else$LIST OF FIGURES$endif$}
 \listoffigures
 \pagebreak
 $endif$
@@ -575,7 +575,7 @@ $if(lot)$
 % -----------------------------------------------------------------
 % Tabellenverzeichnis
 % -----------------------------------------------------------------
-\rhead{\thesection $if(lang)$TABELLENVERZEICHNIS$else$LIST OF TABLES$endif$}
+\rhead{$if(lang)$TABELLENVERZEICHNIS$else$LIST OF TABLES$endif$}
 \listoftables
 \pagebreak
 $endif$
@@ -628,12 +628,16 @@ $if(insurance)$
 \thispagestyle{empty}
 \begin{center}
 	\vspace*{5em}
-	\huge\textbf{Erklärung}\\
+	\huge\textbf{Eidesstattliche Erklärung}\\
 \end{center}
 \vspace{2em}
-Ich, \studentname,  versichere  durch  meine  Unterschrift,  dass  ich  die  vorliegende Arbeit selbstständig erstellt habe. Andere als die angegebenen Hilfsmittel habe ich nicht verwendet. 
 
-Soweit  ich  fremde  Gedankengänge  oder  Texte  verwendet  habe,  sind  diese  von  mir  als solche kenntlich gemacht und dem Urheber eindeutig zuordenbar. Dazu zählen sowohl wörtliche als auch nicht wörtliche Übernahmen.
+\studentname, $student.matrikelnr$
+
+Hiermit erkläre ich an Eides statt, dass ich diese Arbeit selbstständig abgefasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Sämtliche Stellen der Arbeit, die im Wortlaut oder dem Sinne nach Publikationen oder Vorträgen anderer Autoren entnommen sind, habe ich als solche kenntlich gemacht. Ich bin mit einer Plagiatsprüfung einverstanden.
+
+
+Die Arbeit wurde bisher keiner anderen Prüfungsbehörde vorgelegt und auch noch nicht veröffentlicht.
 
 \vspace{4em}
 \begin{minipage}{\linewidth}
@@ -643,6 +647,8 @@ Soweit  ich  fremde  Gedankengänge  oder  Texte  verwendet  habe,  sind  diese 
 	\end{tabular}
 \end{minipage}
 $endif$
+
+
 
 $for(include-after)$
 $include-after$

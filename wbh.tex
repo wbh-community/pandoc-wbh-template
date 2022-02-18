@@ -436,7 +436,7 @@ $endif$
 	\end{tabular}
 	\vfill
 $if(hochschule.adresse)$
-    $hochschule.name$ $hochschule.adresse$
+    $if(hochschule.name)$$hochschule.name$, $endif$$hochschule.adresse$
 $endif$
 \end{center}
 \pagebreak
@@ -532,20 +532,24 @@ $body$
 \pagebreak % wird benötigt um den header erst auf der folgeseite beginnen zu lassen.
 \lhead{} % remove the left part of header
 
-$if(lof)$
-% --------------------------------------------------------------
-% Abbildungsverzeichnis
-% --------------------------------------------------------------
-\rhead{$if(lang)$ABBILDUNGSVERZEICHNIS$else$LIST OF FIGURES$endif$}
-\listoffigures
-\pagebreak
-$endif$
+
+% Nachspann
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\theHsection}{\Roman{section}}
+\pagenumbering{Roman}
+
+% Pagebreak after each Section
+%\let\oldsection\section
+%\renewcommand\section{\clearpage\oldsection}
+
+%\setcounter{section}{2}
+%\setcounter{page}{2}
 
 $if(acronym)$
 % --------------------------------------------------------------
 % Abkürzungsverzeichnis
 % --------------------------------------------------------------
-\rhead{$if(lang)$ABKÜRZUNGSVERZEICHNIS$else$LIST OF ABBREVIATIONS$endif$}
+\rhead{\thesection $if(lang)$ABKÜRZUNGSVERZEICHNIS$else$LIST OF ABBREVIATIONS$endif$}
 \section*{Abkürzungsverzeichnis}
 \addcontentsline{toc}{section}{Abkürzungsverzeichnis}
 
@@ -555,14 +559,23 @@ $for(acronym.list)$
 	\acro{$it.id$}[$it.short$]{$it.long$}
 $endfor$
 \end{acronym}
-\newpage
+\pagebreak
+$endif$
+
+$if(lof)$
+% --------------------------------------------------------------
+% Abbildungsverzeichnis
+% --------------------------------------------------------------
+\rhead{\thesection $if(lang)$ABBILDUNGSVERZEICHNIS$else$LIST OF FIGURES$endif$}
+\listoffigures
+\pagebreak
 $endif$
 
 $if(lot)$
 % -----------------------------------------------------------------
 % Tabellenverzeichnis
 % -----------------------------------------------------------------
-\rhead{$if(lang)$TABELLENVERZEICHNIS$else$LIST OF TABLES$endif$}
+\rhead{\thesection $if(lang)$TABELLENVERZEICHNIS$else$LIST OF TABLES$endif$}
 \listoftables
 \pagebreak
 $endif$

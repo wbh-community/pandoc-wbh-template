@@ -124,6 +124,10 @@ Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optional
 | seite.rand_unten   | Seitenrand unten                                      | ja       | 20mm          |
 | seite.rand_rechts  | Seitenrand rechts                                     | ja       | 40mm          |
 | seite.rand_links   | Seitenrand links                                      | ja       | 30mm          |
+| titelseite.rand_oben    | Seitenrand Titelseite oben                                       | ja       | 20mm          |
+| titelseite.rand_unten   | Seitenrand Titelseite unten                                      | ja       | 20mm          |
+| titelseite.rand_rechts  | Seitenrand Titelseite rechts                                     | ja       | 20mm          |
+| titelseite.rand_links   | Seitenrand Titelseite links                                      | ja       | 20mm          |
 
 ### Aufgabenstellung mit einbinden
 

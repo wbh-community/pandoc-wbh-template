@@ -360,7 +360,12 @@ $endif$
 % -------------------------------------------------------------
 % Titelseite
 % -------------------------------------------------------------
-\thispagestyle{empty}
+\begin{titlepage}
+% Ränder für Titleseite werden neugesetzt
+% Links:            2cm 
+% Oben und unten:   2cm
+% Rechts:           2cm 
+\newgeometry{top=$if(titelseite.rand_oben)$$titelseite.rand_oben$$else$20mm$endif$, left=$if(titelseite.rand_links)$$titelseite.rand_links$$else$20mm$endif$, right=$if(titelseite.rand_rechts)$$titelseite.rand_rechts$$else$20mm$endif$, bottom=$if(titelseite.rand_unten)$$titelseite.rand_unten$$else$20mm$endif$}
 \begin{center}
 $if(logo)$ 
     \includegraphics[max width=\textwidth]{$logo$}\\
@@ -440,6 +445,8 @@ $if(hochschule.adresse)$
     $if(hochschule.name)$$hochschule.name$, $endif$$hochschule.adresse$
 $endif$
 \end{center}
+\end{titlepage}
+\restoregeometry    % Zurück auf Standard Page Geometry
 \pagebreak
 
 % -------------------------------------------------------------

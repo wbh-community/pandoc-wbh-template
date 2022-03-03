@@ -12,10 +12,12 @@
     12pt,
     a4paper,
     $if(lang)$
-        $babel-lang$,
+    $babel-lang$,
     $endif$
     bibliography=totocnumbered,
-    listof=totocnumbered
+    listof=totocnumbered,
+    toc=flat,
+    numbers=noenddot % Numbers without dots
 ]{scrartcl}
 
 $if(lang)$
@@ -30,18 +32,24 @@ $endif$
 
 %\usepackage[utf8]{inputenc}
 $endif$
-\usepackage[usenames,dvipsnames]{color}
-\usepackage{amsmath}												% For pandoc extensive `amsmath` collection of symbols for typesetting ordinary math
-\usepackage{amsfonts}												% More symboles for exotic currency notation and engeneering diagrams
-\usepackage{amssymb}												% More symboles for exotic currency notation and engeneering diagrams
-\usepackage{siunitx}                        % For using SI Units https://www.ctan.org/pkg/siunitx
-$if(lang)$
-\sisetup{locale = $lang/uppercase$}
-$endif$
+\usepackage{textcomp}   % Erweitert den Zeichensatz
+\usepackage{mathptmx}   % Setzt die Standardschriftart Times New Roman
+                        % für den Fließtext und ebenso die mathematische Schrift 
+\usepackage[onehalfspacing]{setspace} % Der 1,5-zeilige Zeilenabstand
+
+\usepackage[nottoc,numbib]{tocbibind}   % No the numbers befor lot and lof and add them to toc
+
 \usepackage{fancyhdr}
 \usepackage{tabularx}
-\usepackage[a4paper, top=$if(seite.rand_oben)$$seite.rand_oben$$else$27mm$endif$, left=$if(seite.rand_links)$$seite.rand_links$$else$20mm$endif$, right=$if(seite.rand_rechts)$$seite.rand_rechts$$else$40mm$endif$, bottom=$if(seite.rand_unten)$$seite.rand_unten$$else$35mm$endif$, headsep=10mm, footskip=12mm]{geometry} % Vorgabe 4cm Rand auf der rechten Seite.
-\usepackage{setspace}
+\usepackage[usenames,dvipsnames]{xcolor}    % Colorize latex
+
+% Leitfaden Vorgabe für Ränder:
+% Links:            2cm oder mehr
+% Oben und unten:   2cm
+% Rechts:           4cm (Korrekturrand)
+% ------------------------------------------------------------
+\usepackage[a4paper, top=$if(seite.rand_oben)$$seite.rand_oben$$else$25mm$endif$, left=$if(seite.rand_links)$$seite.rand_links$$else$25mm$endif$, right=$if(seite.rand_rechts)$$seite.rand_rechts$$else$40mm$endif$, bottom=$if(seite.rand_unten)$$seite.rand_unten$$else$25mm$endif$, headsep=10mm, footskip=12mm]{geometry}
+
 \usepackage[right]{eurosym}
 \usepackage[printonlyused]{acronym}
 \usepackage{subfig}
@@ -51,14 +59,20 @@ $endif$
 \usepackage{array}
 \usepackage{parskip}
 \usepackage[right]{eurosym}
-\usepackage[subfigure,titles]{tocloft}
 \usepackage{helvet}
 \usepackage{graphicx}
 \usepackage[export]{adjustbox} % also loads graphicx, to have max width for graphics
 \usepackage{pdfpages}
 \usepackage{tikz}
-
-
+\usepackage{amsmath}												% For pandoc extensive `amsmath` collection of symbols for typesetting ordinary math
+\usepackage{amsfonts}												% More symboles for exotic currency notation and engeneering diagrams
+\usepackage{amssymb}												% More symboles for exotic currency notation and engeneering diagrams
+\usepackage{siunitx}                        % For using SI Units https://www.ctan.org/pkg/siunitx
+$if(lang)$
+\sisetup{locale = $lang/uppercase$}
+$endif$
+\usepackage[a-1b]{pdfx} % This needs to be befor hyperref package and is to generate PDF as PDF/A Standard
+\usepackage{abstract} % For nice abstract formatting
 % ----------------------------------------------------------------------------------------------------------
 % Firstname + Lastname
 % ----------------------------------------------------------------------------------------------------------
@@ -170,29 +184,41 @@ $endif$
 	pdfmenubar=true, 
 	pdffitwindow=false, 
 	pdfstartview={FitH},
-	pdftitle={$if(title)$$title$$endif$$if(aufgabe.code)$: $aufgabe.code$$endif$- \studentname},
+	pdftitle={$if(title)$$title$$endif$$if(aufgabe.code)$: $aufgabe.code$$endif$},
 	pdfauthor={$if(author)$$author$$else$\studentname$endif$$if(student.matrikelnr)$, Matrikelnummer: $student.matrikelnr$$endif$},
-	$if(studium.studiengang)$
+$if(studium.studiengang)$
 	pdfsubject={Studiengang: $studium.studiengang$}, 
-	$endif$
+$endif$
 	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq via pandoc},
 	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
-	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$,$endif$ $if(student.matrikelnr)$$student.matrikelnr$,$endif$ $if(aufgabe.code)$$aufgabe.code$,$endif$ $if(keywords)$ $for(keywords)$ $keywords$ $sep$, $endfor$$endif$},
+	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$,$endif$ $if(student.matrikelnr)$$student.matrikelnr$,$endif$ $if(aufgabe.code)$$aufgabe.code$,$endif$ $if(keywords)$ $for(keywords)$ $keywords[, ]$ $endfor$$endif$},
 	pdfnewwindow=true,
-	$if(lang)$
+$if(lang)$
 	pdflang=$lang$,
-	$endif$
+$endif$
 	pdfdisplaydoctitle=true, 
-	$if(colorlinks)$
+$if(colorlinks)$
 	colorlinks=true,
 	linkcolor=$if(linkcolor)$$linkcolor$$else$gray$endif$,
 	filecolor=$if(filecolor)$$filecolor$$else$magenta$endif$,
 	citecolor=$if(citecolor)$$citecolor$$else$gray$endif$,
 	urlcolor=$if(urlcolor)$$urlcolor$$else$black$endif$,
-	$else$
+$else$
 	hidelinks,
-	$endif$
+$endif$
 }
+
+\usepackage{filecontents}
+\begin{filecontents*}{\jobname.xmpdata}
+\Keywords{$if(aufgabe.typ)$$aufgabe.typ$\sep $endif$ $if(student.matrikelnr)$$student.matrikelnr$\sep $endif$ $if(aufgabe.code)$$aufgabe.code$\sep $endif$ $if(keywords)$ $for(keywords)$ $keywords[\sep ]$ $endfor$$endif$} 
+\Title{$if(title)$$title$$endif$$if(aufgabe.code)$: $aufgabe.code$$endif$} 
+$if(abstract)$\Subject{$abstract$} $endif$
+\Author{$if(student.firstname)$$student.firstname$ $student.lastname$$else$$student.name$$endif$} 
+$if(hochschule.name)$\Org{$hochschule.name$}$endif$
+$if(doi)$\Doi{$doi$}$endif$
+\Language{de-De, en-En}
+%\Publisher{}
+\end{filecontents*}
 
 % Designing blockquote
 % ------------------------------------------------------------------
@@ -227,7 +253,6 @@ $endif$
 % ------------------------------------------------------------------
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-
 
 % Support for citation
 % -------------------------------------------------------------------
@@ -285,11 +310,17 @@ $if(numbersections)$
 	\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
 	%\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 $endif$
+$if(acronym)$
+% This is for adding Acronym with SI units correct
+\newcommand{\siacl}[3]{\num{#1} \acl{#2} (\si{#3})}
+$endif$
+$if(hyphenation)$
+\hyphenation{$for(hyphenation)$$hyphenation$$sep$ $endfor$}
+$endif$
 
-% ----------------------------------------------------------------------------
+% --------------------------------------------------------------
 % begin document
-% ----------------------------------------------------------------------------
-
+% --------------------------------------------------------------
 \begin{document}
 
 
@@ -302,16 +333,16 @@ $if(assignment.beforetitle)$
 $endif$
 $endif$
 
-% ----------------------------------------------------------------------------------------------------------
+% -------------------------------------------------------------
 % Kopf und Fußzeile
-% ----------------------------------------------------------------------------------------------------------
+% -------------------------------------------------------------
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\leftmark}{\rightmark}
 \pagestyle{fancy}
 \lhead{}
 \chead{}
 \rhead{\thesection\space\contentsname}
-\lfoot{\tiny $if(aufgabe.typ)$$aufgabe.typ$ des Studenten: $endif$$if(author)$$author$$else$\studentname$endif$$if(student.matrikelnr)$ (Matrikelnr.: $student.matrikelnr$)$endif$ $if(studium.studiengang)$Studiengang: $studium.studiengang$$endif$ $if(aufgabe.code)$- Prüfung: $aufgabe.code$ $endif$}
+\lfoot{\tiny $if(aufgabe.typ)$$aufgabe.typ$ des Studenten: $endif$$if(author)$$author$$else$\studentname$endif$\,$if(student.matrikelnr)$(Matrikelnr.: $student.matrikelnr$)$endif$ $if(studium.studiengang)$Studiengang: $studium.studiengang$$endif$ $if(aufgabe.code)$- Prüfung: $aufgabe.code$ $endif$}
 \cfoot{}
 \rfoot{\ \linebreak Seite \thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -326,90 +357,120 @@ $endif$
 \let\oldsection\section
 \renewcommand\section{\clearpage\oldsection}
 
-% ----------------------------------------------------------------------------------------------------------
+% -------------------------------------------------------------
 % Titelseite
-% ----------------------------------------------------------------------------------------------------------
-\thispagestyle{empty}
+% -------------------------------------------------------------
+\begin{titlepage}
+% Ränder für Titleseite werden neugesetzt
+% Links:            2cm 
+% Oben und unten:   2cm
+% Rechts:           2cm 
+\newgeometry{top=$if(titelseite.rand_oben)$$titelseite.rand_oben$$else$20mm$endif$, left=$if(titelseite.rand_links)$$titelseite.rand_links$$else$20mm$endif$, right=$if(titelseite.rand_rechts)$$titelseite.rand_rechts$$else$20mm$endif$, bottom=$if(titelseite.rand_unten)$$titelseite.rand_unten$$else$20mm$endif$}
 \begin{center}
-$if(logo)$ $if(hochschule)$ $else$   \includegraphics[max width=\textwidth]{$logo$}\\ $endif$  $endif$ $if(hochschule)$ $if(logo)$  $else$   \Huge \textbf{$hochschule$} \\ $endif$   $endif$
-    \vspace*{2cm}
-	\Large
-	$if(studium.studiengang)$
-		\textbf{Studiengang:}\\
-		\textbf{$studium.studiengang$}\\
-		\vspace*{1cm}
-	$endif$
+$if(logo)$ 
+    \includegraphics[max width=\textwidth]{$logo$}\\
+$else$
+    $-- Do Nothing if no logo is defined --$
+$endif$ 
+$if(hochschule.name)$ 
+$if(logo)$
+    $-- Do Nothing if the logo is defined --$
+$else$   
+    \Huge \textbf{$hochschule.name$} \\
+$endif$   
+$endif$
+
+    \vspace*{1cm}
+	
+$if(aufgabe.typ)$
 	\Huge
-	$if(aufgabe.typ)$
-		\textbf{$aufageb.typ$}\\
-		\vspace*{0.5cm}
-	$endif$
-	$if(title)$
-		\textbf{$title$} \\
-	$endif$
+    \textbf{$aufgabe.typ$}\\
+    \vspace*{0.3cm}
+$endif$
+$if(studium.fachbereich)$
+	\large
+    \textbf{Fachbereich $studium.fachbereich$}\\
+		\vspace*{1cm}
+$else$
+$if(studium.studiengang)$
+	\large
+    \textbf{Studiengang: $studium.studiengang$}\\
+		\vspace*{1cm}
+$endif$
+$endif$
+$if(title)$
+	\Huge
+    \textbf{$title$} \\
+$endif$
 	\vspace*{0.3cm}
 	\large
-  $if(aufgabe.code)$
-		$aufgabe.code$ \\
-	$endif$
+$if(aufgabe.code)$
+    $aufgabe.code$ \\ % Aufgabencode
+$endif$
 	\vspace*{0.5cm}
-	$if(studium.fach)$
-		\textbf{$studium.fach$}\\
-	$endif$
+$if(studium.fach)$
+    \textbf{$studium.fach$}\\
+$endif$
 	\vspace*{0.5cm}
 	
 	\vfill
 	\normalsize
 	\newcolumntype{x}[1]{>{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}
 	\begin{tabular}{x{6cm}p{7.5cm}}
-		$if(student)$
-			\rule{0mm}{5ex}\textbf{Student:} & \studentname
-			$if(student.strasse)$
-				\newline $student.strasse$
-			$endif$
-			$if(student.ort)$
-				\newline $student.ort$
-			$endif$
-			$if(student.email)$
-				\newline $student.email$
-			$endif$ \\
-		$endif$
-		$if(betreuung)$
-			\rule{0mm}{5ex}\textbf{Betreuung:} & $betreuung$ \\
-		$endif$
-		$if(student.matrikelnr)$
-			\rule{0mm}{5ex}\textbf{Matrikelnummer:} & $student.matrikelnr$ \\
-		$endif$
-		$if(date)$
-			\rule{0mm}{5ex}\textbf{Abgabedatum:} & $date$ \\
-		$else$
-			\rule{0mm}{5ex}\textbf{Abgabedatum:} & \today \\
-		$endif$
+$if(studium.fachbereich)$
+$if(studium.studiengang)$
+        \rule{0mm}{4ex}\textbf{Studiengang:} &      $studium.studiengang$ \\
+$endif$
+$endif$
+$if(student)$
+        \rule{0mm}{4ex}\textbf{Student:} &          \studentname
+$if(student.email)$
+                                            \newline $student.email$
+$endif$ \\
+$endif$
+$if(student.matrikelnr)$
+        \rule{0mm}{4ex}\textbf{Matrikelnummer:} &   $student.matrikelnr$ \\
+$endif$
+$if(betreuer)$
+        \rule{0mm}{4ex}\textbf{Betreut durch:} &    $for(betreuer)$$betreuer$$sep$\newline $endfor$\\
+$endif$
+$if(date)$
+        \rule{0mm}{4ex}\textbf{Abgabedatum:} &      $date$ \\ % Fixed date was set
+$else$
+        \rule{0mm}{4ex}\textbf{Abgabedatum:} &      \today \\ % No date set, use today
+$endif$
 	\end{tabular}
+	\vfill
+$if(hochschule.adresse)$
+    $if(hochschule.name)$$hochschule.name$, $endif$$hochschule.adresse$
+$endif$
 \end{center}
+\end{titlepage}
+\restoregeometry    % Zurück auf Standard Page Geometry
 \pagebreak
 
-% ----------------------------------------------------------------------------------------------------------
+% -------------------------------------------------------------
 % Assignment
-% ----------------------------------------------------------------------------------------------------------
+% -------------------------------------------------------------
 
 $if(assignment.file)$
 $if(assignment.beforetitle)$
+$-- Do Nothing if the assignment is before the title! --$
 $else$
 \assignment
 $endif$
 $endif$
 
 
-$if(skipfirstpage)$ % Skip first page count, if skipfirstpage = 1
+$if(skipfirstpage)$ % Skip first page count, if skipfirstpage = true
 \clearpage
 \setcounter{page}{1}
 $endif$
 
 $if(abstract)$
-% ----------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------
 % Abstract
-% ----------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------
 \begin{abstract}
 	$abstract$
 \end{abstract}
@@ -417,9 +478,9 @@ $endif$
 
 
 $for(include-before)$
-% ----------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------
 % include-before Section
-% ----------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------
 $include-before$
 $endfor$
 
@@ -429,69 +490,33 @@ $if(toc-title)$
 $endif$
 {
 $if(colorlinks)$
-\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}		% Setup the link color of the toc
+\hypersetup{linkcolor=$if(toc-color)$$toc-color$$else$black$endif$}		% Setup the link color of the toc
 $endif$
 
 \setcounter{tocdepth}{$toc-depth$}
 
-% ----------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------
 % Inhaltsverzeichnis
-% ----------------------------------------------------------------------------------------------------------
-% TODO Typ vor Nummer
-\renewcommand{\cfttabpresnum}{Tab. }
-\renewcommand{\cftfigpresnum}{Abb. }
-\settowidth{\cfttabnumwidth}{Abb. 10\quad}
-\settowidth{\cftfignumwidth}{Abb. 10\quad}
+% --------------------------------------------------------------
 
 \singlespacing
-\rhead{$if(lang)$INHALTSVERZEICHNIS$else$TABLE OF CONTENTS$endif$}
+\rhead{$if(lang)$INHALTSVERZEICHNIS$else$TABLE OF CONTENTS$endif$} % Set Headline right to INHALTSVERZEICHNIS
 \renewcommand{\contentsname}{I $if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}
-\phantomsection
-\addcontentsline{toc}{section}{\texorpdfstring{I \hspace{0.35em}$if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}{$if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}}
-\addtocounter{section}{1}
+\phantomsection % Needet to hyperref the section
+%\addcontentsline{toc}{section}{\texorpdfstring{I \hspace{0.35em}$if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}{$if(lang)$Inhaltsverzeichnis$else$Table of contents$endif$}}
+\addtocounter{section}{1} % reset the section counter to 1
 \tableofcontents
 \pagebreak
 }
 $endif$
 
-$if(lot)$
-% ----------------------------------------------------------------------------------------------------------
-% Tabellenverzeichnis
-% ----------------------------------------------------------------------------------------------------------
-\rhead{$if(lang)$TABELLENVERZEICHNIS$else$LIST OF TABLES$endif$}
-\listoftables
-\pagebreak
-$endif$
-
-$if(lof)$
-% ----------------------------------------------------------------------------------------------------------
-% Abbildungsverzeichnis
-% ----------------------------------------------------------------------------------------------------------
-\rhead{$if(lang)$ABBILDUNGSVERZEICHNIS$else$LIST OF FIGURES$endif$}
-\listoffigures
-\pagebreak
-$endif$
-
-$if(abk)$
-% ----------------------------------------------------------------------------------------------------------
-% Abkürzungsverzeichnis
-% ----------------------------------------------------------------------------------------------------------
-\rhead{$if(lang)$ABKÜRZUNGSVERZEICHNIS$else$LIST OF ABBREVIATIONS$endif$}
-\section{Abkürzungsverzeichnis}
-\begin{acronym}[OSGi] 						% längste Abkürzung steht in eckigen Klammern
-	\setlength{\itemsep}{-\parsep} 			% geringerer Zeilenabstand
-	\acro{OSGi}{Open Service Gateway initiative}
-\end{acronym}
-\newpage
-$endif$
-
-% ----------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------
 % Einrichtung der Kopfzeile
-% ----------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{}
 \renewcommand{\subsubsectionmark}[1]{}
-\lhead{$if(lang)$Abschnitt$else$Chapter$endif$ \thesection}
+\lhead{\thesection\space\nouppercase{\rightmark}}
 \rhead{} %hier kann die rechte Seite der Kopfzeile editiert werden!
 
 \onehalfspacing
@@ -503,15 +528,69 @@ $endif$
 %\renewcommand{\includegraphics}[1][]{\includegraphics[width=0.9\columnwidth,keepaspectratio]{#1}}
 
 
-% ----------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------
 % Inhalt
-% ----------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------
 
 $body$
 
-% ----------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------
+% Verzeichnisse
+% --------------------------------------------------------------
+\pagebreak % wird benötigt um den header erst auf der folgeseite beginnen zu lassen.
+\lhead{} % remove the left part of header
+
+
+% Nachspann
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\theHsection}{\Roman{section}}
+\pagenumbering{Roman}
+
+% Pagebreak after each Section
+%\let\oldsection\section
+%\renewcommand\section{\clearpage\oldsection}
+
+%\setcounter{section}{2}
+%\setcounter{page}{2}
+
+$if(acronym)$
+% --------------------------------------------------------------
+% Abkürzungsverzeichnis
+% --------------------------------------------------------------
+\rhead{$if(lang)$ABKÜRZUNGSVERZEICHNIS$else$LIST OF ABBREVIATIONS$endif$}
+\section*{Abkürzungsverzeichnis}
+\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
+
+\begin{acronym}[$acronym.longest$] 						% längste Abkürzung steht in eckigen Klammern
+	%\setlength{\itemsep}{-\parsep} 			% geringerer Zeilenabstand
+$for(acronym.list)$
+	\acro{$it.id$}[$it.short$]{$it.long$}
+$endfor$
+\end{acronym}
+\pagebreak
+$endif$
+
+$if(lof)$
+% --------------------------------------------------------------
+% Abbildungsverzeichnis
+% --------------------------------------------------------------
+\rhead{$if(lang)$ABBILDUNGSVERZEICHNIS$else$LIST OF FIGURES$endif$}
+\listoffigures
+\pagebreak
+$endif$
+
+$if(lot)$
+% -----------------------------------------------------------------
+% Tabellenverzeichnis
+% -----------------------------------------------------------------
+\rhead{$if(lang)$TABELLENVERZEICHNIS$else$LIST OF TABLES$endif$}
+\listoftables
+\pagebreak
+$endif$
+
+% --------------------------------------------------------------
 % Literaturverzeichnis
-% ----------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------
 
 $if(natbib)$
     $if(bibliography)$
@@ -526,7 +605,7 @@ $if(natbib)$
 \begin{frame}[allowframebreaks]{$biblio-title$}
   \bibliographytrue
         $endif$
-  \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+  \bibliography{$for(bibliography)$$bibliography$$sep$, $endfor$}
         $if(beamer)$
 \end{frame}
         $endif$
@@ -549,61 +628,24 @@ $include-after$
 
 $endfor$
 
-%$if(biblatex)$
-%	\pagebreak
-%	\lhead{}
-%	\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
-%	\renewcommand{\refname}{Quellenverzeichnis}
-%	\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-%	\pagebreak
-%$endif$
-%$if(natbib)$
-%  $if(bibliography)$
-%		\pagebreak
-%		\lhead{}
-%		\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
-%		\renewcommand{\refname}{Quellenverzeichnis}
- %   \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
- %	$endif$
-%$endif$
-%$if(csl-refs)$
-%	\pagebreak
-%\lhead{}
-%\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
-%\renewcommand{\refname}{Quellenverzeichnis}
-%$endif$
-
-
-%$if(biblatex)$
-	% ----------------------------------------------------------------------------------------------------------
-	% Literatur
-	% ----------------------------------------------------------------------------------------------------------
-%	\pagebreak
-%	\lhead{}
-%	\rhead{QUELLENVERZEICHNIS} %hier kann die rechte Seite der Kopfzeile editiert werden!
-%	\renewcommand{\refname}{Quellenverzeichnis}	
-
-%	\ bibliographystyle{myalpha}
-%	\bibliography{bibo}
-%	\pagebreak
-
-	%\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-%$endif$
-
 $if(insurance)$
-% ----------------------------------------------------------------------------------------------------------
+% -------------------------------------------------------------
 % Erklärung zur Selbstständigkeit
-% ----------------------------------------------------------------------------------------------------------
+% -------------------------------------------------------------
 \newpage
 \thispagestyle{empty}
 \begin{center}
 	\vspace*{5em}
-	\huge\textbf{Erklärung}\\
+	\huge\textbf{Eidesstattliche Erklärung}\\
 \end{center}
 \vspace{2em}
-Ich, \studentname,  versichere  durch  meine  Unterschrift,  dass  ich  die  vorliegende Arbeit selbstständig erstellt habe. Andere als die angegebenen Hilfsmittel habe ich nicht ver-wendet. 
 
-Soweit  ich  fremde  Gedankengänge  oder  Texte  verwendet  habe,  sind  diese  von  mir  als solche kenntlich gemacht und dem Urheber eindeutig zuordenbar. Dazu zählen sowohl wört-liche als auch nicht wörtliche Übernahmen.
+\studentname, $student.matrikelnr$
+
+Hiermit erkläre ich an Eides statt, dass ich diese Arbeit selbstständig abgefasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Sämtliche Stellen der Arbeit, die im Wortlaut oder dem Sinne nach Publikationen oder Vorträgen anderer Autoren entnommen sind, habe ich als solche kenntlich gemacht. Ich bin mit einer Plagiatsprüfung einverstanden.
+
+
+Die Arbeit wurde bisher keiner anderen Prüfungsbehörde vorgelegt und auch noch nicht veröffentlicht.
 
 \vspace{4em}
 \begin{minipage}{\linewidth}
@@ -613,6 +655,8 @@ Soweit  ich  fremde  Gedankengänge  oder  Texte  verwendet  habe,  sind  diese 
 	\end{tabular}
 \end{minipage}
 $endif$
+
+
 
 $for(include-after)$
 $include-after$

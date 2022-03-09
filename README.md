@@ -182,8 +182,49 @@ Da zuerst die erste Seite des PDFs ausgefüllt wird, muss der Rest des Formulars
 
 Es wird entweder das Logo oder der Name der Hochschule auf dem Titelblatt ausgegeben, jedoch nicht beides. Sollte beides gesetzt sein, so wird gar nichts ausgegeben.
 
+### Abkürzungen / Acronyms
+
+Beispiel für `acronyms.yaml`
+
+
+```
+acronym:
+    longest: 3gpp
+    list:
+        -   id: 3gpp
+            short: 3GPP
+            long: 3rd Generation Partnership Project   
+        -   id: bss
+            short: BSS
+            long: Base Station Subsystem    
+        -   id: imsi
+            short: IMSI
+            shortplural: IMSIs
+            long: International Mobile Subscriber Identity
+            longplural: International Mobile Subscriber Identities                
+```
+
+Verwendung im Markdown dann mit
+
+```
+\acl{3gpp}  %% Lang
+\acs{3gpp}  %% Kurz
+\acp{imsi}  %% Lang Plural 
+\acsp{3gpp} %% Kurz Plural
+
+```
+
+Bei den Pluralen ist zu beachten, dass wenn kein Plural definiert ist (siehe `acronyms.yaml` Beispiel), dass einfach ein "s" angehangen wird.
+
+Für mehr Info über Acronyme, siehe [Dokumentation LaTeX acronym Package](https://mirror.clientvps.com/CTAN/macros/latex/contrib/acronym/acronym.pdf) 
+
+
 
 ## ToDo
 
 - [ ] Codeblock mit Linenumbers
 - [ ] Installationsanleitung
+- [ ] `metadata.yaml`
+- [ ] `defaults.yaml`
+
+

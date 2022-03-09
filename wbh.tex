@@ -561,10 +561,13 @@ $if(acronym)$
 \section*{Abkürzungsverzeichnis}
 \addcontentsline{toc}{section}{Abkürzungsverzeichnis}
 
-\begin{acronym}[$acronym.longest$] 						% längste Abkürzung steht in eckigen Klammern
-	%\setlength{\itemsep}{-\parsep} 			% geringerer Zeilenabstand
+\begin{acronym}[$acronym.longest$]                         % längste Abkürzung steht in eckigen Klammern
+    %\setlength{\itemsep}{-\parsep}             % geringerer Zeilenabstand
 $for(acronym.list)$
-	\acro{$it.id$}[$it.short$]{$it.long$}
+    \acro{$it.id$}[$it.short$]{$it.long$}
+    $if(it.shortplural)$    % Prüfen ob plural definition in acronyms.yaml vorhanden ist.
+    \acroplural{$it.id$}[$it.shortplural$]{$it.longplural$}
+    $endif$
 $endfor$
 \end{acronym}
 \pagebreak

@@ -564,10 +564,10 @@ $if(acronym)$
 \begin{acronym}[$acronym.longest$]                         % längste Abkürzung steht in eckigen Klammern
     %\setlength{\itemsep}{-\parsep}             % geringerer Zeilenabstand
 $for(acronym.list)$
-    \acro{$it.id$}[$it.short$]{$it.long$}
-    $if(it.shortplural)$    % Prüfen ob plural definition in acronyms.yaml vorhanden ist.
-    \acroplural{$it.id$}[$it.shortplural$]{$it.longplural$}
-    $endif$
+	\acro{$it.id$}[$it.short$]{$it.long$}
+	$if(it.longplural)$
+	\acro{$it.id$}[$if(it.shortplural)$$it.shortplural$$else$$it.short$$endif$]{$it.longplural$}
+	$endif$
 $endfor$
 \end{acronym}
 \pagebreak

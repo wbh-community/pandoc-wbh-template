@@ -569,10 +569,13 @@ $if(acronym)$
 \section*{Abkürzungsverzeichnis}
 \addcontentsline{toc}{section}{Abkürzungsverzeichnis}
 
-\begin{acronym}[$acronym.longest$] 						% längste Abkürzung steht in eckigen Klammern
-	%\setlength{\itemsep}{-\parsep} 			% geringerer Zeilenabstand
+\begin{acronym}[$acronym.longest$]                         % längste Abkürzung steht in eckigen Klammern
+    %\setlength{\itemsep}{-\parsep}             % geringerer Zeilenabstand
 $for(acronym.list)$
 	\acro{$it.id$}[$it.short$]{$it.long$}
+	$if(it.longplural)$
+	\acro{$it.id$}[$if(it.shortplural)$$it.shortplural$$else$$it.short$$endif$]{$it.longplural$}
+	$endif$
 $endfor$
 \end{acronym}
 \pagebreak

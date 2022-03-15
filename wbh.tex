@@ -108,12 +108,12 @@ $if(assignment.fillform)$
 \begin{tikzpicture}[remember picture, overlay, x=1mm,y=1mm,%
 mybox/.style={rectangle,minimum width=56mm, draw opacity=0.0, line width=0,  minimum height=8mm, align=left,text width=56mm},%
 info/.style={mybox,draw=black,align=left}]
-\node at (34,-34) [info] {$student.firstname$};
-\node at (95,-34) [info] {$student.lastname$};
-\node at (34,-47) [info] {$student.strasse$};
-\node at (95,-47) [info] {$student.ort$}; 
-\node at (34,-59) [info] {$student.matrikelnr$};
-\node at (95,-59) [info] {$studium.studiengangnr$};
+\node at (34,-36) [info] {$student.firstname$};
+\node at (95,-36) [info] {$student.lastname$};
+\node at (34,-49) [info] {$student.strasse$};
+\node at (95,-49) [info] {$student.ort$}; 
+\node at (34,-61) [info] {$student.matrikelnr$};
+\node at (95,-61) [info] {$studium.studiengangnr$};
 \end{tikzpicture}}, pages=1]{$assignment.file$}
 $if(assignment.multipage)$ % check if we need to include the rest of the document
 \includepdf[pages=$assignment.pages$]{$assignment.file$} % Include rest of document
@@ -574,7 +574,7 @@ $if(acronym)$
 $for(acronym.list)$
 	\acro{$it.id$}[$it.short$]{$it.long$}
 	$if(it.longplural)$
-	\acro{$it.id$}[$if(it.shortplural)$$it.shortplural$$else$$it.short$$endif$]{$it.longplural$}
+	\acroplural{$it.id$}[$if(it.shortplural)$$it.shortplural$$else$$it.short$$endif$]{$it.longplural$}
 	$endif$
 $endfor$
 \end{acronym}

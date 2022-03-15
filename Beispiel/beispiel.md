@@ -169,3 +169,57 @@ De: \qty[locale = DE]{6.789}{\metre} \\
 Us: \qty[locale = US]{6.789}{\metre} 
 \end{aligned}
 $$
+
+# Akronyme und Zitate
+
+## Akronyme
+
+Das LaTeX Paket *acronyms* erlaubt das definieren von Akronymen. Das geniale an dem Paket ist, dass jede Abkürzung, oder Akronym, bei der ersten Verwendung ausgeschreiben wird. Z.b. wird aus `\ac{dau}` bei der ersten Verwendung `Dümmster anzunehmender User (DAU)` und ab der zweiten Verwendung eben nur noch `DAU` als Abkürzung.
+
+Um die Akronyme zu definieren ist eine Datei `acronyms.yaml` notwendig, die hier auch im Beispiel Ordner liegt.
+
+Die Datei sieht ungefähr so aus:
+
+```
+acronym:
+    longest: ECTS
+    list:
+        -   id: dau
+            short: DAU
+            shortplural: DAUs
+            long: Dümmster anzunehmender User
+            longplural: Dümmste anzunehmende User
+        -   id: ects
+            short: ECTS
+            long: European Credit Transfer System
+        -   id: ssd
+            short: SSD
+            long: Solid state Disk
+        -   id: wbh
+            short: WBH
+            long: Wilhelm Büchner Hochschule
+
+```
+
+Es können auch Plurale genutzt werden.
+
+Wichtig ist, für die Spaltenbildung im Abkürzungsverzeichnis, dass die längste Abkürzung anzugeben.
+
+Die Acronyme können dann wie folgt eingesetzt werden:
+
+
+| Code     |  Erklärung          | Ergebnis                |
+| -------- | ------------------- | ----------------------- |
+| `\ac{dau}  `|  Abkürzung ausgeschrieben und kurz in Klammern  | \ac{dau}   |
+| `\acf{dau} `|  Erzwinge `\ac{dau}`                            | \acf{dau}  |
+| `\acl{dau} `|  Nur Langform                                   | \acl{dau}  |
+| `\acs{dau} `|  Nur Kurzform                                   | \acs{dau}  |
+| `\aclp{dau} `|  Langform Plural                               | \aclp{dau} |
+| `\acsp{dau}`|  Kurzform Plural                                | \acsp{dau} |
+
+
+
+
+## Zitate
+
+Todo

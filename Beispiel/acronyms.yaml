@@ -1,0 +1,17 @@
+acronym:
+    longest: ECTS
+    list:
+        -   id: dau
+            short: DAU
+            shortplural: DAUs
+            long: Dümmster anzunehmender User
+            longplural: Dümmste anzunehmende User
+        -   id: ects
+            short: ECTS
+            long: European Credit Transfer System
+        -   id: ssd
+            short: SSD
+            long: Solid state Disk
+        -   id: wbh
+            short: WBH
+            long: Wilhelm Büchner Hochschule

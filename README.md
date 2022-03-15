@@ -164,7 +164,7 @@ Eine Range kann durch `{x-y}` angegeben werden.
 ```
 Dabei unbedingt die einfachen Anführungszeichen drin lassen. Eine Range kann leider nicht angegeben
 
-Weitere Hinweise stehen in der (Dokumentation)[https://texdoc.org/serve/pdfpages.pdf/0] des LaTeX packages `pdfpages`
+Weitere Hinweise stehen in der [Dokumentation](https://texdoc.org/serve/pdfpages.pdf/0) des LaTeX packages `pdfpages`
 
 
 

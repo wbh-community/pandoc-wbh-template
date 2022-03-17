@@ -1,3 +1,9 @@
+# WICHTIG!!!
+
+Wir haben uns entschieden das Template an anderer Stelle weiter zu entwickeln. Es wird nun von der [WBH-Community](https://github.com/wbh-community/pandoc-wbh-template) weiter entwickelt. Dieser Schritt war mir wichtig, damit dieses Projekt auch weiter besteht, selbst wenn ich keine Zeit mehr dafür finde.
+
+Vielen Dank an alle Helfer!
+
 # Pandoc Vorlage für B-Prüfungen
 
 [Pandoc](https://pandoc.org) ist ein Programm mit dessen Hilfe man Dateien von einem Format in ein anderes überführen kann. dem man Markdowndateien (und andere Formate) in viele verschiedene Formate überführen kann.

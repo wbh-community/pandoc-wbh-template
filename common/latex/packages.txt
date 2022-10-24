@@ -1,0 +1,136 @@
+# Packages listed in https://pandoc.org/MANUAL.html#creating-a-pdf
+
+# NOTE: search left hand side on CTAN to see for yourself:
+#       graphicx  -> graphics
+#       grffile   -> oberdiek
+#       longtable -> tools
+
+# Redundant, as included in `scheme-basic`
+amsfonts
+amsmath
+geometry
+graphics
+hyperref
+iftex
+lm
+luatex
+oberdiek
+pdftexcmds
+tools       # The LaTeX standard tools bundle; e.g., calc, longtable
+
+# Other basic packages
+beamer
+booktabs
+caption     # Customize captions in floating envs; required for beamer
+cmap        # Make PDF files searchable and copyable
+euler       # Use AMS Euler fonts for math
+eurosym     # Metafont and macros for Euro sign
+fancyvrb
+listings
+lm-math
+logreq
+memoir
+multirow    # Tabular cells spanning multiple rows
+parskip
+pdflscape   # landscape mode for single pages
+pgf         # for TikZ
+setspace
+ulem
+unicode-math
+xcolor
+
+# Required when using pandoc-crossref
+cleveref    # Intelligent cross-referencing
+float       # Improved interface for floating objects
+subfig      # Figures broken into subfigures
+
+# Needed for when `--highlight-style` is used with something other than
+# pygments.
+framed
+
+#########################################################################
+# Extra packages for XeTex, LuaTex, and BibLaTex.                     
+embedfile
+fontspec
+hyperxmp
+ifmtarg
+luacode
+lualatex-math
+luatexbase
+mathspec
+microtype
+selnolig
+upquote
+xetex
+
+#########################################################################
+# I18n and languages; the choice of selected languages is historic,
+# those were the ones installed by texlive by default for a long time.
+bidi
+csquotes
+babel-basque
+babel-czech
+babel-danish
+babel-dutch
+babel-english
+babel-finnish
+babel-french
+babel-german
+babel-hungarian
+babel-italian
+babel-norsk
+babel-polish
+babel-portuges
+babel-spanish
+babel-swedish
+hyphen-basque
+hyphen-czech
+hyphen-danish
+hyphen-dutch
+hyphen-english
+hyphen-finnish
+hyphen-french
+hyphen-german
+hyphen-hungarian
+hyphen-italian
+hyphen-norwegian
+hyphen-polish
+hyphen-portuguese
+hyphen-spanish
+hyphen-swedish
+# no longer needed in newer pandoc versions
+polyglossia
+
+#########################################################################
+# Reference backend options
+biber
+biblatex
+bibtex
+natbib
+
+#########################################################################
+# These packages were identified by the tests, they are likely
+# dependencies of dependencies that are not encoded well.
+footnotehyper
+xurl
+
+#########################################################################
+# These packages are identified by the tests of pitcde-template,
+# they are likely dependencies of dependencies.
+koma-script
+preprint
+xkeyval
+tocbibind
+acronym
+bigfoot
+xstring
+floatflt
+paralist
+collectbox
+adjustbox
+pdfpages
+siunitx
+pdfx
+abstract
+filecontents
+mdframed

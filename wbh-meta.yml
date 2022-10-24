@@ -1,0 +1,22 @@
+---
+logo: /Wilhelm_Buechner_Hochschule_Logo.pdf
+title: Pandoc und Markdown für deine Texte
+author: Max Mustermann
+student:
+  firstname: Max
+  lastname: Mustermann
+  email: max@wb-fernstudium.de
+  matrikelnr: 111111
+  strasse: Hilpertstr. 31
+  ort: 64295 Darmstadt
+studium:
+  studiengang: Ausgedachter Name
+  studiengangnr: 1000
+  fach: Freizeitgestaltung
+aufgabe:
+  typ: B-Prüfung
+  code: Freiwillige_Arbeit
+lang: de
+toc: \\
+skipfirstpage: 1 # set any value, to skip the counting for Titlepage, so TOC will start with Page 1
+...

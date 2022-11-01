@@ -138,3 +138,4 @@ xmpincl
 zref
 needspace
 fontspec
+eso-pic

@@ -59,7 +59,7 @@ $endif$
 % Rechts:           4cm (Korrekturrand)
 % ------------------------------------------------------------
 $if(geometry)$
-\usepackage[$if(geometry)$$for(geometry)$$geometry$$sep$,$endfor$$else$a4paper,margin=2cm,bottom=2.5cm,top=25mm,left=25mm,right=40mm,headsep=10,footskip=12mm$endif$]{geometry}
+\usepackage[$if(geometry)$$for(geometry)$$geometry$$sep$,$endfor$$else$a4paper,margin=2cm,bottom=2.5cm,top=25mm,left=25mm,right=40mm,headsep=10mm,footskip=12mm$endif$]{geometry}
 $endif$
 
 \usepackage[right]{eurosym}
@@ -83,7 +83,7 @@ $endif$
 $if(lang)$
 \sisetup{locale = $lang/uppercase$}
 $endif$
-\usepackage[a-1b]{pdfx} % This needs to be befor hyperref package and is to generate PDF as PDF/A Standard
+%\usepackage[a-1b]{pdfx} % This needs to be befor hyperref package and is to generate PDF as PDF/A Standard
 \usepackage{abstract} % For nice abstract formatting
 % ----------------------------------------------------------------------------------------------------------
 % Firstname + Lastname
@@ -190,6 +190,7 @@ $endif$
 
 % PDF Metadata
 % ------------------------------------------------------------------
+\usepackage{ifxetex,ifluatex}
 \hypersetup{
 	unicode=false, 
 	pdftoolbar=true, 
@@ -202,7 +203,12 @@ $if(studium.studiengang)$
 	pdfsubject={Studiengang: $studium.studiengang$}, 
 $endif$
 	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq via pandoc},
-	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
+\ifluatex
+	pdfproducer={luatex \the\luatexversion.\luatexrevision},
+\fi
+%\ifxetex
+%	pdfproducer={XeTeX \the\XeTeXversion\XeTeXrevision}
+%\fi
 	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$,$endif$ $if(student.matrikelnr)$$student.matrikelnr$,$endif$ $if(aufgabe.code)$$aufgabe.code$,$endif$ $if(keywords)$ $for(keywords)$ $keywords[, ]$ $endfor$$endif$},
 	pdfnewwindow=true,
 $if(lang)$

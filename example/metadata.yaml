@@ -74,7 +74,7 @@ geometry:
 - bottom=2.5cm
 - left=25mm
 - right=40mm
-- headsep=10
+- headsep=10mm
 - footskip=12mm
 
 titlepage:

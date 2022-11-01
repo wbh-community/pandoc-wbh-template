@@ -10,15 +10,26 @@
 \PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
 
 \documentclass[
-    12pt,
-    a4paper,
-    $if(lang)$
+$if(fontsize)$
+	$fontsize$,
+	$else$
+	11pt,
+$endif$
+$if(papersize)$
+	$papersize$paper,
+	$else$
+	a4paper,
+$endif$
+$if(lang)$
     $babel-lang$,
-    $endif$
+$endif$
     bibliography=totocnumbered,
     listof=totocnumbered,
     toc=flat,
     numbers=noenddot % Numbers without dots
+$for(classoption)$
+  	$classoption$$sep$,
+$endfor$
 ]{scrartcl}
 
 $if(lang)$

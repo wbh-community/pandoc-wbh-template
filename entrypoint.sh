@@ -92,7 +92,13 @@ then
     echo -n "Create document..."
     now=$(date +"%Y%m%d")
 
-    pandocrun=$(pandoc -d defaults.yaml -o $now.pdf 2>&1 /dev/null)
+    if grep -q "^output-file" defaults.yaml
+    then
+        pandocrun=$(pandoc -d defaults.yaml)
+    else
+        extension=$(grep "to:" defaults.yaml| sed -e 's#.*: \(\)#\1#')
+        pandocrun=$(pandoc -d defaults.yaml -o $now.$extension 2>&1 /dev/null)
+    fi
     if [ -z "$pandocrun" ]
     then
         echo -e "\t${GREEN}done${NC}!"

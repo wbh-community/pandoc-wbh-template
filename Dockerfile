@@ -39,16 +39,19 @@ RUN echo "binary_x86_64-linuxmusl 1" >> /root/texlive.profile \
 FROM pitcde-latex as pitcde-pandoc
 MAINTAINER Sebastian Preisner <kreativmonkey@calyruim.org>
 
-COPY common/images/Wilhelm_Buechner_Hochschule_Logo.pdf /
-COPY wbh.tex /
-COPY wbh-meta.yml /
+COPY common/images/Wilhelm_Buechner_Hochschule_Logo.pdf /templates/
+COPY wbh.tex /templates/
+COPY iso690-numeric-sort-de.csl /templates/
 COPY entrypoint.sh /
-RUN chmod 0644 /wbh.tex && chmod 0744 /entrypoint.sh
+COPY example /example
+COPY common/Merriweather.tar.xz /
+RUN mkdir -p /usr/share/fonts/truetype \
+    && tar -xf /Merriweather.tar.xz -C /usr/share/fonts/truetype/ \
+    && rm -f /Merriweather.tar.xz \
+    && chmod 0644 -R /templates && chmod 0744 /entrypoint.sh \
+    && fc-cache -f && rm -rf /var/cache/*
 
 WORKDIR /data
 ENV LANG=C.UTF-8
 
-ENTRYPOINT [ "pandoc", "-s", \
-             "--pdf-engine=xelatex",\
-             "--template=/wbh.tex",\
-             "--metadata-file=/wbh-meta.yml" ]
+ENTRYPOINT [ "/bin/sh", "/entrypoint.sh" ]

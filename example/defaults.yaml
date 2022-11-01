@@ -1,0 +1,27 @@
+from: markdown
+to: pdf
+template: /templates/wbh.tex
+standalone: true
+pdf-engine: lualatex
+
+input-files:
+- README.md
+
+metadata-files:
+- metadata.yaml
+- acronyms.yaml
+
+resource-path: 
+  - "."
+  - "../"
+# turn on built-in citation processing. Note that if you need
+# control over when the citeproc processing is done relative
+# to other filters, you should instead use `citeproc` in the
+# list of `filters` (see below).
+citeproc: true
+cite-method: biblatex
+csl: /templates/iso690-numeric-sort-de.csl
+bibliography:
+- literatur.bib
+
+toc-depth: 3

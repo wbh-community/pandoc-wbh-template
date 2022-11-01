@@ -48,7 +48,9 @@ $endif$
 % Oben und unten:   2cm
 % Rechts:           4cm (Korrekturrand)
 % ------------------------------------------------------------
-\usepackage[a4paper, top=$if(seite.rand_oben)$$seite.rand_oben$$else$25mm$endif$, left=$if(seite.rand_links)$$seite.rand_links$$else$25mm$endif$, right=$if(seite.rand_rechts)$$seite.rand_rechts$$else$40mm$endif$, bottom=$if(seite.rand_unten)$$seite.rand_unten$$else$25mm$endif$, headsep=10mm, footskip=12mm]{geometry}
+$if(geometry)$
+\usepackage[$if(geometry)$$for(geometry)$$geometry$$sep$,$endfor$$else$a4paper,margin=2cm,bottom=2.5cm,top=25mm,left=25mm,right=40mm,headsep=10,footskip=12mm$endif$]{geometry}
+$endif$
 
 \usepackage[right]{eurosym}
 \usepackage[printonlyused]{acronym}
@@ -373,7 +375,7 @@ $endif$
 % Links:            2cm 
 % Oben und unten:   2cm
 % Rechts:           2cm 
-\newgeometry{top=$if(titelseite.rand_oben)$$titelseite.rand_oben$$else$20mm$endif$, left=$if(titelseite.rand_links)$$titelseite.rand_links$$else$20mm$endif$, right=$if(titelseite.rand_rechts)$$titelseite.rand_rechts$$else$20mm$endif$, bottom=$if(titelseite.rand_unten)$$titelseite.rand_unten$$else$20mm$endif$}
+\newgeometry{$if(titlepage)$$for(titlepage)$$titlepage$$sep$,$endfor$$else$top=20mm,left=20mm,right=20mm,bottom=20mm$endif$}
 \begin{center}
 $if(logo)$ 
     \includegraphics[max width=\textwidth]{$logo$}\\

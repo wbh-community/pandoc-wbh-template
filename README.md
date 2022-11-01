@@ -67,12 +67,6 @@ lang:
 #  beforetitle: 1
 #  multipage: 1
 #  fillform: 1
-# Optionale Seitenrändereinstellungen
-seite:     
-  rand_oben: 20mm
-  rand_unten: 20mm
-  rand_links: 30mm
-  rand_rechts: 40mm
 ...
 ```
 
@@ -120,14 +114,6 @@ Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optional
 | assignment.beforetitle | Seitenzahlen der Aufgabenstellung                     | ja       | 1             |
 | assignment.fillform    | Füllt Name und Addresse auf der Aufgabenstellung aus  | ja       | 1             |
 | assignment.multipage   | Mehr als die erste Seite einbinden                    | ja       | 1             |
-| seite.rand_oben    | Seitenrand oben                                       | ja       | 20mm          |
-| seite.rand_unten   | Seitenrand unten                                      | ja       | 20mm          |
-| seite.rand_rechts  | Seitenrand rechts                                     | ja       | 40mm          |
-| seite.rand_links   | Seitenrand links                                      | ja       | 30mm          |
-| titelseite.rand_oben    | Seitenrand Titelseite oben                                       | ja       | 20mm          |
-| titelseite.rand_unten   | Seitenrand Titelseite unten                                      | ja       | 20mm          |
-| titelseite.rand_rechts  | Seitenrand Titelseite rechts                                     | ja       | 20mm          |
-| titelseite.rand_links   | Seitenrand Titelseite links                                      | ja       | 20mm          |
 
 ### Aufgabenstellung mit einbinden
 

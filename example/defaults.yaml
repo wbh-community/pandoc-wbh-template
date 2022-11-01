@@ -25,19 +25,3 @@ bibliography:
 - literatur.bib
 
 toc-depth: 3
-
-geometry:
-- a4paper
-- margin=2cm
-- top=25mm
-- bottom=2.5cm
-- left=25mm
-- right=40mm
-- headsep=10
-- footskip=12mm
-
-titlepage:
-- top=20mm
-- bottom=20mm
-- right=20mm
-- left=20mm

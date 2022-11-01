@@ -37,17 +37,14 @@ RUN echo "binary_x86_64-linuxmusl 1" >> /root/texlive.profile \
 
 # Puzzle ITC Template integration #########################################
 FROM pitcde-latex as pitcde-pandoc
-MAINTAINER Sebastian Preisner <kreativmonkey@calyruim.org>
+LABEL org.opencontainers.image.authors="Sebastian Preisner <kreativmonkey@calyruim.org>"
 
-COPY common/images/Wilhelm_Buechner_Hochschule_Logo.pdf /templates/
-COPY wbh.tex /templates/
-COPY iso690-numeric-sort-de.csl /templates/
+COPY template /templates
 COPY entrypoint.sh /
 COPY example /example
-COPY common/Merriweather.tar.xz /
 RUN mkdir -p /usr/share/fonts/truetype \
-    && tar -xf /Merriweather.tar.xz -C /usr/share/fonts/truetype/ \
-    && rm -f /Merriweather.tar.xz \
+    && tar -xf /templates/Merriweather.tar.xz -C /usr/share/fonts/truetype/ \
+    && rm -f /templates/Merriweather.tar.xz \
     && chmod 0644 -R /templates && chmod 0744 /entrypoint.sh \
     && fc-cache -f && rm -rf /var/cache/*
 

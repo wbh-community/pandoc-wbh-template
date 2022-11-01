@@ -134,3 +134,7 @@ pdfx
 abstract
 filecontents
 mdframed
+xmpincl
+zref
+needspace
+fontspec

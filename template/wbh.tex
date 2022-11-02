@@ -61,7 +61,9 @@ $endif$
 $if(geometry)$
 \usepackage[$if(geometry)$$for(geometry)$$geometry$$sep$,$endfor$$else$a4paper,margin=2cm,bottom=2.5cm,top=25mm,left=25mm,right=40mm,headsep=10mm,footskip=12mm$endif$]{geometry}
 $endif$
-
+$if(fontfamily)$
+\usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
+$else$
 \usepackage[right]{eurosym}
 \usepackage[printonlyused]{acronym}
 \usepackage{subfig}

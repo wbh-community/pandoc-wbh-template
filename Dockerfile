@@ -45,6 +45,8 @@ COPY example /example
 RUN mkdir -p /usr/share/fonts/truetype \
     && tar -xf /templates/Merriweather.tar.xz -C /usr/share/fonts/truetype/ \
     && rm -f /templates/Merriweather.tar.xz \
+    && tar -xf /templates/arimo.tar.xz -C /usr/share/fonts/truetype/ \
+    && rm -f /templates/arimo.tar.xz \
     && chmod 0644 -R /templates && chmod 0744 /entrypoint.sh \
     && fc-cache -f && rm -rf /var/cache/*
 

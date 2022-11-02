@@ -10,6 +10,8 @@ Das vorgefertigte Conainerimage bringt alle notwendigen Programmteile mit um das
 
 ```bash
 # Podman aufruf
+podman run -it --rm --volume $(pwd):/data wbhdoc
 
 # Docker aufruf
+docker run -it --rm --volume $(pwd):/data --user $(id -u):$(id -g) wbhdoc
 ```

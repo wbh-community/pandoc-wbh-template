@@ -2,7 +2,8 @@
 FROM docker.io/pandoc/core:latest as pitcde-latex
 
 # NOTE: to maintainers, please keep this listing alphabetical.
-RUN apk --no-cache add \
+RUN apk --no-cache update && apk --no-cache upgrade \
+    && apk --no-cache add \
         freetype \
         fontconfig \
         gnupg \

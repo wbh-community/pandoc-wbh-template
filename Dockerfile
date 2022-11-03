@@ -1,5 +1,5 @@
 # LaTeX #################################################################
-FROM pandoc/core:latest as pitcde-latex
+FROM docker.io/pandoc/core:latest as pitcde-latex
 
 # NOTE: to maintainers, please keep this listing alphabetical.
 RUN apk --no-cache add \

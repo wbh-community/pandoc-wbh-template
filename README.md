@@ -3,7 +3,23 @@
 [Pandoc](https://pandoc.org) ist ein Programm mit dessen Hilfe man Dateien von einem Format in ein anderes überführen kann. dem man Markdowndateien (und andere Formate) in viele verschiedene Formate überführen kann.
 Hier findest du die Vorlage zur generierung einer PDF oder eines Latex-Files für B-Prüfungen an der WBH. Es integriert die Vorlage für B-Prüfungen in den Arbeitsablauf für Pandoc.
 
-## Vorraussetzuungen
+## Usage
+
+### Use podman or docker (easy)
+
+Die einfachste Methode dieses template zu nutzen, ist die Verwendung des Containers. Hierzu musst du eine laufende [Docker](https://docs.docker.com/desktop/) oder [Podman](https://podman.io/getting-started/installation) (empfohlen) installation auf deinem Computer eingerichtet haben. Nach der Installation kannst du dir das image mit dem folgenden Befehl herunterladen `podman pull quay.io/kreativmonkey/wbhdoc:docker` oder `docker pull quay.io/kreativmonkey/wbhdoc:docker`.
+
+1. Initialisieren eines neuen Dokuments in einem leeren Ordner:
+   `podman run -it --rm --volume $(pwd):/data:Z quay.io/kreativmonkey/wbhdoc:docker -i`
+   `docker run -it --rm --volume $(pwd):/data:Z --user $(id -u):$(id -g) quay.io/kreativmonkey/wbhdoc:docker -i`
+2. Bauen des angelegten Beispielprojekts:
+   `podman run -it --rm --volume $(pwd):/data:Z quay.io/kreativmonkey/wbhdoc:docker -b`
+   `docker run -it --rm --volume $(pwd):/data:Z --user $(id -u):$(id -g) quay.io/kreativmonkey/wbhdoc:docker -b`
+
+Um den Aufruf zu vereinfachen bietet es sich an einen Alias für diesen anzulegen. Hierzu legt man in unter `~/.bash_rc` dei Zeile `alias wbhdoc='podman run -it --rm --volume $(pwd):/data:Z quay.io/kreativmonkey/wbhdoc:docker'` an (oder mit `docker run`). Nach dem neuladen der bash lässts ich nun mithilfe von `wbhdoc -i` (initialisieren) und `wbhdoc -b` (build) der container nutzen.
+
+### Manuel installation (hard)
+
 Zur Nutzung dieses Templates werden folgende Tools vorrausgesetzt
 
 - Pandoc

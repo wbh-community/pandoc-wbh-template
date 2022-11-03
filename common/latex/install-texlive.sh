@@ -34,7 +34,7 @@ wget --no-verbose \
 
 ## Verifiy installer integrity
 # get current signing key
-gpg --keyserver keyserver.ubuntu.com \
+gpg --keyserver hkp://keyserver.ubuntu.com:80 \
     --receive-key 0xC78B82D8C79512F79CC0D7C80D5E5D9106BAB6BC || exit 5
 gpg --verify "$installer_archive".sha512.asc || exit 5
 sha512sum "$installer_archive".sha512 || exit 5

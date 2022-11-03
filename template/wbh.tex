@@ -74,7 +74,6 @@ $endif$
 \usepackage{paralist}
 \usepackage{array}
 \usepackage{parskip}
-\usepackage[right]{eurosym}
 \usepackage{helvet}
 \usepackage{graphicx}
 \usepackage[export]{adjustbox} % also loads graphicx, to have max width for graphics
@@ -280,12 +279,12 @@ $if(studium.studiengang)$
 	pdfsubject={Studiengang: $studium.studiengang$}, 
 $endif$
 	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq via pandoc},
-\ifluatex
-	pdfproducer={luatex \the\luatexversion.\luatexrevision},
-\fi
-%\ifxetex
-%	pdfproducer={XeTeX \the\XeTeXversion\XeTeXrevision}
+%\ifxetex %if xetex
+	%pdfproducer={xetex \the\XeTeXversion\XeTeXrevision},
 %\fi
+\ifluatex %if luatex
+	pdfproducer={luatex \the\luatexversion\luatexrevision },
+\fi
 	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$,$endif$ $if(student.matrikelnr)$$student.matrikelnr$,$endif$ $if(aufgabe.code)$$aufgabe.code$,$endif$ $if(keywords)$ $for(keywords)$ $keywords[, ]$ $endfor$$endif$},
 	pdfnewwindow=true,
 $if(lang)$
@@ -342,8 +341,6 @@ $if(listings)$
 	\makeatother
 $endif$
 
-\renewcommand{\familydefault}{\sfdefault}
-
 % Pandoc tightlisting
 % ------------------------------------------------------------------
 \providecommand{\tightlist}{%
@@ -361,8 +358,6 @@ $if(biblatex)$
 	\addbibresource{$bibliography$}
 	$endfor$
 $endif$
-
-\usepackage[T1]{fontenc}
 
 $if(csl-refs)$
 \newlength{\cslhangindent}

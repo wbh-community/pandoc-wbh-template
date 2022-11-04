@@ -5,7 +5,7 @@ subtitle: Use Pandoc and Latex to generate beautiful PDF files
 hochschule: 
   name: Wilhelm Büchner Hochschule	
   adresse: Hilpertstraße 31, 64295 Darmstadt 
-logo: /templates/Wilhelm_Buechner_Hochschule_Logo.pdf
+logo: /templates/common/Wilhelm_Buechner_Hochschule_Logo.pdf
 # Uncommand the Date file to set fix publishing date
 # date: 22.02.2022
 

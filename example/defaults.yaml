@@ -20,7 +20,7 @@ resource-path:
 # list of `filters` (see below).
 citeproc: true
 cite-method: biblatex
-csl: /templates/iso690-numeric-sort-de.csl
+csl: /templates/common/iso690-numeric-sort-de.csl
 bibliography:
 - literatur.bib
 

@@ -7,16 +7,16 @@ Hier findest du die Vorlage zur generierung einer PDF oder eines Latex-Files fü
 
 ### Use podman or docker (easy)
 
-Die einfachste Methode dieses template zu nutzen, ist die Verwendung des Containers. Hierzu musst du eine laufende [Docker](https://docs.docker.com/desktop/) oder [Podman](https://podman.io/getting-started/installation) (empfohlen) installation auf deinem Computer eingerichtet haben. Nach der Installation kannst du dir das image mit dem folgenden Befehl herunterladen `podman pull quay.io/kreativmonkey/wbhdoc:docker` oder `docker pull quay.io/kreativmonkey/wbhdoc:docker`.
+Die einfachste Methode dieses template zu nutzen, ist die Verwendung des Containers. Hierzu musst du eine laufende [Docker](https://docs.docker.com/desktop/) oder [Podman](https://podman.io/getting-started/installation) (empfohlen) installation auf deinem Computer eingerichtet haben. Nach der Installation kannst du dir das image mit dem folgenden Befehl herunterladen `podman pull quay.io/wbh-community/wbhdoc:latest` oder `docker pull quay.io/wbh-community/wbhdoc:latest`.
 
 1. Initialisieren eines neuen Dokuments in einem leeren Ordner:
-   `podman run -it --rm --volume $(pwd):/data:Z quay.io/kreativmonkey/wbhdoc:docker -i`
-   `docker run -it --rm --volume $(pwd):/data:Z --user $(id -u):$(id -g) quay.io/kreativmonkey/wbhdoc:docker -i`
+   `podman run -it --rm --volume $(pwd):/data:Z quay.io/wbh-community/wbhdoc:latest -i`
+   `docker run -it --rm --volume $(pwd):/data:Z --user $(id -u):$(id -g) quay.io/wbh-community/wbhdoc:latest -i`
 2. Bauen des angelegten Beispielprojekts:
-   `podman run -it --rm --volume $(pwd):/data:Z quay.io/kreativmonkey/wbhdoc:docker -b`
-   `docker run -it --rm --volume $(pwd):/data:Z --user $(id -u):$(id -g) quay.io/kreativmonkey/wbhdoc:docker -b`
+   `podman run -it --rm --volume $(pwd):/data:Z quay.io/wbh-community/wbhdoc:latest -b`
+   `docker run -it --rm --volume $(pwd):/data:Z --user $(id -u):$(id -g) quay.io/wbh-community/wbhdoc:latest -b`
 
-Um den Aufruf zu vereinfachen bietet es sich an einen Alias für diesen anzulegen. Hierzu legt man in unter `~/.bash_rc` dei Zeile `alias wbhdoc='podman run -it --rm --volume $(pwd):/data:Z quay.io/kreativmonkey/wbhdoc:docker'` an (oder mit `docker run`). Nach dem neuladen der bash lässts ich nun mithilfe von `wbhdoc -i` (initialisieren) und `wbhdoc -b` (build) der container nutzen.
+Um den Aufruf zu vereinfachen bietet es sich an einen Alias für diesen anzulegen. Hierzu legt man in unter `~/.bash_rc` dei Zeile `alias wbhdoc='podman run -it --rm --volume $(pwd):/data:Z quay.io/wbh-community/wbhdoc:latest'` an (oder mit `docker run`). Nach dem neuladen der bash lässts ich nun mithilfe von `wbhdoc -i` (initialisieren) und `wbhdoc -b` (build) der container nutzen.
 
 ### Manuel installation (hard)
 

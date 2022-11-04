@@ -1,0 +1,26 @@
+---
+name: WBHDOC file generator test
+
+on:
+  push:
+    branches:
+    - 'main'
+    - 'dev'
+    tags:
+    - 'v*.*.*'
+  pull_request:
+    branches:
+    - 'main'
+    - 'dev'
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/wbh-community/wbhdoc:latest
+      env:
+        TEMPLATE_PATH: "/wbh.tex"
+        
+    steps:
+    - name: Checkout Repository
+      run: ls

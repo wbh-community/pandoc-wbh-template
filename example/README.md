@@ -15,3 +15,13 @@ podman run -it --rm --volume $(pwd):/data wbhdoc
 # Docker aufruf
 docker run -it --rm --volume $(pwd):/data --user $(id -u):$(id -g) wbhdoc
 ```
+
+# Zitation
+
+Für die Literaturverwaltung empfehlen wir das Tool [JabRef](https://www.jabref.org/) welches die Daten direkt in einem bib-file abspeichert.
+Desweiteren bietet es eine Menge nützlicher Funktionen, wie ein Qualitätscheck der Quellen oder das Auslesen von Markierungen und Kommentaren in PDF-Files.
+
+Um ein Zitat in Pandoc an zu legen, wird der Quellenkey mit führenden `@`-Zeichen zwischen eckige Klammern gesetzt: `[@Quellenkey]`.
+Ein Zitat sieht dann wie folgt aus:
+
+Wie man Kapitel einteilt Beschreibt Berger-Grabner in seinem Buch Wissenschaftliches Arbeiten [@BergerGrabner_2016_BOOK].

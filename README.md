@@ -3,7 +3,23 @@
 [Pandoc](https://pandoc.org) ist ein Programm mit dessen Hilfe man Dateien von einem Format in ein anderes überführen kann. dem man Markdowndateien (und andere Formate) in viele verschiedene Formate überführen kann.
 Hier findest du die Vorlage zur generierung einer PDF oder eines Latex-Files für B-Prüfungen an der WBH. Es integriert die Vorlage für B-Prüfungen in den Arbeitsablauf für Pandoc.
 
-## Vorraussetzuungen
+## Usage
+
+### Use podman or docker (easy)
+
+Die einfachste Methode dieses template zu nutzen, ist die Verwendung des Containers. Hierzu musst du eine laufende [Docker](https://docs.docker.com/desktop/) oder [Podman](https://podman.io/getting-started/installation) (empfohlen) installation auf deinem Computer eingerichtet haben. Nach der Installation kannst du dir das image mit dem folgenden Befehl herunterladen `podman pull quay.io/wbh-community/wbhdoc:latest` oder `docker pull quay.io/wbh-community/wbhdoc:latest`.
+
+1. Initialisieren eines neuen Dokuments in einem leeren Ordner:
+   `podman run -it --rm --volume $(pwd):/data:Z quay.io/wbh-community/wbhdoc:latest -i`
+   `docker run -it --rm --volume $(pwd):/data:Z --user $(id -u):$(id -g) quay.io/wbh-community/wbhdoc:latest -i`
+2. Bauen des angelegten Beispielprojekts:
+   `podman run -it --rm --volume $(pwd):/data:Z quay.io/wbh-community/wbhdoc:latest -b`
+   `docker run -it --rm --volume $(pwd):/data:Z --user $(id -u):$(id -g) quay.io/wbh-community/wbhdoc:latest -b`
+
+Um den Aufruf zu vereinfachen bietet es sich an einen Alias für diesen anzulegen. Hierzu legt man in unter `~/.bash_rc` dei Zeile `alias wbhdoc='podman run -it --rm --volume $(pwd):/data:Z quay.io/wbh-community/wbhdoc:latest'` an (oder mit `docker run`). Nach dem neuladen der bash lässts ich nun mithilfe von `wbhdoc -i` (initialisieren) und `wbhdoc -b` (build) der container nutzen.
+
+### Manuel installation (hard)
+
 Zur Nutzung dieses Templates werden folgende Tools vorrausgesetzt
 
 - Pandoc
@@ -67,12 +83,6 @@ lang:
 #  beforetitle: 1
 #  multipage: 1
 #  fillform: 1
-# Optionale Seitenrändereinstellungen
-seite:     
-  rand_oben: 20mm
-  rand_unten: 20mm
-  rand_links: 30mm
-  rand_rechts: 40mm
 ...
 ```
 
@@ -120,14 +130,6 @@ Im Folgenden sind die einzelnen Variablen und Schalter erläutert. Alle Optional
 | assignment.beforetitle | Seitenzahlen der Aufgabenstellung                     | ja       | 1             |
 | assignment.fillform    | Füllt Name und Addresse auf der Aufgabenstellung aus  | ja       | 1             |
 | assignment.multipage   | Mehr als die erste Seite einbinden                    | ja       | 1             |
-| seite.rand_oben    | Seitenrand oben                                       | ja       | 20mm          |
-| seite.rand_unten   | Seitenrand unten                                      | ja       | 20mm          |
-| seite.rand_rechts  | Seitenrand rechts                                     | ja       | 40mm          |
-| seite.rand_links   | Seitenrand links                                      | ja       | 30mm          |
-| titelseite.rand_oben    | Seitenrand Titelseite oben                                       | ja       | 20mm          |
-| titelseite.rand_unten   | Seitenrand Titelseite unten                                      | ja       | 20mm          |
-| titelseite.rand_rechts  | Seitenrand Titelseite rechts                                     | ja       | 20mm          |
-| titelseite.rand_links   | Seitenrand Titelseite links                                      | ja       | 20mm          |
 
 ### Aufgabenstellung mit einbinden
 

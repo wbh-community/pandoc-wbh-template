@@ -7,17 +7,29 @@
 %
 % Created:
 % Changed: 26.06.2020
+\PassOptionsToPackage{pdfencoding=auto,unicode,pdfa$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
 
 \documentclass[
-    12pt,
-    a4paper,
-    $if(lang)$
+$if(fontsize)$
+	$fontsize$,
+	$else$
+	11pt,
+$endif$
+$if(papersize)$
+	$papersize$paper,
+	$else$
+	a4paper,
+$endif$
+$if(lang)$
     $babel-lang$,
-    $endif$
+$endif$
     bibliography=totocnumbered,
     listof=totocnumbered,
     toc=flat,
     numbers=noenddot % Numbers without dots
+$for(classoption)$
+  	$classoption$$sep$,
+$endfor$
 ]{scrartcl}
 
 $if(lang)$
@@ -30,11 +42,12 @@ $if(babel-newcommands)$
 $babel-newcommands$
 $endif$
 
-%\usepackage[utf8]{inputenc}
+% Sprache
+\usepackage{polyglossia}
+\setdefaultlanguage[spelling=new]{german}
+
 $endif$
 \usepackage{textcomp}   % Erweitert den Zeichensatz
-\usepackage{mathptmx}   % Setzt die Standardschriftart Times New Roman
-                        % für den Fließtext und ebenso die mathematische Schrift 
 \usepackage[onehalfspacing]{setspace} % Der 1,5-zeilige Zeilenabstand
 
 \usepackage[nottoc,numbib]{tocbibind}   % No the numbers befor lot and lof and add them to toc
@@ -48,8 +61,11 @@ $endif$
 % Oben und unten:   2cm
 % Rechts:           4cm (Korrekturrand)
 % ------------------------------------------------------------
-\usepackage[a4paper, top=$if(seite.rand_oben)$$seite.rand_oben$$else$25mm$endif$, left=$if(seite.rand_links)$$seite.rand_links$$else$25mm$endif$, right=$if(seite.rand_rechts)$$seite.rand_rechts$$else$40mm$endif$, bottom=$if(seite.rand_unten)$$seite.rand_unten$$else$25mm$endif$, headsep=10mm, footskip=12mm]{geometry}
+\usepackage[$if(geometry)$$for(geometry)$$geometry$$sep$,$endfor$$else$a4paper,margin=2cm,bottom=2.5cm,top=25mm,left=25mm,right=40mm,headsep=10mm,footskip=12mm$endif$]{geometry}
 
+$if(fontfamily)$
+\usepackage[$for(fontfamilyoptions)$ $fontfamilyoptions$ $sep$, $endfor$]{$fontfamily$}
+$endif$
 \usepackage[right]{eurosym}
 \usepackage[printonlyused]{acronym}
 \usepackage{subfig}
@@ -58,7 +74,6 @@ $endif$
 \usepackage{paralist}
 \usepackage{array}
 \usepackage{parskip}
-\usepackage[right]{eurosym}
 \usepackage{helvet}
 \usepackage{graphicx}
 \usepackage[export]{adjustbox} % also loads graphicx, to have max width for graphics
@@ -71,8 +86,81 @@ $endif$
 $if(lang)$
 \sisetup{locale = $lang/uppercase$}
 $endif$
-\usepackage[a-1b]{pdfx} % This needs to be befor hyperref package and is to generate PDF as PDF/A Standard
+%\usepackage[a-1b]{pdfx} % This needs to be befor hyperref package and is to generate PDF as PDF/A Standard
 \usepackage{abstract} % For nice abstract formatting
+
+% ----------------------------------------------------------------------------------------------------------
+% Fontsetting
+% ----------------------------------------------------------------------------------------------------------
+%\usepackage{fontspec}
+%\setmainfont{Merriweather}
+%\setsansfont{Arial}
+%\KOMAoption{fontsize}{14pt}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+$if(mathspec)$
+\ifxetex
+	\usepackage{mathspec}
+\else
+	\usepackage{unicode-math}
+\fi
+$else$
+\usepackage{unicode-math}
+$endif$
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+$if(mainfont)$
+\setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+$else$
+\setmainfont[]{Arimo-Regular}
+$endif$
+$if(sansfont)$
+\setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
+$else$
+\setsansfont[]{Arimo-Regular}
+$endif$
+$if(monofont)$
+\setmonofont[$for(monofontoptions)$$monofontoptions$$sep$,$endfor$]{$monofont$}
+$else$
+\setmonofont[]{Arimo-Regular}
+$endif$
+$for(fontfamilies)$
+\newfontfamily{$fontfamilies.name$}[$for(fontfamilies.options)$$fontfamilies.options$$sep$,$endfor$]{$fontfamilies.font$}
+$endfor$
+$if(mathfont)$
+$if(mathspec)$
+\ifxetex
+	\setmathfont(Digits,Latin,Greek)[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+\else
+	\setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+\fi
+$else$
+\setmathfont[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+$endif$
+$endif$
+$if(CJKmainfont)$
+\ifxetex
+	\usepackage{xeCJK}
+	\setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
+\fi
+$endif$
+$if(luatexjapresetoptions)$
+\ifluatex
+	\usepackage[$for(luatexjapresetoptions)$$luatexjapresetoptions$$sep$,$endfor$]{luatexja-preset}
+\fi
+$endif$
+$if(CJKmainfont)$
+\ifluatex
+	\usepackage[$for(luatexjafontspecoptions)$$luatexjafontspecoptions$$sep$,$endfor$]{luatexja-fontspec}
+	\setmainjfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
+\fi
+$endif$
+\fi
+
 % ----------------------------------------------------------------------------------------------------------
 % Firstname + Lastname
 % ----------------------------------------------------------------------------------------------------------
@@ -178,8 +266,9 @@ $endif$
 
 % PDF Metadata
 % ------------------------------------------------------------------
+\usepackage{ifxetex,ifluatex}
 \hypersetup{
-	unicode=false, 
+	unicode=true, 
 	pdftoolbar=true, 
 	pdfmenubar=true, 
 	pdffitwindow=false, 
@@ -190,7 +279,12 @@ $if(studium.studiengang)$
 	pdfsubject={Studiengang: $studium.studiengang$}, 
 $endif$
 	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq via pandoc},
-	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
+%\ifxetex %if xetex
+	%pdfproducer={xetex \the\XeTeXversion\XeTeXrevision},
+%\fi
+\ifluatex %if luatex
+	pdfproducer={luatex \the\luatexversion\luatexrevision },
+\fi
 	pdfkeywords={$if(aufgabe.typ)$$aufgabe.typ$,$endif$ $if(student.matrikelnr)$$student.matrikelnr$,$endif$ $if(aufgabe.code)$$aufgabe.code$,$endif$ $if(keywords)$ $for(keywords)$ $keywords[, ]$ $endfor$$endif$},
 	pdfnewwindow=true,
 $if(lang)$
@@ -247,8 +341,6 @@ $if(listings)$
 	\makeatother
 $endif$
 
-\renewcommand{\familydefault}{\sfdefault}
-
 % Pandoc tightlisting
 % ------------------------------------------------------------------
 \providecommand{\tightlist}{%
@@ -266,8 +358,6 @@ $if(biblatex)$
 	\addbibresource{$bibliography$}
 	$endfor$
 $endif$
-
-\usepackage[T1]{fontenc}
 
 $if(csl-refs)$
 \newlength{\cslhangindent}
@@ -373,7 +463,7 @@ $endif$
 % Links:            2cm 
 % Oben und unten:   2cm
 % Rechts:           2cm 
-\newgeometry{top=$if(titelseite.rand_oben)$$titelseite.rand_oben$$else$20mm$endif$, left=$if(titelseite.rand_links)$$titelseite.rand_links$$else$20mm$endif$, right=$if(titelseite.rand_rechts)$$titelseite.rand_rechts$$else$20mm$endif$, bottom=$if(titelseite.rand_unten)$$titelseite.rand_unten$$else$20mm$endif$}
+\newgeometry{$if(titlepage)$$for(titlepage)$$titlepage$$sep$,$endfor$$else$top=20mm,left=20mm,right=20mm,bottom=20mm$endif$}
 \begin{center}
 $if(logo)$ 
     \includegraphics[max width=\textwidth]{$logo$}\\
@@ -558,8 +648,8 @@ $body$
 %\let\oldsection\section
 %\renewcommand\section{\clearpage\oldsection}
 
-%\setcounter{section}{2}
-%\setcounter{page}{2}
+\setcounter{section}{2}
+\setcounter{page}{2}
 
 $if(acronym)$
 % --------------------------------------------------------------

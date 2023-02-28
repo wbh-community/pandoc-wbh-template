@@ -1,0 +1,84 @@
+---
+# General Document Informations
+title: WBH Community Template
+subtitle: Use Pandoc and Latex to generate beautiful PDF files
+hochschule: 
+  name: Wilhelm Büchner Hochschule	
+  adresse: Hilpertstraße 31, 64295 Darmstadt 
+logo: /templates/common/Wilhelm_Buechner_Hochschule_Logo.pdf
+# Uncommand the Date file to set fix publishing date
+# date: 22.02.2022
+
+# About you
+student:
+  name: Max Mustermann
+  email: mustermann@example.com
+  strasse: Hilpertstraße 31
+  ort: 64295 Darmstadt
+  matrikelnr: 900266
+studium:
+  fachbereich: Informatik
+  studiengang: Medieninformatik
+  studiengangnr: 1140
+
+# Informations about the current Work
+aufgabe:
+  typ: B-Prüfung
+  code: Freiwillige_Arbeit
+betreuer: 
+  - Prof. Dr. Mustermann
+  - Dr. Zugestellt
+keywords:
+  - Lokalisierung
+  - Bluetooth
+  - Smartphone
+  - Sensoren
+  - Kalman Filter
+  - selbst korrigierend
+  
+# Document Settings
+lang: de
+toc: true
+lof: true
+lot: true
+insurance: true
+reference-section-title: Literaturverzeichnis
+link-citations: true
+
+# Advanced
+##################################################
+
+# Tell how to do hyphenation for special words:
+hyphenation:
+  - Java\-Script
+  - Mess\-er\-geb\-nisse
+  - Smart\-phone
+  - Smart\-phones
+
+# set any value, to skip the counting for Titlepage, 
+# so TOC will start with Page 1
+#skipfirstpage: 1
+
+# Attache pdf
+#assignment: 
+#  file: '`Aufgabenstellung/Aufgabenstellung.pdf`{=latex}'     
+#  beforetitle: 1
+#  pages: '`2-`{=latex}'  
+#  fillform: 1
+#  multipage: 1
+
+geometry:
+- a4paper
+- margin=2cm
+- top=25mm
+- bottom=2.5cm
+- left=25mm
+- right=40mm
+- headsep=10mm
+- footskip=12mm
+
+titlepage:
+- top=20mm
+- bottom=20mm
+- right=20mm
+- left=20mm

@@ -1,0 +1,22 @@
+# This file needs to be sorted by hand!
+acronym:
+  longest: A/D-Wandler
+  list:
+    - id: adw
+      short: A/D-Wandler
+      long: Analog/Digital-Wandler
+    - id: aoa
+      short: AoA
+      long: Angle of Arrival
+    - id: api
+      short: API
+      long: Application Programming Interface
+    - id: ble
+      short: BLE
+      long: Bluetooth Low Energy
+    - id: br
+      short: BR
+      long: Basic Rate
+    - id: pdf
+      short: PDF
+      long: Portable Document Format

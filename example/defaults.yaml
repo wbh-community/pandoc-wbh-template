@@ -1,0 +1,24 @@
+from: markdown
+to: pdf
+template: /templates/wbh.tex
+standalone: true
+pdf-engine: lualatex
+
+input-files:
+- README.md
+
+metadata-files:
+- metadata.yaml
+- acronyms.yaml
+
+resource-path: 
+  - "."
+  - "../"
+
+citeproc: true
+cite-method: citeproc
+metadata:
+  csl: /templates/common/iso690-numeric-sort-de.csl
+  bibliography: literatur.bib
+
+toc-depth: 3

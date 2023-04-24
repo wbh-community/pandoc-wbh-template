@@ -1,0 +1,26 @@
+---
+name: Pandoc file generator
+
+on: workflow_dispatch
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Checkout pandoc template
+        uses: actions/checkout@v2
+        with:
+          repository: wbh-community/pandoc-wbh-template
+          path: template
+
+      - name: Generate Files with Pandoc
+        uses: docker://pandoc/latex:latest
+        with:
+          entrypoint: "./build.sh"
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: output
+          path: output

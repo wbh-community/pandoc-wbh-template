@@ -116,17 +116,17 @@ $endif$
 $if(mainfont)$
 \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
 $else$
-\setmainfont[]{Arimo-Regular}
+\setmainfont[]{Arimo}
 $endif$
 $if(sansfont)$
 \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
 $else$
-\setsansfont[]{Arimo-Regular}
+\setsansfont[]{Arimo}
 $endif$
 $if(monofont)$
 \setmonofont[$for(monofontoptions)$$monofontoptions$$sep$,$endfor$]{$monofont$}
 $else$
-\setmonofont[]{Arimo-Regular}
+\setmonofont[]{Arimo}
 $endif$
 $for(fontfamilies)$
 \newfontfamily{$fontfamilies.name$}[$for(fontfamilies.options)$$fontfamilies.options$$sep$,$endfor$]{$fontfamilies.font$}
@@ -180,40 +180,47 @@ $endif$
 % include: $assignment.include$ file: $assignment.file$ pages: $assignment.pages$
 
 \def \assignment{
-    
-% Regular include for historic reasons
-%------------------
-% include assignment is on
-% \includepdf[pages=$assignment.pages$]{$assignment.file$}
-% New include for historic reasons
-%------------------
 
-% check if assignment.file is set at all 
-$if(assignment.file)$
-% check if form shall be filled out
-$if(assignment.fillform)$
-\includepdf[pagecommand={  % 23mm, 6mm
-\begin{tikzpicture}[remember picture, overlay, x=1mm,y=1mm,%
-mybox/.style={rectangle,minimum width=56mm, draw opacity=0.0, line width=0,  minimum height=8mm, align=left,text width=56mm},%
-info/.style={mybox,draw=black,align=left}]
-\node at (34,-36) [info] {$student.firstname$};
-\node at (95,-36) [info] {$student.lastname$};
-\node at (34,-49) [info] {$student.strasse$};
-\node at (95,-49) [info] {$student.ort$}; 
-\node at (34,-61) [info] {$student.matrikelnr$};
-\node at (95,-61) [info] {$studium.studiengangnr$};
-\end{tikzpicture}}, pages=1]{$assignment.file$}
-$if(assignment.multipage)$ % check if we need to include the rest of the document
-\includepdf[pages=$assignment.pages$]{$assignment.file$} % Include rest of document
-$endif$
-$else$
-\includepdf[pages=$assignment.pages$]{$assignment.file$}
-$endif$
-$else$
-%include assignment was off
-$endif$
+    % Check if assignment.file is provided
+    $if(assignment.file)$
+
+        % Check if the form should be filled out
+        $if(assignment.fillform)$
+
+            \includepdf[pagecommand={
+                \thispagestyle{empty}
+                \begin{tikzpicture}[
+                    remember picture, overlay,
+                    x=1mm, y=1mm,
+                    mybox/.style={rectangle, minimum width=56mm, draw opacity=0.0, line width=0, minimum height=8mm, align=left, text width=56mm},
+                    info/.style={mybox, draw=black, align=left}
+                ]
+                % Nodes for student and studium information
+                \node at ($if(positions.student_firstname)$$positions.student_firstname$$else$34,-38$endif$) [info] {$student.firstname$};
+                \node at ($if(positions.student_lastname)$$positions.student_lastname$$else$95,-38$endif$) [info] {$student.lastname$};
+                \node at ($if(positions.student_strasse)$$positions.student_strasse$$else$34,-52$endif$) [info] {$student.strasse$};
+                \node at ($if(positions.student_ort)$$positions.student_ort$$else$95,-52$endif$) [info] {$student.ort$};
+                \node at ($if(positions.student_matrikelnr)$$positions.student_matrikelnr$$else$34,-65$endif$) [info] {$student.matrikelnr$};
+                \node at ($if(positions.studium_studiengangnr)$$positions.studium_studiengangnr$$else$95,-65$endif$) [info] {$studium.studiengangnr$};
+                \end{tikzpicture}
+            }, pages=1]
+            {$assignment.file$}
+
+            % Check if multiple pages are needed, and if so, include the rest
+            $if(assignment.multipage)$
+                \includepdf[pages=$assignment.pages$]{$assignment.file$}
+            $endif$
+
+        $else$
+            % Simply include the assignment without the form fill
+            \includepdf[pages=$assignment.pages$]{$assignment.file$}
+        $endif$
+
+    $else$
+        % Log that no assignment.file was provided (currently silent)
+    $endif$
+
 }
-
 
 $if(tables)$
 \usepackage{longtable,booktabs} 			% This two Packages are needet for Pandoc Table support. Issue is opened: https://github.com/jgm/pandoc/issues/1023
@@ -363,7 +370,7 @@ $if(csl-refs)$
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
+\setlength{\csllabelwidth}{8em}
 \newlength{\cslentryspacingunit} % times entry-spacing
 \setlength{\cslentryspacingunit}{\parskip}
 \newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
@@ -635,6 +642,8 @@ $body$
 % --------------------------------------------------------------
 % Verzeichnisse
 % --------------------------------------------------------------
+\lhead{$reference-section-title$}
+\markboth{$reference-section-title$}{$reference-section-title$} % change the header for the bibliography chapter, maching the chapter title
 \pagebreak % wird benötigt um den header erst auf der folgeseite beginnen zu lassen.
 \lhead{} % remove the left part of header
 
